@@ -7,7 +7,7 @@ public class Product implements Serializable {
     private String id;
     private String name;
     private Integer price;
-    private Integer stock;
+    private String ornerName;
 
     public String getId() {
         return id;
@@ -33,11 +33,11 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public Integer getStock() {
-        return stock;
+    public String getOrnerName() {
+        return ornerName;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setOrnerName(String ornerName) {
+        this.ornerName = ornerName;
     }
 }
