@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--JS読み込み-->
+<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+<title>ユーザー登録</title>
+</head>
+<body class="bg-light">
+	<form id="signup-form" method="post" th:action="@{/signup}" class="form-signup" th:object="${signupForm}">
+
+			<h1 class="text-center">ユーザー登録</h1>
+			<!--メールアドレス-->
+			<div class="form-group">
+				<label for="mailAdress" th:text="#{mailAdress}"></label>
+				<input type="text" class="form-control" th:field="*{mailAddress}" th:errorclass="is-invalid"/>
+				<div class="invalid-feedback" th:errors="*{mailAddress}"></div>
+			</div>
+			<!--パスワード-->
+			<div class="form-group">
+				<label for="password" th:text="#{password}"></label>
+				<input type="text" class="form-control" name="password" th:field="*{password}" th:errorclass="is-invalid"/>
+				<div class="invalid-feedback" th:errors="*{password}"></div>
+			</div>
+			<!--ニックネーム-->
+			<div class="form-group">
+				<label for="userName" th:text="#{name}"></label>
+				<input type="text" class="form-control" th:field="*{name}" th:errorclass="is-invalid"/>
+				<div class="invalid-feedback" th:errors="*{name}"></div>
+			</div>
+	
+			<!--登録ボタン-->	
+			<input type="submit" th:value="ユーザ登録" class="btn btn-primary w-100 mt-3"/>
+		</form>
+</body>
+</html>

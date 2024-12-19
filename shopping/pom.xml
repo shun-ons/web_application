@@ -87,6 +87,33 @@
 		 	<artifactId>webjars-locator</artifactId>
 		 	<version>0.40</version>
 		 </dependency>
+		  <!--validation-->
+		  <dependency>
+		  	<groupId>org.springframework.boot</groupId>
+		 	<artifactId>spring-boot-starter-validation</artifactId>
+		 </dependency>
+		 
+		 <!--Mybatis-->
+		 <dependency>
+		  	<groupId>org.mybatis.spring.boot</groupId>
+		  	<artifactId>mybatis-spring-boot-starter</artifactId>
+		  	<version>3.0.3</version>
+		 </dependency>
+		 
+	      <!-- ModelMapper -->
+	    <dependency>
+	        <groupId>org.modelmapper.extensions</groupId>
+	        <artifactId>modelmapper-spring</artifactId>
+	        <version>2.3.9</version>
+	    </dependency>
+	    
+	    <!--H2データベース-->
+	    <dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		 
 	</dependencies>
 
 	<build>
