@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>出品ページ</title>
+	</head>
+	<body>
+		<h1>出品フォーム</h1>
+		<form th:action="@{/sales/item-input}" method="post" th:object="${itemInput}">
+			<table>
+				<tr>
+					<th>商品名</th>
+					<td>
+						<input type="text" th:field="*{itemName}"/>
+						<div th:errors="*{itemName}"></div>
+					</td>
+				</tr>
+				<tr>
+					<th>販売価格</th>
+					<td>
+						<input type="text" th:field="*{itemPrice}"/>
+						<div th:errors="*{itemPrice}"></div>
+					</td>
+				</tr>
+				<tr>
+					<th>販売者名</th>
+					<td>
+						<input type="text" th:field="*{userName}"/>
+						<div th:errors="*{userName}"></div>
+					</td>
+				</tr>
+				<tr>
+					<th>一言コメント</th>
+					<td>
+						<input type="text" th:field="*{comment}"/>
+						<div th:errors="*{comment}"></div>
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" th:field="*{itemId}"/>
+			<input type="submit" value="予約内容を確認"/>
+		</form>
+	</body>
+</html>
