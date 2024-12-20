@@ -1,36 +1,39 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @SuppressWarnings("serial")
-public class Product implements Serializable {
-    private String id;
-    private String name;
-    private Integer price;
+public class Item implements Serializable {
+    private String itemId;
+    private String itemName;
+    private Integer itemPrice;
     private String ornerName;
+    private String ornerEmailAddress;
+    private LocalDateTime salesDateTime;
 
-    public String getId() {
-        return id;
+    public String getitemId() {
+        return itemId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setiTEMName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getItemPrice() {
+        return itemPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setItemPrice(Integer itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public String getOrnerName() {
@@ -39,5 +42,21 @@ public class Product implements Serializable {
 
     public void setOrnerName(String ornerName) {
         this.ornerName = ornerName;
+    }
+    
+    public String getOrnerEmailAddress() {
+    	return this.ornerEmailAddress;
+    }
+    
+    public void setOrnerEmailAddress(String ornerEmailAddress) {
+    	this.ornerEmailAddress = ornerEmailAddress;
+    }
+    
+    public LocalDateTime getSalesDateTime() {
+    	return this.salesDateTime;
+    }
+    
+    public void setSalesDateTime(LocalDateTime salesDateTime) {
+    	this.salesDateTime = salesDateTime;
     }
 }

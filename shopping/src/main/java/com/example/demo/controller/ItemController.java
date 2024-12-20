@@ -6,16 +6,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.input.ItemInput;
 
 @Controller
-public class ItemoController {
+public class ItemController {
 	@GetMapping("/sales/sales-form")
-	public String salesForm(@RequestParam String itemId, Model model) {
+	public String salesForm(Model model) {
 		ItemInput itemInput = new ItemInput();
-		itemInput.setItemId(itemId);
 		model.addAttribute("itemInput", itemInput);
 		return "sales/salesForm";
 	}
@@ -26,9 +24,19 @@ public class ItemoController {
 			BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("itemInput", itemInput);
 			return "sales/salesForm";
 		}
 		return "sales/salesConfirmation";
+	}
+	
+	@PostMapping(value = "sales/confirm-input", params = "back")
+	public String reenterInput(@Validated ItemInput itemInput, Model model) {
+		model.addAttribute("itemInput", itemInput);
+		return "sales/salesForm";
+	}
+	
+	@PostMapping(value = "sales/confirm-input", params = "confirm")
+	public String confirmInput(@Validated ItemInput itemInput, Model model) {
+		return "";
 	}
 }

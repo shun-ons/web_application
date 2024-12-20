@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-</head>
-<body>
-	<h1>確認画面（仮）</h1>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>出品内容確認ページ</title>
+	</head>
+	<body>
+		<h1>出品内容確認</h1>
+		<form th:action="@{/sales/confirm-input}" method="post" th:object="${itemInput}">
+			<table>
+				<tr>
+					<th>商品名</th>
+					<td>
+						<span type="text" th:text="*{itemName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>販売価格</th>
+					<td>
+						<span type="text" th:text="*{itemPrice}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>販売者名</th>
+					<td>
+						<span type="text" th:text="*{userName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>一言コメント</th>
+					<td>
+						<span type="text" th:text="*{comment}"></span>
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" th:field="*{itemName}"/>
+			<input type="hidden" th:field="*{itemPrice}"/>
+			<input type="hidden" th:field="*{userName}"/>
+			<input type="hidden" th:field="*{comment}"/>
+			<input name="confirm" type="submit" value="出品"/>
+			<input name="back" type="submit" value="戻る"/>
+		</form>
+	</body>
 </html>

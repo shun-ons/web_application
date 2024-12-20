@@ -15,3 +15,12 @@ CREATE TABLE IF NOT EXISTS m_faculty(
 	faculty_name VARCHAR(50)
 	
 );
+
+CREATE TABLE IF NOT EXISTS item(
+	itemId VARCHAR(50) PRIMARY KEY,
+	itemName VARCHAR(50),
+	itemPrice INTEGER,
+	ornerName VARCHAR(50),
+	ornerEmaiAddress VARCHAR(50),
+	salesDateTime TIMESTAMP
+);
