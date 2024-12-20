@@ -8,7 +8,7 @@ public class OrderItem implements Serializable {
     private String id;
     private String orderId;
     private String productId;
-    private Product product;
+    private Item product;
     private Integer priceAtOrder;
     private Integer quantity;
 
@@ -36,11 +36,11 @@ public class OrderItem implements Serializable {
         this.productId = productId;
     }
 
-    public Product getProduct() {
+    public Item getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Item product) {
         this.product = product;
     }
 
