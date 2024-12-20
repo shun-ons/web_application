@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class ItemInput {
-	private String itemId;
 	@NotBlank
 	private String itemName;
 	@NotNull
@@ -14,14 +13,6 @@ public class ItemInput {
 	private String userName;
 	@Size(min=0, max=50)
 	private String comment;
-	
-	public String getItemId() {
-		return this.itemId;
-	}
-	
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
-	}
 	
 	public String getItemName() {
 		return this.itemName;
