@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS employee(
+	id VARCHAR(50) PRIMARY KEY,
+	name VARCHAR(50),
+	age INT
+);
+
+CREATE TABLE IF NOT EXISTS m_user(
+	mailAddress VARCHAR(50) PRIMARY KEY,
+	name VARCHAR(50),
+	password VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS m_faculty(
+	faculty_id INT PRIMARY KEY,
+	faculty_name VARCHAR(50)
+	
+);
