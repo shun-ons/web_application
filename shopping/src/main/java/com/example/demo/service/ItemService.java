@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class itemService {
+public class ItemService {
 	private final ItemMapper itemMapper;
 	
 	// 全取得
