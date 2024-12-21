@@ -9,7 +9,6 @@ public class Item implements Serializable {
     private String itemName;
     private Integer itemPrice;
     private String ornerName;
-    private String ornerEmailAddress;
     private LocalDateTime salesDateTime;
 
     public String getitemId() {
@@ -24,7 +23,7 @@ public class Item implements Serializable {
         return itemName;
     }
 
-    public void setiTEMName(String itemName) {
+    public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
@@ -42,14 +41,6 @@ public class Item implements Serializable {
 
     public void setOrnerName(String ornerName) {
         this.ornerName = ornerName;
-    }
-    
-    public String getOrnerEmailAddress() {
-    	return this.ornerEmailAddress;
-    }
-    
-    public void setOrnerEmailAddress(String ornerEmailAddress) {
-    	this.ornerEmailAddress = ornerEmailAddress;
     }
     
     public LocalDateTime getSalesDateTime() {

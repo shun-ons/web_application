@@ -10,7 +10,7 @@ public class ItemInput {
 	@NotNull
 	private int itemPrice;
 	@NotBlank
-	private String userName;
+	private String ornerName;
 	@Size(min=0, max=50)
 	private String comment;
 	
@@ -30,12 +30,12 @@ public class ItemInput {
 		this.itemPrice = itemPrice;
 	}
 	
-	public String getUserName() {
-		return this.userName;
+	public String getOrnerName() {
+		return this.ornerName;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setOrnerName(String ornerName) {
+		this.ornerName = ornerName;
 	}
 	
 	public String getComment() {
