@@ -21,6 +21,5 @@ CREATE TABLE IF NOT EXISTS item(
 	itemName VARCHAR(50),
 	itemPrice INTEGER,
 	ornerName VARCHAR(50),
-	ornerEmaiAddress VARCHAR(50),
 	salesDateTime TIMESTAMP
 );
