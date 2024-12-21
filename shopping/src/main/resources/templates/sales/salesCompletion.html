@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>出品完了</title>
-	</head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<title>出品完了</title>
+		</head>
 	<body>
 		<h1>出品が完了しました!</h1>
+		<form th:action="@{/sales/sales-form}" method="get" th:object="${itemInput}">
+			<input type="submit" value="出品ページへ戻る"/>
+		</form>
 	</body>
 </html>

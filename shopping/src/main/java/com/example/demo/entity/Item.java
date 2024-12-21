@@ -9,6 +9,7 @@ public class Item implements Serializable {
     private String itemName;
     private Integer itemPrice;
     private String ornerName;
+    private String comment;
     private LocalDateTime salesDateTime;
 
     public String getitemId() {
@@ -43,6 +44,13 @@ public class Item implements Serializable {
         this.ornerName = ornerName;
     }
     
+    public String getComment() {
+    	return this.comment;
+    }
+    
+    public void setComment(String comment) {
+    	this.comment = comment;
+    }
     public LocalDateTime getSalesDateTime() {
     	return this.salesDateTime;
     }
