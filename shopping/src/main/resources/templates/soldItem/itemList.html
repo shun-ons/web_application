@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>商品一覧</title>
+	</head>
+	<body>
+		<h1>新着アイテム</h1>
+		<table>
+			<tr>
+				<th>商品名</th>
+				<th>価格</th>
+			</tr>
+			<tr th:each="item:${items}">
+				<td>
+					<a th:href="@{/item-list/details(itemId=${item.itemId})}">
+						<span th:text="${item.itemName}"></span>
+					</a>
+				</td>
+				<td>
+					<span th:text="${item.itemPrice}"></span>
+					<span>円</span>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
