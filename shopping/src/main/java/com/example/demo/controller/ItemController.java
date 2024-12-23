@@ -17,6 +17,7 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+	// 販売フォームへのアクセスを管理.
 	@GetMapping("/sales/sales-form")
 	public String salesForm(Model model) {
 		ItemInput itemInput = new ItemInput();
@@ -24,6 +25,7 @@ public class ItemController {
 		return "sales/salesForm";
 	}
 	
+	// 販売フォームでの入力を確認.
 	@PostMapping("sales/item-input")
 	public String validateInput(
 			@Validated ItemInput itemInput,
@@ -35,12 +37,14 @@ public class ItemController {
 		return "sales/salesConfirmation";
 	}
 	
+	// 入力を訂正.
 	@PostMapping(value = "sales/confirm-input", params = "back")
 	public String reenterInput(@Validated ItemInput itemInput, Model model) {
 		model.addAttribute("itemInput", itemInput);
 		return "sales/salesForm";
 	}
 	
+	// 販売を確定.
 	@PostMapping(value = "sales/confirm-input", params = "confirm")
 	public String confirmInput(@Validated ItemInput itemInput, Model model) {
 		Item item = itemService.sell(itemInput);

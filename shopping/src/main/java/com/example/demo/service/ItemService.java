@@ -33,7 +33,7 @@ public class ItemService {
 	}
 	
 	// 登録と更新のうち、共通する動作
-	public Item edit(ItemInput itemInput) {
+	private Item edit(ItemInput itemInput) {
 		Item item = new Item();
 		item.setId(UUID.randomUUID().toString());
 		item.setItemName(itemInput.getItemName());

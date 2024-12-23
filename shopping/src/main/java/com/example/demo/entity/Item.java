@@ -9,11 +9,11 @@ public class Item implements Serializable {
     private String itemName;
     private Integer itemPrice;
     private String ornerName;
-    private String comment;
+    private String message;
     private LocalDateTime salesDateTime;
 
-    public String getitemId() {
-        return itemId;
+    public String getItemId() {
+        return this.itemId;
     }
 
     public void setId(String itemId) {
@@ -45,11 +45,11 @@ public class Item implements Serializable {
     }
     
     public String getComment() {
-    	return this.comment;
+    	return this.message;
     }
     
     public void setComment(String comment) {
-    	this.comment = comment;
+    	this.message = comment;
     }
     public LocalDateTime getSalesDateTime() {
     	return this.salesDateTime;
@@ -57,5 +57,10 @@ public class Item implements Serializable {
     
     public void setSalesDateTime(LocalDateTime salesDateTime) {
     	this.salesDateTime = salesDateTime;
+    }
+    
+    @Override
+    public String toString() {
+        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName +"', comment='" + message +"', date='" + salesDateTime + "'}";
     }
 }

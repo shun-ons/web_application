@@ -23,7 +23,7 @@
 				<tr>
 					<th>販売者名</th>
 					<td>
-						<span type="text" th:text="*{userName}"></span>
+						<span type="text" th:text="*{ornerName}"></span>
 					</td>
 				</tr>
 				<tr>
@@ -35,7 +35,7 @@
 			</table>
 			<input type="hidden" th:field="*{itemName}"/>
 			<input type="hidden" th:field="*{itemPrice}"/>
-			<input type="hidden" th:field="*{userName}"/>
+			<input type="hidden" th:field="*{ornerName}"/>
 			<input type="hidden" th:field="*{comment}"/>
 			<input name="confirm" type="submit" value="出品"/>
 			<input name="back" type="submit" value="戻る"/>
