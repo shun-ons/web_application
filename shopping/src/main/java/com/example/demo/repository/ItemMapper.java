@@ -7,10 +7,12 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Item;
 
 @Mapper
+@Repository
 public interface ItemMapper {
 	// 全聚徳
 	@Select("SELECT * FROM item")
@@ -21,13 +23,13 @@ public interface ItemMapper {
 	public Item selectById(String itemId);
 	
 	// 登録
-	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, ornerEmailAddress, salesDateTime)",
-			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{ornerEmailAddress}, #{salesDateTime})"})
+	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, comment, salesDateTime)",
+			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{comment}, #{salesDateTime})"})
 	public int insert(Item item);
 	
 	// 更新
 	@Update({"UPDATE ITEM",
-		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, ornerName = #{ornerName}, ornerEmailAddress = {ornerEmailAddress}, salesDateTime = #{salesDateTime}",
+		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, ornerName = #{ornerName}, comment = #{comment}, salesDateTime = #{salesDateTime}",
 		"WHERE itemId = #{itemId"})
 	public int update(Item item);
 	

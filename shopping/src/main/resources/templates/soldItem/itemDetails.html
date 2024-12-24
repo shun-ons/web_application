@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>商品詳細</title>
+	</head>
+	<body>
+		<table th:object="${item}">
+			<tr>
+				<th>商品名</th>
+				<td>
+					<span th:text="*{itemName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>価格</th>
+				<td>
+					<span th:text="*{itemPrice}"></span>
+					<span>円</span>
+				</td>
+			</tr>
+			<tr>
+				<th>販売者</th>
+				<td>
+					<span th:text="*{ornerName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>コメント</th>
+				<td>
+					<span th:text="*{comment}"></span>
+				</td>
+			</tr>
+		</table>
+		<a href="/item-list">戻る</a>
+	</body>
+</html>
