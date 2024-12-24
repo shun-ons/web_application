@@ -17,4 +17,9 @@
  
         )
     </insert>
+    
+    <!-- ユーザー複数権取得 -->
+    <select id="findMany" resultType="MUser">
+    SELECT * FROM M_USER 
+    </select>
 </mapper>
