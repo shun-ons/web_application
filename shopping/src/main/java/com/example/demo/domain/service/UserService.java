@@ -11,4 +11,12 @@ public interface UserService {
 	
 	//ユーザ情報取得
 	public List<MUser>getUsers();
+	
+	//ユーザ1件取得
+	public MUser getUserOne(String mailAdress);
+	
+	//ユーザ1件更新
+	public void updateUserOne(String mailAddress,String password,String name);
+	
+	public void deleteUserOne(String mailAddress);
 }

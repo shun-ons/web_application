@@ -26,4 +26,19 @@ public class UserServiceImpl implements UserService{
 	public List<MUser> getUsers() {
 		return mapper.findMany();
 	}
+	
+	@Override
+	public MUser getUserOne(String mailAddress) {
+		return mapper.findOne(mailAddress);
+	}
+	
+	@Override
+	public void updateUserOne(String mailAddress,String password,String name) {
+		mapper.updateOne(mailAddress, password, name);
+	}
+	
+	@Override
+	public void deleteUserOne(String mailAddress) {
+		mapper.deleteOne(mailAddress);
+	}
 }

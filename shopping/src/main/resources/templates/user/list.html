@@ -20,12 +20,19 @@
 				<tr>
 					<th class="th-width">メールアドレス</th>
 					<th class="th-width">ニックネーム</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="item:${userList}">
+				<tr th:each="item : ${userList}">
 					<td th:text="${item.mailAddress}"></td>
 					<td th:text="${item.name}"></td>
+					<td>
+						<!--ユーザ詳細へのボタン(動的URL)-->
+						<a class="btn btn-primary" th:href="@{'/detail/' + ${item.mailAddress}}">
+							詳細
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

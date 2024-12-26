@@ -21,7 +21,7 @@
 			<!--パスワード-->
 			<div class="form-group">
 				<label for="password" th:text="#{password}"></label>
-				<input type="text" class="form-control" name="password" th:field="*{password}" th:errorclass="is-invalid"/>
+				<input type="password" class="form-control" name="password" th:field="*{password}" th:errorclass="is-invalid"/>
 				<div class="invalid-feedback" th:errors="*{password}"></div>
 			</div>
 			<!--ニックネーム-->

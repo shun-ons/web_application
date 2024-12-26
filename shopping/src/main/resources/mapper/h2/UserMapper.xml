@@ -3,6 +3,14 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.repository.UserMapper">
+
+	<!-- マッピング定義(ユーザ) -->
+	<resultMap type="com.example.demo.domain.model.MUser" id="user">
+		<id column="mailAddress" property="mailAddress" />
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+	</resultMap>
+	
     <insert id="insertOne">
         Insert into m_user (
             mailAddress,
@@ -22,4 +30,18 @@
     <select id="findMany" resultType="MUser">
     SELECT * FROM M_USER 
     </select>
+    
+    <select id="findOne" resultMap="user">
+    SELECT * FROM M_USER WHERE MAILADDRESS = #{mailAddress}
+    </select>
+    
+    <!-- ユーザ1件更新 -->
+    <update id="updateOne">
+    UPDATE M_USER SET PASSWORD = #{password},NAME = #{name}
+    WHERE MAILADDRESS = #{mailAddress}
+    </update>
+    
+    <delete id="deleteOne">
+    DELETE FROM M_USER WHERE MAILADDRESS = #{mailAddress}
+    </delete>
 </mapper>
