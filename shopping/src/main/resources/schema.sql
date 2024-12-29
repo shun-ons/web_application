@@ -16,5 +16,6 @@ CREATE TABLE IF NOT EXISTS item(
 	itemPrice INTEGER,
 	ornerName VARCHAR(50),
 	message VARCHAR(50),
-	salesDateTime TIMESTAMP
+	salesDateTime TIMESTAMP,
+	isSold BOOLEAN
 );
