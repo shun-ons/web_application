@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS item(
 	salesDateTime TIMESTAMP,
 	isSold BOOLEAN
 );
+
+CREATE TABLE IF NOT EXISTS order_item(
+	orderId VARCHAR(50) PRIMARY KEY,
+	itemId VARCHAR(50),
+	purchaserId VARCHAR(50),
+	ornerId VARCHAR(50),
+	priceAtOrder INTEGER,
+	orderDateTime TIMESTAMP
+);
