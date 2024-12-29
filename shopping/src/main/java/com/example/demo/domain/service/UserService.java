@@ -11,4 +11,7 @@ public interface UserService {
 	
 	//ユーザ情報取得
 	public List<MUser>getUsers();
+	
+	//メールアドレスでユーザ情報を取得
+	public MUser getUserByMailAddress(String mailAddress);
 }

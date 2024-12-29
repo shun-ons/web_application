@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS m_user(
-	mailAddress VARCHAR(50) PRIMARY KEY,
+	userId VARCHAR(50) PRIMARY KEY,
+	mailAddress VARCHAR(50),
 	name VARCHAR(50),
 	password VARCHAR(20)
 );

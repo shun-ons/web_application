@@ -32,6 +32,9 @@
 				</td>
 			</tr>
 		</table>
-		<a href="/item-list">戻る</a>
+		<form th:action="@{/item-list}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}"/>
+			<input type="submit" value="戻る"/>
+		</form>
 	</body>
 </html>

@@ -22,4 +22,9 @@
     <select id="findMany" resultType="MUser">
     SELECT * FROM M_USER 
     </select>
+
+    <!-- ユーザを1件取得 -->
+    <select id="findByMailAddress" resultType="MUser">
+        SELECT * FROM M_USER WHERE mailAddress = #{mailAddress}
+    </select>
 </mapper>
