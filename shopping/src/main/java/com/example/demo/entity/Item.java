@@ -11,6 +11,7 @@ public class Item implements Serializable {
     private String ornerName;
     private String message;
     private LocalDateTime salesDateTime;
+    private boolean isSold = true;
 
     public String getItemId() {
         return this.itemId;
@@ -51,6 +52,7 @@ public class Item implements Serializable {
     public void setComment(String comment) {
     	this.message = comment;
     }
+    
     public LocalDateTime getSalesDateTime() {
     	return this.salesDateTime;
     }
@@ -59,8 +61,16 @@ public class Item implements Serializable {
     	this.salesDateTime = salesDateTime;
     }
     
+    public boolean getIsSold() {
+    	return this.isSold;
+    }
+    
+    public void setIsSold(boolean isSold) {
+    	this.isSold = isSold;
+    }
+    
     @Override
     public String toString() {
-        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName +"', comment='" + message +"', date='" + salesDateTime + "'}";
+        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName +"', comment='" + message +"', date='" + salesDateTime + "', isSold='" + "'}";
     }
 }
