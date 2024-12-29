@@ -22,7 +22,10 @@ public class SoldItemController {
 		List<Item> items = itemService.selectAll();
 		List<Item> reverseItems = new ArrayList<Item>(items.size());
 		for (int i = items.size() - 1; i >= 0; i--) {
-			reverseItems.add(items.get(i));
+			if (items.get(i).getIsSold()) {
+				// 誰かがカートに入れている商品は表示しない.
+				reverseItems.add(items.get(i));
+			}
 		}
 		model.addAttribute("items", reverseItems);
 		return "soldItem/itemList";
