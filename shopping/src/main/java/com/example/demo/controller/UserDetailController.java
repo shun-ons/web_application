@@ -41,7 +41,6 @@ public class UserDetailController {
 	@PostMapping(value = "/detail",params = "update")
 	public String updateUser(UserDetailForm form,Model model) {
 		
-		System.out.println("aaa");
 		userService.updateUserOne(form.getMailAddress(),form.getPassword() , form.getName());
 		
 		return "redirect:/list";
