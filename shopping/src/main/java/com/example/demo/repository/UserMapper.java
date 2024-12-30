@@ -21,4 +21,6 @@ public interface UserMapper {
 	public void updateOne(@Param("mailAddress") String mailAddress,@Param("password") String password,@Param("name") String name);
 	
 	public void deleteOne(@Param("mailAddress") String mailAddress);
+	
+	public MUser findByMailAddress(String mailAddress);
 }

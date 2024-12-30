@@ -13,13 +13,18 @@
 			</tr>
 			<tr th:each="item:${items}">
 				<td>
-					<a th:href="@{/item-list/details(itemId=${item.itemId})}">
-						<span th:text="${item.itemName}"></span>
-					</a>
+					<span th:text="${item.itemName}"></span>
 				</td>
 				<td>
 					<span th:text="${item.itemPrice}"></span>
 					<span>円</span>
+				</td>
+				<td>
+					<form th:action="@{/item-list/details}"  method="post">
+						<input type="hidden" name="itemId" th:value="${item.itemId}"/>
+						<input type="hidden" name="userId" th:value="${userId}"/>
+						<input type="submit" value="詳細を確認"/>
+					</form>
 				</td>
 			</tr>
 		</table>

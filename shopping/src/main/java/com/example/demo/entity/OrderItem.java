@@ -1,25 +1,18 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 @SuppressWarnings("serial")
 public class OrderItem implements Serializable {
-    private String id;
     private String orderId;
-    private String productId;
-    private Item product;
+    private String itemId;
+    private String purchaserId;
+    private String ornerId;
     private Integer priceAtOrder;
-    private Integer quantity;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    private LocalDateTime orderDateTime;
+    
     public String getOrderId() {
         return orderId;
     }
@@ -28,22 +21,30 @@ public class OrderItem implements Serializable {
         this.orderId = orderId;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+    
+    public String getPurchaserId() {
+    	return this.purchaserId;
     }
 
-    public Item getProduct() {
-        return product;
+    public void setPurchaserId(String purchaserId) {
+    	this.purchaserId = purchaserId;
     }
 
-    public void setProduct(Item product) {
-        this.product = product;
+    public String getOrnerId() {
+    	return this.ornerId;
     }
-
+    
+    public void setOrnerId(String ornerId) {
+    	this.ornerId = ornerId;
+    }
+    
     public Integer getPriceAtOrder() {
         return priceAtOrder;
     }
@@ -51,13 +52,19 @@ public class OrderItem implements Serializable {
     public void setPriceAtOrder(Integer priceAtOrder) {
         this.priceAtOrder = priceAtOrder;
     }
-
-    public Integer getQuantity() {
-        return quantity;
+    
+    public LocalDateTime getOrderDateTime() {
+    	return this.orderDateTime;
     }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    
+    public void setOrderDateTime(LocalDateTime orderDateTime) {
+    	this.orderDateTime = orderDateTime;
+    }
+    
+    public String toString() {
+    	return "orderItem{orderId='" + this.orderId + "', itemId='" + this.itemId +
+    			"', purchaserId='" + this.purchaserId +"', ornerId='" + this.ornerId +
+    			"', priceAtOrder='" + this.priceAtOrder + "', orderDateTime" + this.orderDateTime + "'}";
     }
 }
 

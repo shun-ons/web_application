@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>マイページ</title>
+	</head>
+	<body>
+		<table th:object="${muser}">
+			<tr>
+				<th>ユーザ名</th>
+				<td>
+					<sapn type="text" th:text="*{name}"></sapn>
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>
+					<span type="text" th:text="*{mailAddress}"></span>
+				</td>
+			</tr>
+		</table>
+		<form th:action="@{/item-list}" method="post">
+			<input type="hidden" th:field="${muser.userId}"/>
+			<input type="submit" value="商品一覧へ">
+		</form>
+		<form th:action="@{/sales/sales-form}" method="post">
+			<input type="hidden" th:field="${muser.userId}"/>
+			<input type="submit" value="出品する">
+		</form>
+	</body>
+</html>

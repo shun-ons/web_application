@@ -1,6 +1,7 @@
 package com.example.demo.domain.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService{
 	public void signup(MUser user) {
 		//user.setFacultyId(1);
 		//user.setFacultyName("システム工学部");
+		user.setUserId(UUID.randomUUID().toString());
 		mapper.insertOne(user);
 	}
 	
@@ -40,5 +42,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteUserOne(String mailAddress) {
 		mapper.deleteOne(mailAddress);
+	}
+	
+	public MUser getUserByMailAddress(String mailAddress) {
+		return mapper.findByMailAddress(mailAddress);
 	}
 }

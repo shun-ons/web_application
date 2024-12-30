@@ -11,20 +11,22 @@
 		<result column="name" property="name"/>
 	</resultMap>
 	
-    <insert id="insertOne">
-        Insert into m_user (
+    <!--  <insert id="insertOne">
+        Insert into m_user (-->
+    <insert id="insertOne">Insert into m_user (
+            userId,
             mailAddress,
             password,
             name
             
         )
         values (
+            #{userId},
             #{mailAddress},
             #{password},
             #{name}
  
-        )
-    </insert>
+        )</insert>
     
     <!-- ユーザー複数権取得 -->
     <select id="findMany" resultType="MUser">
@@ -44,4 +46,10 @@
     <delete id="deleteOne">
     DELETE FROM M_USER WHERE MAILADDRESS = #{mailAddress}
     </delete>
+
+    <!-- ユーザを1件取得 -->
+    <select id="findByMailAddress" resultType="MUser">
+        SELECT * FROM M_USER WHERE mailAddress = #{mailAddress}
+    </select>
 </mapper>
+
