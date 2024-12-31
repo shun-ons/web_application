@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--JS読み込み-->
+<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>マイページ</title>
@@ -13,12 +16,17 @@
 				</td>
 			</tr>
 			<tr>
-				<th>メールアドレス</th>
+				<th class="w-25">メールアドレス</th>
 				<td>
 					<span type="text" th:text="*{mailAddress}"></span>
 				</td>
 			</tr>
 		</table>
+		
+		<a class="btn btn-primary" th:href="@{'/detail/' + ${muser.mailAddress}}">
+		詳細
+		</a>
+					
 		<form th:action="@{/item-list}" method="post">
 			<input type="hidden" th:field="${muser.userId}"/>
 			<input type="submit" value="商品一覧へ">
