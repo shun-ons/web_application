@@ -34,7 +34,7 @@
     </select>
     
     <select id="findOne" resultMap="user">
-    SELECT * FROM M_USER WHERE MAILADDRESS = #{mailAddress}
+    SELECT * FROM M_USER WHERE USERID = #{userId}
     </select>
     
     <!-- ユーザ1件更新 -->
