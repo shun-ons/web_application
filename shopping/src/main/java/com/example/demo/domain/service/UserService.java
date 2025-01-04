@@ -13,7 +13,7 @@ public interface UserService {
 	public List<MUser>getUsers();
 	
 	//ユーザ1件取得
-	public MUser getUserOne(String mailAdress);
+	public MUser getUserOne(String userId);
 	
 	//ユーザ1件更新
 	public void updateUserOne(String mailAddress,String password,String name);

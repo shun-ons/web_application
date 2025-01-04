@@ -29,12 +29,15 @@ public class ItemController {
 	// 販売フォームでの入力を確認.
 	@PostMapping("sales/item-input")
 	public String validateInput(
+			String userId,
 			@Validated ItemInput itemInput,
 			BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "sales/salesForm";
 		}
+		model.addAttribute("itemInput", itemInput);
+		model.addAttribute("userId", userId);
 		return "sales/salesConfirmation";
 	}
 	
@@ -47,8 +50,8 @@ public class ItemController {
 	
 	// 販売を確定.
 	@PostMapping(value = "sales/confirm-input", params = "confirm")
-	public String confirmInput(@Validated ItemInput itemInput, Model model) {
-		Item item = itemService.sell(itemInput);
+	public String confirmInput(@RequestParam String userId, @Validated ItemInput itemInput, Model model) {
+		Item item = itemService.sell(itemInput, userId);
 		model.addAttribute("item", item);
 		return "sales/salesCompletion";
 	}

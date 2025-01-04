@@ -32,13 +32,18 @@ public class ItemService {
 		return itemMapper.selectById(itemId);
 	}
 	
+	// userIdからuserNameを取得.
+	public String getUserName(String userId) {
+		return itemMapper.getUserName(userId);
+	}
+	
 	// 登録と更新のうち、共通する動作
-	private Item edit(ItemInput itemInput) {
+	private Item edit(ItemInput itemInput, String userId) {
 		Item item = new Item();
 		item.setId(UUID.randomUUID().toString());
 		item.setItemName(itemInput.getItemName());
 		item.setItemPrice(itemInput.getItemPrice());
-		item.setOrnerName(itemInput.getOrnerName());
+		item.setOrnerName(this.getUserName(userId));
 		item.setComment(itemInput.getComment());
 		LocalDateTime now = LocalDateTime.now();
 		//DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -48,15 +53,15 @@ public class ItemService {
 	}
 	
 	// 登録
-	public Item sell(ItemInput itemInput) {
-		Item item = this.edit(itemInput);
+	public Item sell(ItemInput itemInput, String userId) {
+		Item item = this.edit(itemInput, userId);
 		itemMapper.insert(item);
 		return item;
 	}
 	
 	// 更新
-	public Item update(ItemInput itemInput) {
-		Item item = this.edit(itemInput);
+	public Item update(ItemInput itemInput, String userId) {
+		Item item = this.edit(itemInput, userId);
 		itemMapper.update(item);
 		return item;
 	}
