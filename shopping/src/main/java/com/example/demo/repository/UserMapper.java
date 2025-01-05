@@ -20,7 +20,12 @@ public interface UserMapper {
 	//ユーザ更新
 	public void updateOne(@Param("mailAddress") String mailAddress,@Param("password") String password,@Param("name") String name);
 	
+	//ユーザ削除
 	public void deleteOne(@Param("mailAddress") String mailAddress);
 	
 	public MUser findByMailAddress(String mailAddress);
+	
+	public String getMaxUserId();
+
+	
 }

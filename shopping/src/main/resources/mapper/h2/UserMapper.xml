@@ -9,6 +9,7 @@
 		<id column="mailAddress" property="mailAddress" />
 		<result column="password" property="password"/>
 		<result column="name" property="name"/>
+		<result column="role" property="role"/>
 	</resultMap>
 	
     <!--  <insert id="insertOne">
@@ -17,16 +18,22 @@
             userId,
             mailAddress,
             password,
-            name
+            name,
+            role
             
         )
         values (
             #{userId},
             #{mailAddress},
             #{password},
-            #{name}
- 
+            #{name},
+            #{role}
         )</insert>
+        
+     <!-- ユーザーIDのマックス値を取得 -->
+    <select id="getMaxUserId" resultType="String">
+    SELECT userId FROM M_USER ORDER BY userId DESC LIMIT 1
+	</select>
     
     <!-- ユーザー複数権取得 -->
     <select id="findMany" resultType="MUser">

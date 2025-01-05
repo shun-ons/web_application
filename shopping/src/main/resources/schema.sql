@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS m_user(
 	userId VARCHAR(50) PRIMARY KEY,
 	mailAddress VARCHAR(50),
 	name VARCHAR(50),
-	password VARCHAR(20)
+	password VARCHAR(500),
+	role  VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS m_faculty(

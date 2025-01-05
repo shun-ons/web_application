@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,10 +15,16 @@
 	<div class="text-center">
 		<form method="post" th:action="@{/login}" class="form-login">
 			<h2>ログイン</h2>
+			<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+			 th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+			 class="text-danger">
+			    ログインエラーメッセージ
+			</p>
+
 			<!--ユーザーID-->
 			<div class="form-group">
-				<label for="userId" class="sr-only">メールアドレス</label>
-				<input type="text" class="form-control" placeholder="メールアドレス" name="mailAdress"/>
+				<label for="mailAddress" class="sr-only">メールアドレス</label>
+				<input type="text" id="mailAddress" class="form-control" placeholder="メールアドレス" name="mailAddress"/>
 			</div>
 			<!--パスワード-->
 			<div class="form-group">

@@ -1,9 +1,9 @@
 package com.example.demo.domain.service.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.model.MUser;
@@ -16,11 +16,33 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserMapper mapper;
 	
+	@Autowired
+	private PasswordEncoder encoder;
+	
+	
 	@Override
 	public void signup(MUser user) {
-		//user.setFacultyId(1);
-		//user.setFacultyName("システム工学部");
-		user.setUserId(UUID.randomUUID().toString());
+		
+		String maxUserId = mapper.getMaxUserId();
+	    int newId = 1;
+
+	    if (maxUserId != null && maxUserId.startsWith("u")) {
+	        // "u"を除いた部分を数値に変換し、+1する
+	        newId = Integer.parseInt(maxUserId.substring(1)) + 1;
+	    }
+
+	    // 新しいuserIdを生成
+	    String newUserId = String.format("u%02d", newId);
+	    user.setUserId(newUserId);
+	    
+		user.setRole("ROLE_GENERAL");
+		
+		System.out.println("Before encoding userId: " + user.getUserId());
+		
+		//パスワード暗号化
+		String rawPassword = user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
+		
 		mapper.insertOne(user);
 	}
 	
@@ -36,7 +58,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void updateUserOne(String mailAddress,String password,String name) {
-		mapper.updateOne(mailAddress, password, name);
+		String encryptPassword = encoder.encode(password);
+		mapper.updateOne(mailAddress, encryptPassword, name);
 	}
 	
 	@Override
