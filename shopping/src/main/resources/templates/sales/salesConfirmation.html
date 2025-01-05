@@ -21,21 +21,15 @@
 					</td>
 				</tr>
 				<tr>
-					<th>販売者名</th>
-					<td>
-						<span type="text" th:text="*{ornerName}"></span>
-					</td>
-				</tr>
-				<tr>
 					<th>一言コメント</th>
 					<td>
-						<span type="text" th:text="*{comment}"></span>
+						<span type="text" name="message" th:text="*{comment}"></span>
 					</td>
 				</tr>
 			</table>
 			<input type="hidden" th:field="*{itemName}"/>
 			<input type="hidden" th:field="*{itemPrice}"/>
-			<input type="hidden" th:field="*{ornerName}"/>
+			<input type="hidden" name="userId" th:value="${userId}"/>
 			<input type="hidden" th:field="*{comment}"/>
 			<input name="confirm" type="submit" value="出品"/>
 			<input name="back" type="submit" value="戻る"/>

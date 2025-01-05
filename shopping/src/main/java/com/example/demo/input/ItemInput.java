@@ -9,8 +9,6 @@ public class ItemInput {
 	private String itemName;
 	@NotNull
 	private int itemPrice;
-	@NotBlank
-	private String ornerName;
 	@Size(min=0, max=50)
 	private String comment;
 	
@@ -28,14 +26,6 @@ public class ItemInput {
 	
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
-	}
-	
-	public String getOrnerName() {
-		return this.ornerName;
-	}
-	
-	public void setOrnerName(String ornerName) {
-		this.ornerName = ornerName;
 	}
 	
 	public String getComment() {

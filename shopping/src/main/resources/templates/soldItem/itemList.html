@@ -28,5 +28,9 @@
 				</td>
 			</tr>
 		</table>
+		<form th:action="@{/mypage}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}"/>
+			<input type="submit" value="マイページへ"/>
+		</form>
 	</body>
 </html>

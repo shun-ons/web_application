@@ -23,8 +23,8 @@ public interface ItemMapper {
 	public Item selectById(String itemId);
 	
 	// 登録
-	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, comment, salesDateTime)",
-			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{comment}, #{salesDateTime})"})
+	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, message, salesDateTime)",
+			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{message}, #{salesDateTime})"})
 	public int insert(Item item);
 	
 	// 更新
@@ -36,4 +36,8 @@ public interface ItemMapper {
 	// 削除
 	@Delete({"DELETE FROM item", "WHERE itemId = #{itemId}"})
 	public int delete(String itemId);
+	
+	// userIdからuserNameを取得
+	@Select({"SELECT name FROM m_user", "WHERE userId = #{userId}"})
+	public String getUserName(String userId);
 }
