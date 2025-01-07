@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/layout}">
 <!--JS読み込み-->
 <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+<!--CSS読み込み-->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>マイページ</title>
 	</head>
 	<body>
+		<div layout:fragment="content">
+		<div class="header border-bottom">
+					<h1 class="h2">マイページ</h1>
+		</div>
 		<table th:object="${muser}">
 			<tr>
 				<th>ユーザ名</th>
@@ -36,5 +45,6 @@
 			<input type="hidden" th:field="${muser.userId}"/>
 			<input type="submit" value="出品する">
 		</form>
+		</div>
 	</body>
 </html>

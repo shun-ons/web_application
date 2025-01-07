@@ -93,6 +93,13 @@
 		 	<artifactId>spring-boot-starter-validation</artifactId>
 		 </dependency>
 		 
+		 <!--レイアウト-->
+		 <dependency>
+		  	<groupId>nz.net.ultraq.thymeleaf</groupId>
+		 	<artifactId>thymeleaf-layout-dialect</artifactId>
+		 </dependency>
+		 
+		 
 		 <!--Mybatis-->
 		 <dependency>
 		  	<groupId>org.mybatis.spring.boot</groupId>

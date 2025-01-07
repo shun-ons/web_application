@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -25,20 +27,37 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/webjars/**", "/css/**", "/js/**", "/h2-console/**").permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
+                .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             )
+            //認証
             .formLogin(form -> form
-                .loginProcessingUrl("/login") // 認証処理URLを明確に指定
+                .loginProcessingUrl("/login") 
                 .loginPage("/login") 
                 .failureUrl("/login?error")
                 .usernameParameter("mailAddress")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/mypage", true)
             )
-            .csrf(csrf -> csrf.disable())
-            .headers(headers -> headers.frameOptions(frame -> frame.disable()));
+            
+            //ログアウト
+            .logout(logout -> logout
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // ログアウトリクエストのURL
+                    .logoutSuccessUrl("/login?logout") // ログアウト成功時のリダイレクト先
+                    .deleteCookies("JSESSIONID") // セッションCookieを削除
+                    .invalidateHttpSession(true) // セッションを無効化
+            )
+            .csrf(csrf -> csrf
+                    .ignoringRequestMatchers(h2ConsoleRequestMatcher()) // H2コンソールをCSRF対象外に設定
+            )
+            .headers(headers -> headers.frameOptions(frame -> frame.disable())); // H2コンソールの表示用
+           
 
-        return http.build();
+            return http.build();
+    }
+    
+    private RequestMatcher h2ConsoleRequestMatcher() {
+        return new AntPathRequestMatcher("/h2-console/**");
     }
     
     @Bean
