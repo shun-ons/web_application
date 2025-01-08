@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .requestMatchers("/webjars/**", "/css/**", "/js/**", "/h2-console/**").permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/list").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             )
             //認証
