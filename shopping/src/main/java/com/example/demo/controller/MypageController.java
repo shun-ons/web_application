@@ -46,8 +46,8 @@ public class MypageController {
 	
 	@PostMapping("/mypage/details")
 	public String details(@RequestParam String userId, Model model) {
-		MUser muser = userService.getUserOne(userId);
-		model.addAttribute("muser", muser);
-		return "mypage/details";
+		MUser userDetailForm = userService.getUserOne(userId);
+		model.addAttribute("userDetailForm", userDetailForm);
+		return "user/detail";
 	}
 }
