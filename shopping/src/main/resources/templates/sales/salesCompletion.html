@@ -6,12 +6,12 @@
 		</head>
 	<body>
 		<h1>出品が完了しました!</h1>
-		<form th:action="@{/sales/sales-form}" method="post" th:object="${itemInput}">
-			<input type="hidden" name="userId" value="u03">
+		<form th:action="@{/sales/sales-form}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}"/>
 			<input type="submit" value="続けて出品"/>
 		</form>
-		<form th:action="@{/item-list}" method="post" th:object="${itemInput}">
-			<input type="hidden" name="userId" value="u03">
+		<form th:action="@{/item-list}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}"/>
 			<input type="submit" value="商品一覧へ"/>
 		</form>
 	</body>
