@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--JS読み込み-->
-<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-<title>ユーザ詳細画面</title>
-</head>
-<body>
-<div layout:fragment="content">
-	<div class="header border-bottom">
-		<h1 class="h2">ユーザ詳細</h1>
-	</div>
-	<form id="user-detail-form" method="post" th:action="@{/detail}"
-	     class="form-signup" th:object="${userDetailForm}">
-		 <input type="hidden" th:field="*{mailAddress}"/>
-	 <!--ユーザ詳細情報-->
-	 <table class="table table-striped table-bordered tale-hover">
-		<tbody>
-			<tr>
-				<th class="w-25">メールアドレス</th>
-				<td th:text="*{mailAddress}"></td>
-			</tr>
-			<tr>
-				<th>パスワード</th>
-			<td>
-				<input type="text" class="form-control" th:field="*{password}"/>
-			</td>
-			</tr>
-			<tr>
-				<th>ニックネーム</th>
-			<td>
-				<input type="text" class="form-control" th:field="*{name}"/>
-			</td>
-			</tr>
-		</tbody>
-	 </table>
-	 <!--ボタン-->
-	 <div class="text-center">
-		<!--削除ボタン-->
-		<button class="btn btn-danger" type="submit" name="delete">
-			削除
-		</button>
-		<!--更新ボタン-->
-		<button class="btn btn-primary" type="submit" name="update">
-			更新
-		</button>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>ユーザ詳細画面</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="header border-bottom">
+				<h1 class="h2">ユーザ詳細</h1>
+			</div>
+			<form id="user-detail-form" method="post" th:action="@{/detail}"
+			     class="form-signup" th:object="${userDetailForm}">
+				 <input type="hidden" th:field="*{mailAddress}"/>
+			 <!--ユーザ詳細情報-->
+			 <table class="table table-striped table-bordered tale-hover">
+				<tbody>
+					<tr>
+						<th class="w-25">メールアドレス</th>
+						<td th:text="*{mailAddress}"></td>
+					</tr>
+					<tr>
+						<th>パスワード</th>
+					<td>
+						<input type="text" class="form-control" th:field="*{password}"/>
+					</td>
+					</tr>
+					<tr>
+						<th>ニックネーム</th>
+					<td>
+						<input type="text" class="form-control" th:field="*{name}"/>
+					</td>
+					</tr>
+				</tbody>
+			 </table>
+			 <!--ボタン-->
+			 <div class="text-center">
+				<!--削除ボタン-->
+				<button class="btn btn-danger" type="submit" name="delete">
+					削除
+				</button>
+				<!--更新ボタン-->
+				<button class="btn btn-primary" type="submit" name="update">
+					更新
+				</button>
+				</div>
+			 </form>
 		</div>
-	 </form>
-</div>
-</body>
+	</body>
 </html>
