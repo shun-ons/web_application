@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>詳細ページ</title>
+	</head>
+	<body>
+		<h1>詳細</h1>
+		<table th:object="${muser}">
+			<tr>
+				<th>ユーザ名</th>
+				<td>
+					<span th:text="*{name}"></span>
+				</td>
+			</tr>
+			<tr>
+				<th class="w-25">メールアドレス</th>
+				<td>
+					<span type="text" th:text="*{mailAddress}"></span>
+				</td>
+			</tr>
+		</table>
+
+		<form th:action="@{/mypage}" method="post">
+			<input type="hidden" name="userId" th:value="${muser.userId}"/>
+			<input type="submit" value="マイページへ"/>
+		</form>
+	</body>
+</html>

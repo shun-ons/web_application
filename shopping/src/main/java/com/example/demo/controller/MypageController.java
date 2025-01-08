@@ -19,7 +19,7 @@ public class MypageController {
 	private UserService userService;
 	
 	@GetMapping("/mypage")
-	public String Mypage(Model model) {
+	public String mypage(Model model) {
 	    // ログイン中のユーザー情報を取得
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    String mailAddress = authentication.getName(); // メールアドレスまたはユーザー名
@@ -38,9 +38,16 @@ public class MypageController {
 	}
 
 	@PostMapping("/mypage")
-	public String Mypage(@RequestParam String userId, Model model) {
+	public String mypage(@RequestParam String userId, Model model) {
 		MUser muser = userService.getUserOne(userId);
 		model.addAttribute("muser",muser);
 		return "mypage/mypage";
+	}
+	
+	@PostMapping("/mypage/details")
+	public String details(@RequestParam String userId, Model model) {
+		MUser muser = userService.getUserOne(userId);
+		model.addAttribute("muser", muser);
+		return "mypage/details";
 	}
 }
