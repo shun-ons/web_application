@@ -3,7 +3,6 @@ package com.example.demo.domain.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	private UserService service;
 	
-	@Autowired
     public UserDetailsServiceImpl(@Lazy UserService service){
         this.service = service;
     }
