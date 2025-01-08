@@ -9,6 +9,7 @@ public class Item implements Serializable {
     private String itemName;
     private Integer itemPrice;
     private String ornerName;
+    private String ornerId;
     private String message;
     private LocalDateTime salesDateTime;
     private boolean isSold = true;
@@ -69,8 +70,17 @@ public class Item implements Serializable {
     	this.isSold = isSold;
     }
     
+	public String getOrnerId() {
+		return ornerId;
+	}
+
+	public void setOrnerId(String ornerId) {
+		this.ornerId = ornerId;
+	}
+	
     @Override
     public String toString() {
-        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName +"', comment='" + message +"', date='" + salesDateTime + "', isSold='" + "'}";
+        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName + "', ornerId='" + ornerId + "', comment='" + message + "', date='" + salesDateTime + "', isSold='" + "'}";
     }
+
 }
