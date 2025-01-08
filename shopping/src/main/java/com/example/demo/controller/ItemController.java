@@ -52,7 +52,7 @@ public class ItemController {
 	@PostMapping(value = "sales/confirm-input", params = "confirm")
 	public String confirmInput(@RequestParam String userId, @Validated ItemInput itemInput, Model model) {
 		Item item = itemService.sell(itemInput, userId);
-		model.addAttribute("item", item);
+		model.addAttribute("userId", userId);
 		return "sales/salesCompletion";
 	}
 }
