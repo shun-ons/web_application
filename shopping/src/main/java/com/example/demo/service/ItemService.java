@@ -32,6 +32,11 @@ public class ItemService {
 		return itemMapper.selectById(itemId);
 	}
 	
+	// あるユーザが出品している商品を取得.
+	public List<Item> selectByOrnerId(String ornerId) {
+		return itemMapper.selectByOrnerId(ornerId);
+	}
+	
 	// userIdからuserNameを取得.
 	public String getUserName(String userId) {
 		return itemMapper.getUserName(userId);
@@ -44,6 +49,7 @@ public class ItemService {
 		item.setItemName(itemInput.getItemName());
 		item.setItemPrice(itemInput.getItemPrice());
 		item.setOrnerName(this.getUserName(userId));
+		item.setOrnerId(userId);
 		item.setComment(itemInput.getComment());
 		LocalDateTime now = LocalDateTime.now();
 		//DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -69,5 +75,10 @@ public class ItemService {
 	// 削除
 	public void delete(String itemId) {
 		itemMapper.delete(itemId);
+	}
+	
+	// 商品の販売状況を変更.
+	public void  updateIsSold(String itemId, boolean isSold) {
+		itemMapper.updateIsSold(itemId, isSold);
 	}
 }

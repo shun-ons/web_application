@@ -22,14 +22,18 @@ public interface ItemMapper {
 	@Select({"SELECT * FROM item", "WHERE itemId = #{itemId}"})
 	public Item selectById(String itemId);
 	
+	// ornerIdから商品を取得.
+	@Select({"SELECT * FROM item WHERE ornerId = #{ornerId}"})
+	public List<Item> selectByOrnerId(String ornerId);
+	
 	// 登録
-	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, message, salesDateTime)",
-			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{message}, #{salesDateTime})"})
+	@Insert({"INSERT INTO item(itemId, itemName, itemPrice, ornerName, ornerId, message, salesDateTime, isSold)",
+			"VALUES(#{itemId}, #{itemName}, #{itemPrice}, #{ornerName}, #{ornerId}, #{message}, #{salesDateTime}, true)"})
 	public int insert(Item item);
 	
 	// 更新
 	@Update({"UPDATE ITEM",
-		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, ornerName = #{ornerName}, comment = #{comment}, salesDateTime = #{salesDateTime}",
+		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, ornerName = #{ornerName}, ornerId = #{ornerId}, comment = #{comment}, salesDateTime = #{salesDateTime}, isSold = #{isSold}",
 		"WHERE itemId = #{itemId"})
 	public int update(Item item);
 	
@@ -40,4 +44,9 @@ public interface ItemMapper {
 	// userIdからuserNameを取得
 	@Select({"SELECT name FROM m_user", "WHERE userId = #{userId}"})
 	public String getUserName(String userId);
+	
+	// isSoldを変更.
+	@Update({"UPDATE item",
+		"SET isSold = #{isSold} WHERE itemId = #{itemId}"})
+	public int updateIsSold(String userId, boolean isSold);
 }
