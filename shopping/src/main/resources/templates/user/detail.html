@@ -58,17 +58,46 @@
 			 	<tr>
 			 		<th class="w-25">商品名</th>
 			 		<th>価格</th>
+					<th>コメント</th>
+					<th></th>
+					<th></th>
 			 	</tr>
 			 	<tr th:each="item:${itemList}">
-			 		<td>
-			 			<span th:text="${item.itemName}"></span>
-			 		</td>
-			 		<td>
-			 			<span th:text="${item.itemPrice}"></span>
-			 			<span>円</span>
-			 		</td> 
+					<form th:action="@{/mypage/update-item}" method="post">
+						<td>
+							<input type="text" name="itemName" th:value="${item.itemName}"/>
+							<!-- <div th:errors="${item.itemName}"></div> -->
+						</td>
+						<td>
+							<input type="text" name="itemPrice" th:value="${item.itemPrice}"/>
+							<span>円</span>
+							<!-- <div th:errors="*{itemPrice}"></div> -->
+						</td>
+						<td>
+							<input type="text" name="comment" th:value="${item.comment}"/>
+							<!-- <div th:errors="*{comment}"></div> -->
+						</td>
+						<td>
+							<input type="hidden" name="userId" th:value="${userDetailForm.userId}"/>
+							<input type="hidden" name="itemId" th:value="${item.itemId}"/>
+							<button class="btn btn-primary" type="submit" name="update">
+								更新
+							</button> 
+						</td>
+						<td>
+							<button class="btn btn-danger" type="submit" name="delete">
+								削除
+							</button> 
+						</td>
+					</form>
 			 	</tr>
 			 </table>
+			 <form th:action="@{/mypage}" method="post">
+				<input type="hidden" name='userId' th:value="${userDetailForm.userId}"/>
+				<button class="btn btn-primary" type="submit">
+					戻る
+				</button>
+			 </form>
 		</div>
 	</body>
 </html>
