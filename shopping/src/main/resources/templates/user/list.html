@@ -33,14 +33,14 @@
 						<td th:text="${item.mailAddress}"></td>
 						<td th:text="${item.name}"></td>
 						<td>
-							<!--ユーザ詳細へのボタン(動的URL)
-							<a class="btn btn-primary" th:href="@{'/detail/' + ${item.mailAddress}}">
-								詳細
-							</a>-->
 							
 							<form th:action="@{/list/details}" method="post">
 								<input type="hidden" name="userId" th:value="${item.userId}"/>
 								<input type="submit" value="詳細"/>
+							</form>
+							<form th:action="@{/mypage}" method="post">
+								<input type="hidden" name="userId" th:value="${item.userId}"/>
+								<input type="submit" value="マイページへ"/>
 							</form>
 						</td>
 					</tr>

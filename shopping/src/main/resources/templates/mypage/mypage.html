@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
-<!--JS読み込み-->
-<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-<!--CSS読み込み-->
-<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
-<html xmlns:th="http://www.thymeleaf.org">
-	<!--JS読み込み-->
-	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 		<title>マイページ</title>
 	</head>
 	<body>
@@ -36,12 +33,6 @@ layout:decorate="~{layout/layout}">
 				</td>
 			</tr>
 		</table>
-		
-		<!--
-		<a class="btn btn-primary" th:href="@{'/detail/' + ${muser.mailAddress}}">
-		詳細
-		</a>
-		-->
 		
 		<form th:action="@{/mypage/details}" method="post">
 			<input type="hidden" th:field="${muser.userId}"/>
