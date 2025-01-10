@@ -29,7 +29,15 @@
 						<span type="text" name="message" th:text="*{comment}"></span>
 					</td>
 				</tr>
+				<tr>
+					<th>商品画像</th>
+					<td>
+						<image alt="画像が表示できません." th:src="${imageUrl}" style="width: 300px;"></image>
+					</td>
+				</tr>
+				
 			</table>
+			<input type="hidden" th:field="*{itemId}"/>
 			<input type="hidden" th:field="*{itemName}"/>
 			<input type="hidden" th:field="*{itemPrice}"/>
 			<input type="hidden" name="userId" th:value="${userId}"/>
