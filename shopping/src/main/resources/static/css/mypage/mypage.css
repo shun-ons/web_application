@@ -16,7 +16,6 @@ body {
     background-color: #eaeaea;
     color: #333;
     border-bottom: 2px solid #ddd;
-    transform: rotate(-2deg);
     margin-bottom: 20px;
 }
 
@@ -84,7 +83,6 @@ th {
     .header {
         font-size: 1.5rem;
         text-align: center;
-        transform: rotate(0);
     }
 
     table {
