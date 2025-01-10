@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<h1>出品フォーム</h1>
-		<form th:action="@{/sales/item-input}" method="post" th:object="${itemInput}">
+		<form th:action="@{/sales/item-input}" method="post" th:object="${itemInput}" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<th>商品名</th>
@@ -27,6 +27,12 @@
 					<td>
 						<input type="text" th:field="*{comment}"/>
 						<div th:errors="*{comment}"></div>
+					</td>
+				</tr>
+				<tr>
+					<th> 商品画像 </th>
+					<td>
+						<input type="file" name='image' accept="image/*" required/>
 					</td>
 				</tr>
 			</table>

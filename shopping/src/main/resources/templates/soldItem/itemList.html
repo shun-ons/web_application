@@ -8,10 +8,14 @@
 		<h1>新着アイテム</h1>
 		<table>
 			<tr>
+				<th></th>
 				<th>商品名</th>
 				<th>価格</th>
 			</tr>
 			<tr th:each="item:${items}">
+				<td>
+					<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
+				</td>
 				<td>
 					<span th:text="${item.itemName}"></span>
 				</td>
