@@ -74,7 +74,7 @@ public class ItemController {
 	
 	// 入力を訂正.
 	@PostMapping(value = "sales/confirm-input", params = "back")
-	public String reenterInput(@Validated ItemInput itemInput, Model model) {
+	public String reenterInput(@Validated ItemInput itemInput, Model model, @RequestParam String userId) {
 		String imageName = "src/main/resources/static/image/" + itemInput.getItemId() + ".png";
 		Path filePath = Paths.get(imageName).normalize();  // 削除する画像のパスを組み立てる
 
@@ -86,6 +86,7 @@ public class ItemController {
             } else {
             	System.out.println(filePath);
             }
+            model.addAttribute("userId", userId);
             model.addAttribute("itemInput", itemInput);
     		return "sales/salesForm";
         } catch (IOException e) {
