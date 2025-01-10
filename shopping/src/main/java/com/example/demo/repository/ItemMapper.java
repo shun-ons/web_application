@@ -33,8 +33,8 @@ public interface ItemMapper {
 	
 	// 更新
 	@Update({"UPDATE ITEM",
-		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, ornerName = #{ornerName}, ornerId = #{ornerId}, comment = #{comment}, salesDateTime = #{salesDateTime}, isSold = #{isSold}",
-		"WHERE itemId = #{itemId"})
+		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, message = #{comment}, salesDateTime = #{salesDateTime}",
+		"WHERE itemId = #{itemId}"})
 	public int update(Item item);
 	
 	// 削除

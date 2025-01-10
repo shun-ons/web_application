@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.domain.model.MUser;
 import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
 
 @Controller
@@ -51,9 +52,10 @@ public class MypageController {
 	}
 	
 	@PostMapping("/mypage/details")
-	public String details(@RequestParam String userId, Model model) {
+	public String updateItemDetail(@RequestParam String userId, Model model) {
 		MUser userDetailForm = userService.getUserOne(userId);
-		List <Item> itemList = itemService.selectByOrnerId(userId);
+		List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
+		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
 		model.addAttribute("userDetailForm", userDetailForm);
 		model.addAttribute("itemList", itemList);
 		return "user/detail";

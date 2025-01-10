@@ -11,6 +11,13 @@ public class ItemInput {
 	private int itemPrice;
 	@Size(min=0, max=50)
 	private String comment;
+	private String itemId;  // 更新用.
+	
+	public ItemInput(String itemName, int itemPrice, String comment) {
+		this.setItemName(itemName);
+		this.setItemPrice(itemPrice);
+		this.setComment(comment);
+	}
 	
 	public String getItemName() {
 		return this.itemName;
@@ -34,5 +41,13 @@ public class ItemInput {
 	
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 }

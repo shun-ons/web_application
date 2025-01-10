@@ -20,7 +20,7 @@ public class ItemController {
 	// 販売フォームへのアクセスを管理.
 	@PostMapping("/sales/sales-form")
 	public String salesForm(Model model, @RequestParam String userId) {
-		ItemInput itemInput = new ItemInput();
+		ItemInput itemInput = new ItemInput("", 0, "");
 		model.addAttribute("itemInput", itemInput);
 		model.addAttribute("userId", userId);
 		return "sales/salesForm";
@@ -34,6 +34,8 @@ public class ItemController {
 			BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("userId", userId);
+			model.addAttribute("itemInput", itemInput);
 			return "sales/salesForm";
 		}
 		model.addAttribute("itemInput", itemInput);
