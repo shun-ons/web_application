@@ -8,4 +8,5 @@ public class UserDetailForm {
 	private String mailAddress;
 	private String password;
 	private String name;
+	private int point;
 }

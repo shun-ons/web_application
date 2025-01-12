@@ -32,6 +32,12 @@
 					<span type="text" th:text="*{mailAddress}"></span>
 				</td>
 			</tr>
+			<tr>
+				<th class="w-25">保有ポイント</th>
+				<td>
+					<span type="text" th:text="*{point}"></span>
+				</td>
+			</tr>
 		</table>
 		
 		<form th:action="@{/mypage/details}" method="post">
