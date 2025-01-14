@@ -38,9 +38,12 @@ public class MypageController {
 	    if (muser == null) {
 	        throw new RuntimeException("ログインユーザーの情報が取得できません");
 	    }
-
+	    
+	    String userId = muser.getUserId();
+	    List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
+		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
 	    model.addAttribute("muser", muser);
-
+	    model.addAttribute("itemList", itemList);
 	    return "user/mypage";
 	}
 
