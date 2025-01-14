@@ -37,11 +37,10 @@ public class UserServiceImpl implements UserService{
 	    
 		user.setRole("ROLE_GENERAL");
 		
-		System.out.println("Before encoding userId: " + user.getUserId());
-		
 		//パスワード暗号化
 		String rawPassword = user.getPassword();
 		user.setPassword(encoder.encode(rawPassword));
+		user.setPoint(1000);
 		
 		mapper.insertOne(user);
 	}

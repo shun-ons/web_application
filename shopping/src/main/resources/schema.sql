@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS m_user(
 	mailAddress VARCHAR(50),
 	name VARCHAR(50),
 	password VARCHAR(500),
-	role  VARCHAR(50)
+	role  VARCHAR(50),
+	point INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS m_faculty(

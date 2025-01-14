@@ -72,19 +72,6 @@ public class SecurityConfig {
 
         PasswordEncoder encoder = passwordEncoder();
         
-        /*
-        authBuilder
-            .inMemoryAuthentication()
-                .withUser("user") // user追加
-                    .password(encoder.encode("user")) // パスワードを明示的にエンコードなしに設定
-                    .roles("GENERAL")
-                .and()
-                .withUser("admin") // adminを追加
-                    .password(encoder.encode("admin")) // パスワードを明示的にエンコードなしに設定
-                    .roles("ADMIN");
-        */
-        
-        //ユーザデータ認証
         authBuilder
         .userDetailsService(userDetailsService)
         .passwordEncoder(encoder);

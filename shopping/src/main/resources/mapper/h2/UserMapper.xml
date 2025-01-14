@@ -10,6 +10,7 @@
 		<result column="password" property="password"/>
 		<result column="name" property="name"/>
 		<result column="role" property="role"/>
+		<result column="point" property="point"/>
 	</resultMap>
 	
     <!--  <insert id="insertOne">
@@ -19,15 +20,16 @@
             mailAddress,
             password,
             name,
-            role
-            
+            role,
+            point
         )
         values (
             #{userId},
             #{mailAddress},
             #{password},
             #{name},
-            #{role}
+            #{role},
+            #{point}
         )</insert>
         
      <!-- ユーザーIDのマックス値を取得 -->
