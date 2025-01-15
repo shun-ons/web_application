@@ -46,7 +46,10 @@ public interface ItemMapper {
 	public String getUserName(String userId);
 	
 	// isSoldを変更.
-	@Update({"UPDATE item",
-		"SET isSold = #{isSold} WHERE itemId = #{itemId}"})
-	public int updateIsSold(String userId, boolean isSold);
+	@Update({
+	    "UPDATE item",
+	    "SET isSold = #{isSold} WHERE itemId = #{itemId}"
+	})
+	public int updateIsSold(String itemId, boolean isSold);
+
 }
