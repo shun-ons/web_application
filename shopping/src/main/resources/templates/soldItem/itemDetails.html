@@ -8,36 +8,44 @@
 	</head>
 	<body>
 		<div layout:fragment="content">
-		<table th:object="${item}">
-			<tr>
-				<th>商品名</th>
-				<td>
-					<span th:text="*{itemName}"></span>
-				</td>
-			</tr>
-			<tr>
-				<th>価格</th>
-				<td>
-					<span th:text="*{itemPrice}"></span>
-					<span>円</span>
-				</td>
-			</tr>
-			<tr>
-				<th>販売者</th>
-				<td>
-					<span th:text="*{ornerName}"></span>
-				</td>
-			</tr>
-			<tr>
-				<th>コメント</th>
-				<td>
-					<span th:text="*{comment}"></span>
-				</td>
-			</tr>
-		</table>
-		<form th:action="@{/item-list}" method="post">
-			<input type="hidden" name="userId" th:value="${userId}"/>
-			<input type="submit" value="戻る"/>
-		</form>
+			<table th:object="${item}">
+				<tr>
+					<th>商品名</th>
+					<td>
+						<span th:text="*{itemName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>価格</th>
+					<td>
+						<span th:text="*{itemPrice}"></span>
+						<span>円</span>
+					</td>
+				</tr>
+				<tr>
+					<th>販売者</th>
+					<td>
+						<span th:text="*{ornerName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<th>コメント</th>
+					<td>
+						<span th:text="*{comment}"></span>
+					</td>
+				</tr>
+			</table>
+			<!-- カートに入れるボタン -->
+			<form th:action="@{/cart/add}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="hidden" name="itemId" th:value="${item.itemId}" />
+				<input type="submit" value="カートに入れる" />
+			</form>
+			<!-- 商品一覧に戻るボタン -->
+			<form th:action="@{/item-list}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="submit" value="戻る" />
+			</form>
+		</div>
 	</body>
 </html>

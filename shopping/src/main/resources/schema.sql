@@ -32,3 +32,11 @@ CREATE TABLE IF NOT EXISTS order_item(
 	priceAtOrder INTEGER,
 	orderDateTime TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS orders(
+	orderId VARCHAR(50) PRIMARY KEY,
+	itemId VARCHAR(50),
+	purchaserId VARCHAR(50),
+	ornerId VARCHAR(50),
+	orderDateTime TIMESTAMP
+);

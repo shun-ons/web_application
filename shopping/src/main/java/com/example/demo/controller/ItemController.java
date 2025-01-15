@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
@@ -75,10 +73,20 @@ public class ItemController {
 	// 入力を訂正.
 	@PostMapping(value = "sales/confirm-input", params = "back")
 	public String reenterInput(@Validated ItemInput itemInput, Model model, @RequestParam String userId) {
-		String imageName = "src/main/resources/static/image/" + itemInput.getItemId() + ".png";
-		Path filePath = Paths.get(imageName).normalize();  // 削除する画像のパスを組み立てる
-
-        try {
+		/*String imageName = "src/main/resources/static/image/" + itemInput.getItemId() + ".png";
+		Path filePath = Paths.get(imageName).normalize();  // 削除する画像のパスを組み立てる*/
+		boolean result = itemService.deleteImage(itemInput.getItemId());
+		
+		if (result) {
+			model.addAttribute("userId", userId);
+            model.addAttribute("itemInput", itemInput);
+    		return "sales/salesForm";
+		} else {
+			model.addAttribute("error", "delete image error");
+			model.addAttribute("status", "");
+            return "error";  // 削除中にエラーが発生
+		}
+/*        try {
             // ファイルが存在するかチェック
             if (Files.exists(filePath)) {
                 Files.delete(filePath);  // ファイルを削除
@@ -94,7 +102,7 @@ public class ItemController {
             model.addAttribute("error", e);
 			model.addAttribute("status", "");
             return "error";  // 削除中にエラーが発生
-        }
+        } */
     }
 
 	

@@ -1,5 +1,9 @@
 package com.example.demo.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,5 +101,22 @@ public class ItemService {
 			itemInputList.add(itemInputTmp);
 		}
 		return itemInputList;
+	}
+	
+	// 保存している写真をimageディレクトリから削除.
+	public boolean deleteImage(String itemId) {
+		String imageName = "src/main/resources/static/image/" + itemId + ".png";
+		Path filePath = Paths.get(imageName).normalize();
+		try {
+            // ファイルが存在するかチェック
+            if (Files.exists(filePath)) {
+                Files.delete(filePath);  // ファイルを削除
+                return true;
+            } else {
+            	return false;
+            }
+		} catch (IOException e) {
+			return false;
+		}
 	}
 }
