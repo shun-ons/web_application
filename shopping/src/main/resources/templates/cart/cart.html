@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>カートの内容</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>カートの内容</h1>
+
+        <!-- メッセージ表示 -->
+        <div th:if="${message}" style="color: green;">
+            <p th:text="${message}"></p>
+        </div>
+        <div th:if="${error}" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
+
+        <!-- カート内の商品リスト -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>商品名</th>
+                    <th>価格</th>
+                    <th>販売者</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cartItems}">
+                    <td th:text="${item.itemName}">商品名</td>
+                    <td>
+                        <span th:text="${item.itemPrice}">価格</span> ポイント
+                    </td>
+                    <td th:text="${item.ornerName}">販売者名</td>
+                    <td>
+                        <!-- 削除ボタン -->
+                        <form th:action="@{/cart/remove}" method="post">
+                            <input type="hidden" name="userId" th:value="${userId}" />
+                            <input type="hidden" name="itemId" th:value="${item.itemId}" />
+                            <input type="submit" value="削除" />
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 合計金額 -->
+        <div>
+            <p>合計金額: <span th:text="${totalPrice}">0</span> ポイント</p>
+        </div>
+
+        <!-- マイページへ戻るボタン -->
+        <form th:action="@{/mypage}" method="post">
+            <input type="hidden" name="userId" th:value="${userId}" />
+            <input type="submit" value="マイページへ戻る" />
+        </form>
+    </div>
+</body>
+</html>

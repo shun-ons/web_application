@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>商品がカートに追加されました</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- メッセージ表示 -->
+        カートに商品が追加されました。
+        <!-- 商品一覧ページに戻るボタン -->
+        <form th:action="@{/item-list}" method="post">
+            <input type="hidden" name="userId" th:value="${userId}" />
+            <input type="submit" value="商品一覧に戻る"/>
+        </form>
+    </div>
+</body>
+</html>

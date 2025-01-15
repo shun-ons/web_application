@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>商品削除完了</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <p th:text="${message}"></p>
+        <!-- マイページへボタン -->
+        <form th:action="@{/mypage}" method="post">
+            <input type="hidden" name="userId" th:value="${userId}"/>
+            <input type="submit" value="マイページへ"/>
+        </form>
+    </div>
+</body>
+</html>
