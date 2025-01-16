@@ -16,6 +16,12 @@ layout:decorate="~{layout/layout}">
 				ログアウト
 			</button>
 		</form>
+				
+		<form th:action="@{/deposit/deposit-form}" method="post" style="display: inline;">
+		     <input type="hidden" name="userId" th:value="${userId}" />
+		    <button class="btn btn-link navbar-brand" type="submit">ポイントを追加する</button>
+		</form>
+		
 	</div>
 	</nav>
 </body>

@@ -21,4 +21,6 @@ public interface UserService {
 	public void deleteUserOne(String mailAddress);
 	//メールアドレスでユーザ情報を取得
 	public MUser getUserByMailAddress(String mailAddress);
+	
+	public void addPoint(String mailAddress, int point);
 }

@@ -60,5 +60,12 @@
     <select id="findByMailAddress" resultType="MUser">
         SELECT * FROM M_USER WHERE mailAddress = #{mailAddress}
     </select>
+    
+    <update id="addPoint">
+    	UPDATE M_USER
+    	SET point = point + #{point}
+    	WHERE userId = #{userId}
+	</update>
+	
 </mapper>
 

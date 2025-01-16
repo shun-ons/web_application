@@ -66,7 +66,13 @@ public class UserServiceImpl implements UserService{
 		mapper.deleteOne(mailAddress);
 	}
 	
+	@Override
 	public MUser getUserByMailAddress(String mailAddress) {
 		return mapper.findByMailAddress(mailAddress);
 	}
+	
+	@Override
+	 public void addPoint(String userId, int point) {
+        mapper.addPoint(userId, point);
+    }
 }

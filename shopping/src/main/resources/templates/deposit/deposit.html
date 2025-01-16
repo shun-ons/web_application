@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>入金フォーム</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>入金フォーム</h1>
+    <!-- 入金フォーム -->
+    <form th:action="@{/deposit/confirm-input}" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <th>追加したいポイント</th>
+                <td>
+                    <input type="number" name="amount" required min="1" placeholder="ポイント数" />
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <input type="submit" value="入金確認へ" />
+    </form>
+
+    <!-- マイページへのリンク -->
+    <form th:action="@{/mypage}" method="post">
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <input type="submit" value="マイページへ" />
+    </form>
+</div>
+</body>
+</html>
