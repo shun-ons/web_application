@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.domain.model.MUser;
 
@@ -27,5 +29,19 @@ public interface UserMapper {
 	
 	public String getMaxUserId();
 
-	
+	/**
+     * ユーザーのポイントを取得する
+     * @param userId ユーザーID
+     * @return ポイント
+     */
+    @Select("SELECT point FROM m_user WHERE userId = #{userId}")
+    int findPointByUserId(@Param("userId") String userId);
+
+    /**
+     * ユーザーのポイントを更新する
+     * @param userId ユーザーID
+     * @param point 新しいポイント
+     */
+    @Update("UPDATE m_user SET point = #{point} WHERE userId = #{userId}")
+    void updateUserPoint(@Param("userId") String userId, @Param("point") int point);
 }

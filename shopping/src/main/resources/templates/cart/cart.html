@@ -51,7 +51,11 @@
         <div>
             <p>合計金額: <span th:text="${totalPrice}">0</span> ポイント</p>
         </div>
-
+		<!-- 決済ボタン -->
+		<form th:action="@{/payment/check}" method="post">
+		    <input type="hidden" name="userId" th:value="${userId}" />
+		    <input type="submit" value="決済に進む" />
+		</form>
         <!-- マイページへ戻るボタン -->
         <form th:action="@{/mypage}" method="post">
             <input type="hidden" name="userId" th:value="${userId}" />
