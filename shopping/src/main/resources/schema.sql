@@ -40,3 +40,12 @@ CREATE TABLE IF NOT EXISTS orders(
 	ornerId VARCHAR(50),
 	orderDateTime TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS notification(
+	notificationId VARCHAR(50) PRIMARY KEY,
+	itemId VARCHAR(50),
+	ornerId VARCHAR(50),
+	purchaserId VARCHAR(50),
+	content VARCHAR(50),
+	dateTime TIMESTAMP
+);
