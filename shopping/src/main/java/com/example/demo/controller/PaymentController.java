@@ -49,7 +49,7 @@ public class PaymentController {
             paymentService.processPayment(userId);
 
             // 決済成功メッセージを設定
-            model.addAttribute("message", "決済が完了しました\nまたのご利用をお待ちしております。");
+            model.addAttribute("message", "決済が完了しました。またのご利用をお待ちしております。");
         } catch (Exception e) {
             // 決済失敗時にエラーメッセージを表示
             model.addAttribute("error", e.getMessage());

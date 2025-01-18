@@ -3,21 +3,28 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>決済成功</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/payment/paymentSuccess.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>決済成功</title>
 </head>
 <body>
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="content-container">
 	    <h1>決済完了</h1>
 	    <p th:text="${message}"></p>
 		<p>ご利用可能残高: <span th:text="${point}"></span> ポイント</p>
 		<form th:action="@{/mypage}" method="post">
 			<input type="hidden" name="userId" th:value="${userId}" />
-		    <input type="submit" value="マイページへ戻る" />
+		    <input type="submit" value="マイページへ戻る" class="button"/>
 		</form>
 		<form th:action="@{/item-list}" method="post">
 			<input type="hidden" name="userId" th:value="${userId}" />
-			<input type="submit" value="商品一覧へ"/>
+			<input type="submit" value="商品一覧へ" class="button"/>
 		</form>
 	</div>
 </body>
