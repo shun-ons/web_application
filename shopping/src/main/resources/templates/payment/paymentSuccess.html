@@ -11,10 +11,14 @@
 	    <h1>決済完了</h1>
 	    <p th:text="${message}"></p>
 		<p>ご利用可能残高: <span th:text="${point}"></span> ポイント</p>
-	    <form th:action="@{/cart/view}" method="post">
-	        <input type="hidden" name="userId" th:value="${userId}">
-	        <input type="submit" value="カートに戻る">
-	    </form>
+		<form th:action="@{/mypage}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}" />
+		    <input type="submit" value="マイページへ戻る" />
+		</form>
+		<form th:action="@{/item-list}" method="post">
+			<input type="hidden" name="userId" th:value="${userId}" />
+			<input type="submit" value="商品一覧へ"/>
+		</form>
 	</div>
 </body>
 </html>
