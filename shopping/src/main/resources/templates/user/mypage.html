@@ -74,6 +74,12 @@
 			<input type="hidden" th:field="${muser.userId}"/>
 			<input type="submit" value="出品する">
 		</form>
+
+		<!-- カート確認ボタンを追加 -->
+		<form th:action="@{/cart/view}" method="post" class="mt-3">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" class="btn btn-primary" value="カートを確認する" />
+		</form>
 		</div>
 	</body>
 </html>
