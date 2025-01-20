@@ -1,0 +1,70 @@
+/* 全体の背景色とフォント設定 */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* コンテンツの中央寄せ */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* メッセージ */
+.success-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center; /* メッセージを中央に配置 */
+}
+
+/* ボタンのスタイル */
+.button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-radius: 5px;
+    background-color: #45a049;
+    color: white; /* 文字色を白に設定 */
+}
+
+.button:hover {
+    background-color: #45a049; /* ホバー時の色 */
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+        margin: 10px auto;
+    }
+
+    form input[type="submit"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    div.total {
+        font-size: 1.2rem; /* モバイル向けサイズ調整 */
+        padding: 8px;
+    }
+}

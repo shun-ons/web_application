@@ -1,0 +1,97 @@
+/* 全体の背景色とフォント設定 */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダーのスタイリング */
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px;
+    background-color: #eaeaea;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* カート追加完了メッセージ */
+.cart-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center; /* メッセージを中央に配置 */
+}
+
+/* ボタンのスタイル */
+.cart-button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: calc(150%); /* 150%の幅に設定 */
+    max-width: 600px; /* 最大幅を設定 */
+}
+
+/* ボタンを横並びにする */
+form {
+    display: flex;
+    justify-content: center; /* 中央に揃える */
+    gap: 20px; /* ボタン間の間隔を調整 */
+    margin-top: 20px;
+}
+
+/* 各ボタン */
+.cart-button.submit {
+    background-color: #4caf50; /* 緑 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cart-button.submit:hover {
+    background-color: #45a049;
+}
+
+.cart-button.back {
+    background-color: #6c757d; /* グレー */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cart-button.back:hover {
+    background-color: #5a6268;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+        margin: 10px auto;
+    }
+
+    form input[type="submit"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    div.total {
+        font-size: 1.2rem; /* モバイル向けサイズ調整 */
+        padding: 8px;
+    }
+}

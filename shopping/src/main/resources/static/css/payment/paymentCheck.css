@@ -1,0 +1,118 @@
+/* 全体の背景色とフォント設定 */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダーのスタイリング */
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px;
+    background-color: #eaeaea;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* メインコンテンツ */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 決済確認ページのスタイリング */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* 残高や金額表示のスタイル */
+span {
+    font-weight: bold;
+}
+
+/* エラーメッセージ（残高不足） */
+div[th\:if="${point < totalPrice}"] p {
+    color: red;
+    font-weight: bold;
+}
+
+/* ボタンのスタイル */
+input[type="submit"] {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* 購入確定ボタン */
+input[type="submit"][value="購入を確定する"] {
+    background-color: #4caf50; /* 緑 */
+    color: white;
+}
+
+input[type="submit"][value="購入を確定する"]:hover {
+    background-color: #45a049;
+}
+
+/* カートに戻るボタン */
+input[type="submit"][value="カートに戻る"] {
+    background-color: #d3d3d3; /* グレー */
+    color: #333;
+}
+
+input[type="submit"][value="カートに戻る"]:hover {
+    background-color: #bfbfbf;
+}
+
+/* ボタンを横並びにする */
+form {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    gap: 20px; /* ボタン間の間隔 */
+    margin-top: 20px;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+        margin: 10px auto;
+    }
+
+    form input[type="submit"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    div.total {
+        font-size: 1.2rem; /* モバイル向けサイズ調整 */
+        padding: 8px;
+    }
+}
