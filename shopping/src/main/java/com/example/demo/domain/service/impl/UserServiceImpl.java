@@ -69,4 +69,9 @@ public class UserServiceImpl implements UserService{
 	public MUser getUserByMailAddress(String mailAddress) {
 		return mapper.findByMailAddress(mailAddress);
 	}
+	
+	// userIdからuserNameを取得.
+	public String getUserName(String userId) {
+		return mapper.getUserName(userId);
+	}
 }

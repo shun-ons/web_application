@@ -9,10 +9,12 @@ public class PaymentService {
 
     private final CartService cartService;
     private final UserMapper userMapper;
+    private final ItemService itemService;
 
-    public PaymentService(CartService cartService, UserMapper userMapper) {
+    public PaymentService(CartService cartService, UserMapper userMapper, ItemService itemService) {
         this.cartService = cartService;
         this.userMapper = userMapper;
+        this.itemService = itemService;
     }
 
     /**
@@ -34,7 +36,9 @@ public class PaymentService {
         // ポイントを減算
         int updatedPoint = userPoint - totalPrice;
         userMapper.updateUserPoint(userId, updatedPoint);
-
+        
+        // 商品のステータスを完売に変更.
+        itemService.updateIsSold(userId, false);
         // 決済完了後の処理（例: カートのクリア）
         cartService.clearCart(userId);
     }

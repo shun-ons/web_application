@@ -66,4 +66,6 @@ public class MypageController {
 		model.addAttribute("itemList", itemList);
 		return "user/detail";
 	}
+	
+	
 }

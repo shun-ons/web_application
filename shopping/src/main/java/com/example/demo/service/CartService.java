@@ -29,7 +29,7 @@ public class CartService {
     public void addItemToCart(String purchaserId, String itemId) {
         // 商品を取得
         Item item = itemMapper.selectById(itemId);
-        if (item == null || !item.getIsSold()) {
+        if (item == null || item.getInCart()) {
             throw new IllegalArgumentException("無効な商品IDまたは既に販売済みの商品です");
         }
 
@@ -37,8 +37,8 @@ public class CartService {
         String orderId = UUID.randomUUID().toString();
         orderItemRepository.addItemToOrder(orderId, itemId, purchaserId, item.getOrnerId(), item.getItemPrice());
 
-        // isSold を false に設定（販売済みとしてマーク）
-        itemMapper.updateIsSold(itemId, false);
+        // inCart を true に設定（販売済みとしてマーク）
+        itemMapper.updateInCart(itemId, true);
     }
     
     /**
@@ -51,7 +51,7 @@ public class CartService {
         orderItemRepository.removeItemFromOrder(purchaserId, itemId);
 
         // 商品の販売ステータスを元に戻す（未販売に設定）
-        itemMapper.updateIsSold(itemId, true);
+        itemMapper.updateInCart(itemId, false);
     }
 
     /**
