@@ -27,5 +27,5 @@ public interface UserMapper {
 	
 	public String getMaxUserId();
 
-	
+	public void addPoint(@Param("userId") String userId, @Param("point")int point);
 }

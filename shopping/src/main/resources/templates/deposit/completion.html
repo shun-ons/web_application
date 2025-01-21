@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>入金完了</title>
 </head>
 <body>
-<div layout:fragment="content">
+
     <h1>入金完了</h1>
     <p>入金が正常に完了しました。</p>
     <table>
-        <tr>
-            <th>ユーザーID</th>
-            <td th:text="${userId}"></td>
-        </tr>
         <tr>
             <th>追加ポイント</th>
             <td th:text="${amount}"></td>
@@ -24,6 +18,6 @@
         <input type="hidden" name="userId" th:value="${userId}" />
         <input type="submit" value="マイページへ戻る" />
     </form>
-</div>
+
 </body>
 </html>
