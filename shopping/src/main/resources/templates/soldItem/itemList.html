@@ -4,40 +4,55 @@
 	layout:decorate="~{layout/layout}">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/item/itemList.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 		<title>商品一覧</title>
 	</head>
 	<body>
 		<div layout:fragment="content">
-		<h1>新着アイテム</h1>
-		<table>
-			<tr>
-				<th></th>
-				<th>商品名</th>
-				<th>価格</th>
-			</tr>
-			<tr th:each="item:${items}">
-				<td>
-					<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
-				</td>
-				<td>
-					<span th:text="${item.itemName}"></span>
-				</td>
-				<td>
-					<span th:text="${item.itemPrice}"></span>
-					<span>ポイント</span>
-				</td>
-				<td>
-					<form th:action="@{/item-list/details}"  method="post">
-						<input type="hidden" name="itemId" th:value="${item.itemId}"/>
-						<input type="hidden" name="userId" th:value="${userId}"/>
-						<input type="submit" value="詳細を確認"/>
-					</form>
-				</td>
-			</tr>
-		</table>
-		<form th:action="@{/mypage}" method="post">
-			<input type="hidden" name="userId" th:value="${userId}"/>
-			<input type="submit" value="マイページへ"/>
-		</form>
+			<h1>新着アイテム</h1>
+			<!-- 商品がない場合に表示するメッセージ -->
+			<div th:if="${#lists.isEmpty(items)}">
+				<p>商品がありません。</p>
+			</div>
+
+			<!-- 商品がある場合に表示するテーブル -->
+			<table th:unless="${#lists.isEmpty(items)}">
+				<tr>
+					<th></th>
+					<th>商品名</th>
+					<th>価格</th>
+					<th>操作</th>
+				</tr>
+				<tr th:each="item:${items}">
+					<td>
+						<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
+					</td>
+					<td>
+						<span th:text="${item.itemName}"></span>
+					</td>
+					<td>
+						<span th:text="${item.itemPrice}"></span>
+						<span>ポイント</span>
+					</td>
+					<td>
+						<form th:action="@{/item-list/details}" method="post">
+							<input type="hidden" name="itemId" th:value="${item.itemId}"/>
+							<input type="hidden" name="userId" th:value="${userId}"/>
+							<input type="submit" value="詳細を確認"/>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<form th:action="@{/mypage}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}"/>
+				<input type="submit" value="マイページへ"/>
+			</form>
+		</div>
 	</body>
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/payment/paymentCheck.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>決済確認</title>
+</head>
+<body>
+	<div layout:fragment="content" class="content-container">
+		<h1>決済確認</h1>
+		<p>現在の残高: <span th:text="${point}"></span> ポイント</p>
+		<p>カート合計金額: <span th:text="${totalPrice}"></span> ポイント</p>
+		    
+		<div th:if="${point >= totalPrice}">
+			<p>決済後の残高: <span th:text="${point - totalPrice}"></span> ポイント</p>
+			<form th:action="@{/payment/complete}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="hidden" name="totalPrice" th:value="${totalPrice}" />
+				<input type="submit" value="購入を確定する" />
+			</form>
+			<form th:action="@{/cart/view}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="submit" value="カートに戻る" />
+			</form>
+		</div>
+		    
+		<div th:if="${point < totalPrice}">
+			<p style="color: red;">残高が足りません</p>
+			<form th:action="@{/cart/view}" method="post">
+				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="submit" value="カートに戻る" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>

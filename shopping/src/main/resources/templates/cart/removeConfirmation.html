@@ -3,16 +3,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>商品削除完了</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/cart/removeconfirmation.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>商品削除完了</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <p th:text="${message}"></p>
+    <div layout:fragment="content" class="content-container">
+        <p th:text="${message}" class="success-message"></p>
         <!-- マイページへボタン -->
         <form th:action="@{/mypage}" method="post">
             <input type="hidden" name="userId" th:value="${userId}"/>
-            <input type="submit" value="マイページへ"/>
+            <input type="submit" value="マイページへ" class="button"/>
         </form>
     </div>
 </body>
