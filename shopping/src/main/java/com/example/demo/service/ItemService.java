@@ -21,7 +21,7 @@ import com.example.demo.repository.ItemMapper;
 import lombok.RequiredArgsConstructor;
 
 /**
- * ItemMapperクラスを呼び出して,Itemテーブルを操作するためのクラス.
+ * ItemMapperクラスを呼び出して,itemテーブルを操作するためのクラス.
  * @author 大西竣介
  */
 @RequiredArgsConstructor

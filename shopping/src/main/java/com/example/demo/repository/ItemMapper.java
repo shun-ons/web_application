@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.Item;
 
 /**
- * Itemテーブルを操作するためのクラス.
+ * itemテーブルを操作するためのクラス.
  * @author 大西竣介
  */
 @Mapper
