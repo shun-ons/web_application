@@ -80,6 +80,12 @@
 			<input type="hidden" name="userId" th:value="${muser.userId}" />
 			<input type="submit" class="btn btn-primary" value="カートを確認する" />
 		</form>
+		
+		<form th:action="@{/deposit/deposit-form}" method="post" style="display: inline;">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" class="btn btn-primary" value="ポイントを追加する" />
+		</form>
+				
 		</div>
 	</body>
 </html>
