@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+	layout:decorate="~{layout/layout}"
+	 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,6 +43,7 @@
 			 <!--ボタン-->
 			 <div class="text-center">
 				<!--削除ボタン-->
+				<li role="presentation" th:if="${#authentication.principal.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
 				<button class="btn btn-danger" type="submit" name="delete">
 					削除
 				</button>

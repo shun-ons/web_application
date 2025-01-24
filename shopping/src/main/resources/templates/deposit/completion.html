@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>入金完了</title>
+</head>
+<body>
+
+    <h1>入金完了</h1>
+    <p>入金が正常に完了しました。</p>
+    <table>
+        <tr>
+            <th>追加ポイント</th>
+            <td th:text="${amount}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/mypage}" method="post">
+        <input type="hidden" name="userId" th:value="${userId}" />
+        <input type="submit" value="マイページへ戻る" />
+    </form>
+
+</body>
+</html>

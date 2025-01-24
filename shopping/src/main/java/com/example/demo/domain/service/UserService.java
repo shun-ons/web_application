@@ -22,4 +22,5 @@ public interface UserService {
 	//メールアドレスでユーザ情報を取得
 	public MUser getUserByMailAddress(String mailAddress);
 	
+	public void addPoint(String mailAddress, int point);
 }

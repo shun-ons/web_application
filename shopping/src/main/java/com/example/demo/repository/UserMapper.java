@@ -29,6 +29,8 @@ public interface UserMapper {
 	
 	public String getMaxUserId();
 
+	public void addPoint(@Param("userId") String userId, @Param("point")int point);
+
 	/**
      * ユーザーのポイントを取得する
      * @param userId ユーザーID
@@ -52,4 +54,5 @@ public interface UserMapper {
      */
  	@Select({"SELECT name FROM m_user", "WHERE userId = #{userId}"})
  	public String getUserName(String userId);
+
 }
