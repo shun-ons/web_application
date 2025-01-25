@@ -75,16 +75,7 @@ public class CartService {
      * @param purchaserId 購入者ID
      */
     @Transactional
-    public void clearCart(String purchaserId) {
-        // 購入者IDに基づいてカート内の商品を取得
-        List<Item> cartItems = orderItemRepository.findAllItemsByPurchaserId(purchaserId);
-        
-        // カート内の商品を orders テーブルに移動
-        for (Item item : cartItems) {
-            String orderId = UUID.randomUUID().toString();
-            orderItemRepository.moveToOrders(orderId, item.getItemId(), purchaserId, item.getOrnerId());
-        }
-        
+    public void clearCart(String purchaserId) {        
         // カート内の商品をすべて削除
         orderItemRepository.clearCartItems(purchaserId);
     }
