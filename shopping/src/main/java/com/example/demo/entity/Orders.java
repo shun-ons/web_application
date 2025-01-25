@@ -7,7 +7,7 @@ import java.util.List;
 import com.example.demo.enumeration.PaymentMethod;
 
 @SuppressWarnings("serial")
-public class Order implements Serializable {
+public class Orders implements Serializable {
     private String id;
     private List<OrderItem> orderItems;
     private LocalDateTime orderDateTime;
