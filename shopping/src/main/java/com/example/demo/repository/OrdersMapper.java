@@ -62,7 +62,7 @@ public interface OrdersMapper {
 	 * @return 処理対応件数.
 	 */
 	@Insert({"INSERT INTO orders(orderId, itemId, ornerId, purchaserId, orderDateTime)",
-		"VALUES(#{orderId}, #{itemId}, #{ornerId}, #{purchaserId}, #{orderDateTime})"})
+			"VALUES(#{orderId}, #{itemId}, #{ornerId}, #{purchaserId}, #{orderDateTime})"})
 	public int insert(Orders orders);
 	
 	/**
