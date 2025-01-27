@@ -21,7 +21,10 @@ public class ImageController {
     @GetMapping("/uploaded-images/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
         try {
-            // ファイルパスを組み立てる
+        	if (imageName.equals("icon.png")) {
+        		imageName = "icon/icon.png";
+        	}
+        	// ファイルパスを組み立てる
             Path imagePath = Paths.get(IMAGE_DIR + imageName).normalize();
 
             // ファイルをリソースとして読み込む
