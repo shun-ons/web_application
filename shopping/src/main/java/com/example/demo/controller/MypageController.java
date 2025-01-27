@@ -72,11 +72,12 @@ public class MypageController {
 	
 	@PostMapping("/mypage/details")
 	public String updateItemDetail(@RequestParam String userId, Model model) {
-		MUser userDetailForm = userService.getUserOne(userId);
+    	MUser muser = userService.getUserOne(userId);
 		List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
 		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
-		model.addAttribute("userDetailForm", userDetailForm);
+		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", itemList);
+		
 		return "user/detail";
 	}
 	

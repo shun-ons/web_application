@@ -61,34 +61,16 @@
 				</td>
 			</tr>
 		</table>
-		<form th:action="@{/mypage/details}" method="post">
-			<input type="hidden" th:field="${muser.userId}"/>
-			<input type="submit" value="変更"/>
-		</form>
-					
-		<form th:action="@{/item-list}" method="post">
-			<input type="hidden" th:field="${muser.userId}"/>
-			<input type="submit" value="商品一覧へ"/>
-		</form>
-		<form th:action="@{/sales/sales-form}" method="post">
-			<input type="hidden" th:field="${muser.userId}"/>
-			<input type="submit" value="出品する">
-		</form>
-
-		<!-- カート確認ボタンを追加 -->
-		<form th:action="@{/cart/view}" method="post" class="mt-3">
-			<input type="hidden" name="userId" th:value="${muser.userId}" />
-			<input type="submit" class="btn btn-primary" value="カートを確認する" />
-		</form>
 		
+		<!-- 登録情報や出品内容を編集するページへ遷移 -->
+		<form th:action="@{/mypage/details}" method="post" style="display: inline;">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" class="btn btn-primary" value="編集" />
+		</form>
+		<!-- 入金ページへ遷移 -->
 		<form th:action="@{/deposit/deposit-form}" method="post" style="display: inline;">
 			<input type="hidden" name="userId" th:value="${muser.userId}" />
 			<input type="submit" class="btn btn-primary" value="ポイントを追加する" />
-		</form>
-
-		<form th:action="@{/notification}" method="post" class="mt-3">
-			<input type="hidden" name="userId" th:value="${muser.userId}" />
-			<input type="submit" class="btn btn-primary" value="通知を確認する" />
 		</form>
 				
 		</div>
