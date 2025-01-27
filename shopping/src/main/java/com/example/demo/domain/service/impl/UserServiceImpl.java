@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService{
 		return mapper.findByMailAddress(mailAddress);
 	}
 	
+	// userIdからuserNameを取得.
+	public String getUserName(String userId) {
+		return mapper.getUserName(userId);
+	}
 	@Override
 	 public void addPoint(String userId, int point) {
         mapper.addPoint(userId, point);

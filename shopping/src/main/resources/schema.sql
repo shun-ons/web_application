@@ -20,8 +20,9 @@ CREATE TABLE IF NOT EXISTS item(
 	ornerName VARCHAR(50),
 	ornerId VARCHAR(50),
 	message VARCHAR(50),
-	salesDateTime TIMESTAMP,
-	isSold BOOLEAN
+	inCart BOOLEAN,
+	isSold BOOLEAN,
+	salesDateTime TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS order_item(
@@ -39,4 +40,13 @@ CREATE TABLE IF NOT EXISTS orders(
 	purchaserId VARCHAR(50),
 	ornerId VARCHAR(50),
 	orderDateTime TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS notification(
+	notificationId VARCHAR(50) PRIMARY KEY,
+	itemId VARCHAR(50),
+	ornerId VARCHAR(50),
+	purchaserId VARCHAR(50),
+	content VARCHAR(50),
+	dateTime TIMESTAMP
 );

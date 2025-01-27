@@ -85,6 +85,11 @@
 			<input type="hidden" name="userId" th:value="${muser.userId}" />
 			<input type="submit" class="btn btn-primary" value="ポイントを追加する" />
 		</form>
+
+		<form th:action="@{/notification}" method="post" class="mt-3">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" class="btn btn-primary" value="通知を確認する" />
+		</form>
 				
 		</div>
 	</body>

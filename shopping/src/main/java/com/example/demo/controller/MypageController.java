@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,13 @@ public class MypageController {
 	    
 	    String userId = muser.getUserId();
 	    List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
-		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
+	    List<Item> isSoldItems = new ArrayList<>(); // 販売中の商品のみを格納する.
+		for (Item item : items) {
+			if (item.getIsSold()) {
+				isSoldItems.add(item);
+			}
+		}
+		List <ItemInput> itemList = itemService.turnItemIntoItemInput(isSoldItems);  // 変更可能なように,ItemInputへ変更.
 	    model.addAttribute("muser", muser);
 	    model.addAttribute("itemList", itemList);
 	    return "user/mypage";
@@ -50,8 +57,14 @@ public class MypageController {
 	@PostMapping("/mypage")
 	public String mypage(@RequestParam String userId, Model model) {
 		MUser muser = userService.getUserOne(userId);
-		List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
-		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
+		List<Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
+		List<Item> isSoldItems = new ArrayList<>(); // 販売中の商品のみを格納する.
+		for (Item item : items) {
+			if (item.getIsSold()) {
+				isSoldItems.add(item);
+			}
+		}
+		List <ItemInput> itemList = itemService.turnItemIntoItemInput(isSoldItems);  // 変更可能なように,ItemInputへ変更.
 		model.addAttribute("muser",muser);
 		model.addAttribute("itemList", itemList);
 		return "user/mypage";
@@ -66,4 +79,6 @@ public class MypageController {
 		model.addAttribute("itemList", itemList);
 		return "user/detail";
 	}
+	
+	
 }

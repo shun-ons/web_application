@@ -13,6 +13,7 @@ public class Item implements Serializable {
     private String message;
     private LocalDateTime salesDateTime;
     private boolean isSold = true;
+    private boolean inCart = false;
 
     public String getItemId() {
         return this.itemId;
@@ -77,10 +78,17 @@ public class Item implements Serializable {
 	public void setOrnerId(String ornerId) {
 		this.ornerId = ornerId;
 	}
-	
+
+	public boolean getInCart() {
+		return inCart;
+	}
+
+	public void setInCart(boolean inCart) {
+		this.inCart = inCart;
+	}
+
     @Override
     public String toString() {
         return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName + "', ornerId='" + ornerId + "', comment='" + message + "', date='" + salesDateTime + "', isSold='" + "'}";
     }
-
 }

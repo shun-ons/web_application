@@ -46,5 +46,13 @@ public interface UserMapper {
      */
     @Update("UPDATE m_user SET point = #{point} WHERE userId = #{userId}")
     void updateUserPoint(@Param("userId") String userId, @Param("point") int point);
+    
+    /**
+     * userIdからuserNameを取得するメソッド.
+     * @param userId 取得したいユーザのID.
+     * @return ユーザ名.
+     */
+ 	@Select({"SELECT name FROM m_user", "WHERE userId = #{userId}"})
+ 	public String getUserName(String userId);
 
 }
