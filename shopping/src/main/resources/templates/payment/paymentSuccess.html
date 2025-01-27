@@ -19,11 +19,11 @@
 	    <p th:text="${message}"></p>
 		<p>ご利用可能残高: <span th:text="${point}"></span> ポイント</p>
 		<form th:action="@{/mypage}" method="post">
-			<input type="hidden" name="userId" th:value="${userId}" />
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
 		    <input type="submit" value="マイページへ戻る" class="button"/>
 		</form>
 		<form th:action="@{/item-list}" method="post">
-			<input type="hidden" name="userId" th:value="${userId}" />
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
 			<input type="submit" value="商品一覧へ" class="button"/>
 		</form>
 	</div>

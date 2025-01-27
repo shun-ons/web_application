@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.domain.model.MUser;
+import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
 import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
@@ -22,13 +24,20 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+	private final UserService userService;
+
+    public ItemController(UserService userService) {
+        this.userService = userService;
+    }
+	
 	// 販売フォームへのアクセスを管理.
 	@PostMapping("/sales/sales-form")
 	public String salesForm(Model model, @RequestParam String userId) {
 		ItemInput itemInput = new ItemInput("", 0, "");
 		model.addAttribute("itemInput", itemInput);
-		model.addAttribute("userId", userId);
-		return "sales/salesForm";
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "sales/salesForm";
 	}
 	
 	// 販売フォームでの入力を確認.
@@ -42,8 +51,9 @@ public class ItemController {
 		
 		// 入力ミスが起きた場合の処理.
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("userId", userId);
-			model.addAttribute("itemInput", itemInput);
+	        MUser muser = userService.getUserOne(userId);
+	        model.addAttribute("muser", muser);
+	        model.addAttribute("itemInput", itemInput);
 			return "sales/salesForm";
 		}
 		
@@ -59,8 +69,9 @@ public class ItemController {
 			Files.write(Paths.get(path), content);    // 保存.
 			
 			model.addAttribute("itemInput", itemInput);
-			model.addAttribute("userId", userId);
-			String imageUrl = "/uploaded-images/" + imageName;
+	        MUser muser = userService.getUserOne(userId);
+	        model.addAttribute("muser", muser);
+	        String imageUrl = "/uploaded-images/" + imageName;
 			model.addAttribute("imageUrl", imageUrl);
 			return "sales/salesConfirmation";
 		} catch(Exception e) {
@@ -78,8 +89,9 @@ public class ItemController {
 		boolean result = itemService.deleteImage(itemInput.getItemId());
 		
 		if (result) {
-			model.addAttribute("userId", userId);
-            model.addAttribute("itemInput", itemInput);
+	        MUser muser = userService.getUserOne(userId);
+	        model.addAttribute("muser", muser);
+	        model.addAttribute("itemInput", itemInput);
     		return "sales/salesForm";
 		} else {
 			model.addAttribute("error", "delete image error");
@@ -110,7 +122,8 @@ public class ItemController {
 	@PostMapping(value = "sales/confirm-input", params = "confirm")
 	public String confirmInput(@RequestParam String userId, @Validated ItemInput itemInput, Model model) {
 		Item item = itemService.sell(itemInput, userId);
-		model.addAttribute("userId", userId);
-		return "sales/salesCompletion";
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "sales/salesCompletion";
 	}
 }

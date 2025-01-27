@@ -28,6 +28,10 @@ public class SoldItemController {
 	@Autowired
 	UserService userService;
 	
+    public SoldItemController(UserService userService) {
+        this.userService = userService;
+    }
+	
 	/**
 	 * postメソッドで"/item-list"にアクセスされた場合の処理を行うメソッド.
 	 * 販売中の商品を表示.
@@ -46,8 +50,9 @@ public class SoldItemController {
 			}
 		}
 		model.addAttribute("items", reverseItems);
-		model.addAttribute("userId", userId);
-		return "soldItem/itemList";
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "soldItem/itemList";
 	}
 	
 	/**
@@ -62,8 +67,9 @@ public class SoldItemController {
 	public String showItemDetails(@RequestParam("itemId") String itemId, @RequestParam String userId,Model model) {
 		Item item = itemService.selectById(itemId);
 		model.addAttribute("item", item);
-		model.addAttribute("userId", userId);
-		return "soldItem/itemDetails";
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "soldItem/itemDetails";
 	}
 	
 	/**

@@ -22,12 +22,12 @@
 		<div th:if="${point >= totalPrice}">
 			<p>決済後の残高: <span th:text="${point - totalPrice}"></span> ポイント</p>
 			<form th:action="@{/payment/complete}" method="post">
-				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="hidden" name="userId" th:value="${muser.userId}" />
 				<input type="hidden" name="totalPrice" th:value="${totalPrice}" />
 				<input type="submit" value="購入を確定する" />
 			</form>
 			<form th:action="@{/cart/view}" method="post">
-				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="hidden" name="userId" th:value="${muser.userId}" />
 				<input type="submit" value="カートに戻る" />
 			</form>
 		</div>
@@ -35,7 +35,7 @@
 		<div th:if="${point < totalPrice}">
 			<p style="color: red;">残高が足りません</p>
 			<form th:action="@{/cart/view}" method="post">
-				<input type="hidden" name="userId" th:value="${userId}" />
+				<input type="hidden" name="userId" th:value="${muser.userId}" />
 				<input type="submit" value="カートに戻る" />
 			</form>
 		</div>
