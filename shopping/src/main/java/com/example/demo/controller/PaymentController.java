@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.domain.model.MUser;
+import com.example.demo.domain.service.UserService;
 import com.example.demo.repository.UserMapper;
 import com.example.demo.service.CartService;
 import com.example.demo.service.ItemService;
@@ -20,13 +22,16 @@ public class PaymentController {
     private final UserMapper userMapper;
     private final NotificationService notificationService;
     private final ItemService itemService;
+	private final UserService userService;
 
-    public PaymentController(CartService cartService, PaymentService paymentService, UserMapper userMapper, NotificationService notificationService, ItemService itemService) {
+    public PaymentController(CartService cartService, PaymentService paymentService, UserMapper userMapper, NotificationService notificationService, ItemService itemService, UserService userService) {
         this.cartService = cartService;
         this.paymentService = paymentService;
         this.userMapper = userMapper;
         this.notificationService = notificationService;
         this.itemService = itemService;
+        this.userService = userService;
+
     }
 
     /**
@@ -41,7 +46,8 @@ public class PaymentController {
         int totalPrice = cartService.getTotalPrice(userId);
 
         model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("userId", userId);
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
         model.addAttribute("point", userPoint);
 
         return "payment/paymentCheck"; // 決済確認画面を表示
@@ -69,7 +75,8 @@ public class PaymentController {
 
         // 更新後のユーザーのポイントを取得
         int updatedPoint = userMapper.findPointByUserId(userId);
-        model.addAttribute("userId", userId);
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
         model.addAttribute("point", updatedPoint);
 
         return "payment/paymentSuccess"; // 決済成功画面を表示

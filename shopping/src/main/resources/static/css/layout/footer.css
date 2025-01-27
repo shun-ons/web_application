@@ -33,7 +33,7 @@ footer .mypage-btn:hover {
 
 /* 他のボタンのスタイル */
 footer .other-btn {
-  background-color: #2196F3; /* 青 */
+  background-color: #4caf50; /* 青 */
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -42,5 +42,5 @@ footer .other-btn {
 }
 
 footer .other-btn:hover {
-  background-color: #1976D2; /* ホバー時の青 */
+  background-color: #45a049; /* ホバー時の青 */
 }

@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
-<!--CSS読み込み-->
-<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/css/layout/footer.css}">
-<body>
-	<div layout:fragment="footer" class="bg-light mt-4">
-		<footer class="footer text-center py-3">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<form th:action="@{/item-list}" method="post">
-									<input type="hidden" name="userId" th:value="${userId}"/>
-									<input type="submit" value="商品一覧へ"/>
-						</form>
-						<form th:action="@{/sales-sales-form}" method="post">
-									<input type="hidden" name="userId" th:value="${userId}"/>
-									<input type="submit" value="出品する"/>
-						</form>
-						
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- footer.css を読み込む -->
+		<link rel="stylesheet" type="text/css" href="/css/layout/footer.css" />
+	</head>
+	<body>
+		<div layout:fragment="footer">
+			<footer class="fixed-bottom bg-light text-center p-2 border-top">
+				<form th:action="@{/mypage}" method="post" style="display:inline;">
+					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<button type="submit" class="btn btn-primary mx-2">マイページ</button>
+				</form>
+				<form th:action="@{/item-list}" method="post" style="display:inline;">
+					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<button type="submit" class="btn btn-primary mx-2">商品一覧</button>
+				</form>
+				<form th:action="@{/cart/view}" method="post" style="display:inline;">
+					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<button type="submit" class="btn btn-primary mx-2">カート</button>
+				</form>
+				<form th:action="@{/notification}" method="post" style="display:inline;">
+					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<button type="submit" class="btn btn-primary mx-2">通知</button>
+				</form>
+				<form th:action="@{/sales/sales-form}" method="post" style="display:inline;">
+					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<button type="submit" class="btn btn-primary mx-2">出品</button>
+				</form>
+			</footer>
+		</div>
+	</body>
 </html>

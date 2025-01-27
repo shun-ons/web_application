@@ -18,7 +18,7 @@
         <p th:text="${message}" class="success-message"></p>
         <!-- マイページへボタン -->
         <form th:action="@{/mypage}" method="post">
-            <input type="hidden" name="userId" th:value="${userId}"/>
+            <input type="hidden" name="userId" th:value="${muser.userId}"/>
             <input type="submit" value="マイページへ" class="button"/>
         </form>
     </div>

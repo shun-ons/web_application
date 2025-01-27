@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.domain.model.MUser;
+import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Notification;
 import com.example.demo.service.NotificationService;
 
@@ -18,12 +20,15 @@ import com.example.demo.service.NotificationService;
 @Controller
 public class NotificationController {
 	private final NotificationService notificationService;
+	private final UserService userService;
+
 	/**
 	 * UserServiceを初期化する.
 	 * @param userService
 	 */
-	NotificationController(NotificationService notificationService) {
+	NotificationController(NotificationService notificationService, UserService userService) {
 		this.notificationService = notificationService;
+        this.userService = userService;
 	}
 	@PostMapping("/notification")
 	public String showNotification(@RequestParam String userId, Model model) {
@@ -32,8 +37,9 @@ public class NotificationController {
 		for (int i = notifications.size() -1; i >= 0; i--) {
 			reverseNotifications.add(notifications.get(i));
 		}
-		model.addAttribute("userId", userId);
-		model.addAttribute("notifications", reverseNotifications);
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        model.addAttribute("notifications", reverseNotifications);
 		return "notification/notification";
 	}
 }
