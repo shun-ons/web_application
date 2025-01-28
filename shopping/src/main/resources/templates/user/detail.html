@@ -41,12 +41,15 @@
 				</tbody>
 			 </table>
 			 <!--ボタン-->
-			 <div class="text-center">
+			 <!--<div class="text-center">-->
+			<div class="d-flex justify-content-center">
 				<!--削除ボタン-->
-				<li role="presentation" th:if="${#authentication.principal.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
+				<!--<li role="presentation" th:if="${#authentication.principal.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">-->
+				<th:block th:if="${#authentication.principal.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
 				<button class="btn btn-danger" type="submit" name="delete">
 					削除
 				</button>
+				</th:block>
 				<!--更新ボタン-->
 				<button class="btn btn-primary" type="submit" name="update">
 					更新

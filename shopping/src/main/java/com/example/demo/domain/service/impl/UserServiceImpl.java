@@ -56,9 +56,9 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void updateUserOne(String mailAddress,String password,String name) {
-		String encryptPassword = encoder.encode(password);
-		mapper.updateOne(mailAddress, encryptPassword, name);
+	public void updateUserOne(String mailAddress,String name) {
+		//String encryptPassword = encoder.encode(password);
+		mapper.updateOne(mailAddress,name);
 	}
 	
 	@Override

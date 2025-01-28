@@ -20,7 +20,7 @@ public interface UserMapper {
 	public MUser findOne(String mailAddress);
 	
 	//ユーザ更新
-	public void updateOne(@Param("mailAddress") String mailAddress,@Param("password") String password,@Param("name") String name);
+	public void updateOne(@Param("mailAddress") String mailAddress,@Param("name") String name);
 	
 	//ユーザ削除
 	public void deleteOne(@Param("mailAddress") String mailAddress);

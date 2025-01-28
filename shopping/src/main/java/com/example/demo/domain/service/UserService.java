@@ -16,7 +16,7 @@ public interface UserService {
 	public MUser getUserOne(String userId);
 	
 	//ユーザ1件更新
-	public void updateUserOne(String mailAddress,String password,String name);
+	public void updateUserOne(String mailAddress,String name);
 	
 	public void deleteUserOne(String mailAddress);
 	//メールアドレスでユーザ情報を取得

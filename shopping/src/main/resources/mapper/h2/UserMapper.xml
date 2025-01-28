@@ -48,9 +48,11 @@
     
     <!-- ユーザ1件更新 -->
     <update id="updateOne">
-    UPDATE M_USER SET PASSWORD = #{password},NAME = #{name}
+    UPDATE m_user
+    SET NAME = #{name}
     WHERE MAILADDRESS = #{mailAddress}
-    </update>
+	</update>
+
     
     <delete id="deleteOne">
     DELETE FROM M_USER WHERE MAILADDRESS = #{mailAddress}

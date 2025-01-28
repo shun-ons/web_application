@@ -41,9 +41,9 @@ public class UserDetailController {
 	@PostMapping(value = "/detail",params = "update")
 	public String updateUser(UserDetailForm form,Model model) {
 		
-		userService.updateUserOne(form.getMailAddress(),form.getPassword() , form.getName());
+		userService.updateUserOne(form.getMailAddress(),form.getName());
 		
-		return "redirect:/list";
+		return "redirect:/mypage";
 	}
 	
 	
@@ -52,6 +52,6 @@ public class UserDetailController {
 		
 		userService.deleteUserOne(form.getMailAddress());
 		
-		return "redirect:/list";
+		return "redirect:/mypage";
 	}
 }
