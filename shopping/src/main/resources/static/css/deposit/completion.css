@@ -1,0 +1,141 @@
+/* 全体の背景色とフォント設定 */
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 見出しのスタイリング */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px;
+    margin: 0;
+    background-color: #eaeaea;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px; /* 見出しとテーブルの間に隙間を追加 */
+}
+
+/* メッセージのスタイル */
+p {
+    font-size: 1.5rem; /* フォントサイズを大きく */
+    font-weight: bold; /* 太字 */
+    text-align: center;
+    color: #333; /* 文字色 */
+    margin-top: 40px; /* 上にスペースを追加 */
+    margin-bottom: 40px; /* 下にもスペースを追加 */
+}
+
+/* コンテンツ中央寄せ */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* テーブルのスタイリング */
+table {
+    width: 100%; /* 最大幅に調整 */
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table td {
+    background-color: #ffffff;
+}
+
+table img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* マイページに戻るボタンのスタイル */
+form input[type="submit"][value="マイページに戻る"] {
+    background-color: #4caf50; /* 薄い灰色 */
+    color: white;
+    width: 50%; /* 横幅最大化 */
+    font-size: 1rem;
+    padding: 12px; /* 固定の高さを設定 */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"][value="マイページに戻る"]:hover {
+    background-color: #45a049;
+}
+
+/* フォーム中央揃え */
+form {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    margin-top: 20px;
+}
+
+
+/* 詳細を確認ボタンのスタイル */
+form input[type="submit"][value="詳細を確認"] {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: auto; /* 横幅自動調整 */
+    max-width: 200px; /* 最大幅を設定 */
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    display: block; /* ブロック要素 */
+    margin: 0 auto; /* 中央揃え */
+}
+
+form input[type="submit"][value="詳細を確認"]:hover {
+    background-color: #45a049; /* ホバー時の色 */
+}
+
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+        margin: 10px auto;
+    }
+
+    form input[type="submit"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    div.total {
+        font-size: 1.2rem; /* モバイル向けサイズ調整 */
+        padding: 8px;
+    }
+}

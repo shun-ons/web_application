@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<!-- footer.css を読み込む -->
-		<link rel="stylesheet" type="text/css" href="/css/layout/footer.css" />
-	</head>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
 	<body>
 		<div layout:fragment="footer">
 			<footer class="fixed-bottom bg-light text-center p-2 border-top">
