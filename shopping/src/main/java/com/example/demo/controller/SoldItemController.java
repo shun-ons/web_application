@@ -56,6 +56,13 @@ public class SoldItemController {
         return "soldItem/itemList";
 	}
 	
+	/**
+	 * 検索結果を表示するメソッド.
+	 * @param model Model型の変数.
+	 * @param userId マイページなどに遷移するためのユーザID.
+	 * @param keyword 検索に使われた文字列.
+	 * @return itemList.htmlを表示する.
+	 */
 	@PostMapping("search-item")
 	public String searchItem(Model model, @RequestParam String userId, @RequestParam String keyword) {
 		List<Item> items = itemService.selectAll();
