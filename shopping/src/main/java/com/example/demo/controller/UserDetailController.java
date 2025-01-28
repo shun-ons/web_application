@@ -39,18 +39,23 @@ public class UserDetailController {
 	}
 	
 	@PostMapping(value = "/detail",params = "update")
-	public String updateUser(UserDetailForm form,Model model) {
+	public String updateUser(UserDetailForm form,Model model, String userId) {
 		
 		userService.updateUserOne(form.getMailAddress(),form.getName());
+    	MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+
 		
 		return "redirect:/mypage";
 	}
 	
 	
 	@PostMapping(value = "/detail",params = "delete")
-	public String deleteUser(UserDetailForm form,Model model) {
+	public String deleteUser(UserDetailForm form,Model model, String userId) {
 		
 		userService.deleteUserOne(form.getMailAddress());
+    	MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
 		
 		return "redirect:/mypage";
 	}

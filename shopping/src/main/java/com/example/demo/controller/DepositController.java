@@ -41,7 +41,8 @@ public class DepositController {
     @PostMapping("/confirm-input")
     public String confirmInput(@ModelAttribute DepositInput depositInput,String userId,Model model) {
         model.addAttribute("depositInput", depositInput);
-        model.addAttribute("userId", userId);
+    	MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
         return "deposit/confirm";
    
     }
@@ -50,7 +51,8 @@ public class DepositController {
     @PostMapping("/complete")
     public String completeDeposit(@RequestParam int amount, @RequestParam String userId, Model model) {
         userService.addPoint(userId, amount); // ポイントを追加
-        model.addAttribute("userId", userId);
+    	MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
         model.addAttribute("amount",amount);
         return "deposit/completion"; // 入金完了ページ
     }

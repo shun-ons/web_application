@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/deposit/confirm.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
     <title>入金確認</title>
 </head>
 <body>
+	<div layout:fragment="content">
 	<h1>入金確認</h1>
 	<p>以下の内容で入金を行います。</p>
 	<table>
@@ -15,13 +24,13 @@
 	        </tr>
 	    </table>
 	    <form th:action="@{/deposit/complete}" method="post">
-	        <input type="hidden" name="userId" th:value="${userId}"/>
+	        <input type="hidden" name="userId" th:value="${muser.userId}"/>
 	        <input type="hidden" name="amount" th:value="${depositInput.amount}"/>
 	        <input type="submit" value="入金を確定する" />
 	    </form>
 	    
 		<form th:action="@{/deposit/deposit-form}" method="post">
-	        <input type="hidden" name="userId" th:value="${userId != null ? userId : ''}" />
+	        <input type="hidden" name="userId" th:value="${muser.userId != null ? muser.userId : ''}" />
 	        <input type="submit" value="戻る" />
 	    </form>
 </body>

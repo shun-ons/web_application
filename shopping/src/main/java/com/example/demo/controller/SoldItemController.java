@@ -49,6 +49,32 @@ public class SoldItemController {
 				reverseItems.add(items.get(i));
 			}
 		}
+		model.addAttribute("keyword", "");
+		model.addAttribute("items", reverseItems);
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "soldItem/itemList";
+	}
+	
+	/**
+	 * 検索結果を表示するメソッド.
+	 * @param model Model型の変数.
+	 * @param userId マイページなどに遷移するためのユーザID.
+	 * @param keyword 検索に使われた文字列.
+	 * @return itemList.htmlを表示する.
+	 */
+	@PostMapping("search-item")
+	public String searchItem(Model model, @RequestParam String userId, @RequestParam String keyword) {
+		List<Item> items = itemService.selectAll();
+		List<Item> reverseItems = new ArrayList<Item>();
+		String upperKeyword = keyword.toUpperCase();
+		for (int i = items.size() - 1; i >= 0; i--) {
+			String upperItemName = items.get(i).getItemName().toUpperCase();
+			if (upperItemName.contains(upperKeyword) && !items.get(i).getInCart()) {
+					reverseItems.add(items.get(i));
+			}
+		}
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("items", reverseItems);
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
@@ -90,10 +116,10 @@ public class SoldItemController {
 		if (!bindingResult.hasErrors()) {
 			itemService.update(itemInput, userId);
 		}
-		MUser userDetailForm = userService.getUserOne(userId);
+		MUser muser = userService.getUserOne(userId);
 		List<Item> items = itemService.selectByOrnerId(userId);
 		List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(items);
-		model.addAttribute("userDetailForm", userDetailForm);
+		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", newItemInput);
 		return "user/detail";
 	}
@@ -108,12 +134,12 @@ public class SoldItemController {
 	 */
 	@PostMapping(value = "/mypage/update-item", params = "delete")
 	public String deleteItem(@RequestParam String userId,@RequestParam String itemId, Model model) {
-		MUser userDetailForm = userService.getUserOne(userId);
+		MUser muser = userService.getUserOne(userId);
 		itemService.delete(itemId);
 		itemService.deleteImage(itemId);
 		List<Item> items = itemService.selectByOrnerId(userId);
 		List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(items);
-		model.addAttribute("userDetailForm", userDetailForm);
+		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", newItemInput);
 		return "user/detail";
 	}
