@@ -49,6 +49,25 @@ public class SoldItemController {
 				reverseItems.add(items.get(i));
 			}
 		}
+		model.addAttribute("keyword", "");
+		model.addAttribute("items", reverseItems);
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        return "soldItem/itemList";
+	}
+	
+	@PostMapping("search-item")
+	public String searchItem(Model model, @RequestParam String userId, @RequestParam String keyword) {
+		List<Item> items = itemService.selectAll();
+		List<Item> reverseItems = new ArrayList<Item>();
+		String upperKeyword = keyword.toUpperCase();
+		for (int i = items.size() - 1; i >= 0; i--) {
+			String upperItemName = items.get(i).getItemName().toUpperCase();
+			if (upperItemName.contains(upperKeyword) && !items.get(i).getInCart()) {
+					reverseItems.add(items.get(i));
+			}
+		}
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("items", reverseItems);
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
