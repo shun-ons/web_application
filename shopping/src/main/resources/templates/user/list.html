@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,18 +29,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="item : ${userList}">
-						<td th:text="${item.mailAddress}"></td>
-						<td th:text="${item.name}"></td>
-						<td th:text="${item.point}"></td>
+					<tr th:each="muser : ${muserList}">
+						<td th:text="${muser.userId}"></td>
+						<td th:text="${muser.mailAddress}"></td>
+						<td th:text="${muser.name}"></td>
+						<td th:text="${muser.point}"></td>
 						<td>
 							
 							<form th:action="@{/list/details}" method="post">
-								<input type="hidden" name="userId" th:value="${item.userId}"/>
+								<input type="hidden" name="userId" th:value="${muser.userId}"/>
 								<input type="submit" value="詳細"/>
 							</form>
 							<form th:action="@{/mypage}" method="post">
-								<input type="hidden" name="userId" th:value="${item.userId}"/>
+								<input type="hidden" name="userId" th:value="${muser.userId}"/>
 								<input type="submit" value="マイページへ"/>
 							</form>
 						</td>

@@ -24,6 +24,13 @@ th {
     color: #555;
 }
 
+.content {
+    flex: 1; /* 残りの高さを占める */
+    margin-bottom: 100px; /* フッターとの間隔 */
+    padding-bottom: 50px; /* ボタンがはみ出さないようにする */
+    overflow-y: auto; /* スクロール可能にする */
+}
+
 td {
     padding: 10px 20px;
     font-size: 1.1rem;
