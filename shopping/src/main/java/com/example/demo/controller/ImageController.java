@@ -24,6 +24,9 @@ public class ImageController {
         	if (imageName.equals("icon.png")) {
         		imageName = "icon/icon.png";
         	}
+        	else if(imageName.startsWith("bottan")) {
+        		imageName = "bottan/" + imageName;
+        	}
         	// ファイルパスを組み立てる
             Path imagePath = Paths.get(IMAGE_DIR + imageName).normalize();
 

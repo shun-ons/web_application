@@ -90,10 +90,10 @@ public class SoldItemController {
 		if (!bindingResult.hasErrors()) {
 			itemService.update(itemInput, userId);
 		}
-		MUser userDetailForm = userService.getUserOne(userId);
+		MUser muser = userService.getUserOne(userId);
 		List<Item> items = itemService.selectByOrnerId(userId);
 		List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(items);
-		model.addAttribute("userDetailForm", userDetailForm);
+		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", newItemInput);
 		return "user/detail";
 	}
@@ -108,12 +108,12 @@ public class SoldItemController {
 	 */
 	@PostMapping(value = "/mypage/update-item", params = "delete")
 	public String deleteItem(@RequestParam String userId,@RequestParam String itemId, Model model) {
-		MUser userDetailForm = userService.getUserOne(userId);
+		MUser muser = userService.getUserOne(userId);
 		itemService.delete(itemId);
 		itemService.deleteImage(itemId);
 		List<Item> items = itemService.selectByOrnerId(userId);
 		List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(items);
-		model.addAttribute("userDetailForm", userDetailForm);
+		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", newItemInput);
 		return "user/detail";
 	}

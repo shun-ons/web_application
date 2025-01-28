@@ -7,7 +7,8 @@
 			<footer class="fixed-bottom bg-light text-center p-2 border-top">
 				<form th:action="@{/mypage}" method="post" style="display:inline;">
 					<input type="hidden" name="userId" th:value="${muser.userId}" />
-					<button type="submit" class="btn btn-primary mx-2">マイページ</button>
+					<input type="image" src="/uploaded-images/bottan_mypage.png" alt="画像が表示できません." style="width: 80px;"/>
+					<!--button type="submit" class="btn btn-primary mx-2">マイページ</button-->
 				</form>
 				<form th:action="@{/item-list}" method="post" style="display:inline;">
 					<input type="hidden" name="userId" th:value="${muser.userId}" />
