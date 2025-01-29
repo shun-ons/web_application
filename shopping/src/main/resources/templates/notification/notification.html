@@ -8,6 +8,7 @@
 			<!--CSS読み込み-->
 			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 			<link rel="stylesheet" th:href="@{/css/item/itemList.css}">
+			<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 			<!--JS読み込み-->
 			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -15,10 +16,14 @@
 		</head>
 	<body>
 		<div layout:fragment="content">
-			<h1> 通知一覧</h1>
+			<header>
+			    <h1 class="h1">通知</h1>
+			</header>
 			<!-- 通知がない場合に表示するメッセージ -->
 			<div th:if="${#lists.isEmpty(notifications)}">
-				<p>通知がありません</p>
+				<div class="message">
+					通知はありません。
+				</div>
 			</div>
 			
 			<!-- 通知がある場合に表示する内容 -->

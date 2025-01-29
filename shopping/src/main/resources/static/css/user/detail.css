@@ -1,32 +1,3 @@
-/* 全体の背景色とフォント設定 */
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* 見出しのスタイリング */
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-    padding: 20px;
-    margin: 0;
-    background-color: #eaeaea;
-    color: #333;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px; /* 見出しとテーブルの間に隙間を追加 */
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column; /* ボタンを縦に配置 */
-    align-items: center; /* 中央揃え */
-    gap: 10px; /* ボタンの間隔を調整 */
-    margin-top: 20px; /* テーブルとの間隔 */
-}
 
 /* 戻るボタンのスタイル */
 form input[type="submit"][value="戻る"] {

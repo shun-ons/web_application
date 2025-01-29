@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>出品ページ</title>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<!--CSS読み込み-->
+			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+			<link rel="stylesheet" th:href="@{/css/sales/salesForm.css}">
+			<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+			<!--JS読み込み-->
+			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+			<title>出品ページ</title>
 	</head>
+
 	<body>
 		<div layout:fragment="content">
-		<h1>出品フォーム</h1>
-		<form th:action="@{/sales/item-input}" method="post" th:object="${itemInput}" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<th>商品名</th>
-					<td>
-						<input type="text" th:field="*{itemName}"/>
-						<div th:errors="*{itemName}"></div>
-					</td>
-				</tr>
-				<tr>
-					<th>販売価格</th>
-					<td>
-						<input type="text" th:field="*{itemPrice}"/>
-						<div th:errors="*{itemPrice}"></div>
-					</td>
-				</tr>
-				<tr>
-					<th>一言コメント</th>
-					<td>
-						<input type="text" th:field="*{comment}"/>
-						<div th:errors="*{comment}"></div>
-					</td>
-				</tr>
-				<tr>
-					<th> 商品画像 </th>
-					<td>
-						<input type="file" name='image' accept="image/*" required/>
-					</td>
-				</tr>
-			</table>
-			<input type="hidden" name="userId" th:value="${muser.userId}">
-			<input type="submit" value="出品内容を確認"/>
-		</form>
-		<form th:action="@{/mypage}" method="post">
-			<input type="hidden" name="userId" th:value="${muser.userId}"/>
-			<input type="submit" value="マイページへ"/>
-		</form>
+			<header>
+			    <h1 class="h1">出品フォーム</h1>
+			</header>
+
+			<!-- フォーム全体を中央配置 -->
+			<div class="table-container">
+				<form th:action="@{/sales/item-input}" method="post" th:object="${itemInput}" enctype="multipart/form-data">
+					<table>
+						<tr>
+							<th>商品名</th>
+							<td>
+								<input type="text" th:field="*{itemName}"/>
+								<div class="error-message" th:errors="*{itemName}"></div>
+							</td>
+						</tr>
+						<tr>
+							<th>販売価格</th>
+							<td>
+								<input type="text" th:field="*{itemPrice}"/>
+								<div class="error-message" th:errors="*{itemPrice}"></div>
+							</td>
+						</tr>
+						<tr>
+							<th>一言コメント</th>
+							<td>
+								<input type="text" th:field="*{comment}"/>
+								<div class="error-message" th:errors="*{comment}"></div>
+							</td>
+						</tr>
+						<tr>
+							<th>商品画像</th>
+							<td>
+								<input type="file" name='image' accept="image/*" required/>
+							</td>
+						</tr>
+					</table>
+
+					<!-- ユーザーIDを隠しフィールドで送信 -->
+					<input type="hidden" name="userId" th:value="${muser.userId}">
+
+					<!-- ボタンを中央配置 -->
+					<div class="button-container">
+						<input type="submit" value="出品内容を確認"/>
+					</div>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

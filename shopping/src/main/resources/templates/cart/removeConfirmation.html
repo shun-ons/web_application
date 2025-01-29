@@ -8,14 +8,20 @@
 	<!--CSS読み込み-->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/cart/removeconfirmation.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 	<!--JS読み込み-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title>商品削除完了</title>
 </head>
 <body>
-    <div layout:fragment="content" class="content-container">
-        <p th:text="${message}" class="success-message"></p>
+    <div layout:fragment="content">
+		<header>
+		    <h1 class="h1">カート</h1>
+		</header>
+		<div class="message">
+			商品を削除しました。
+		</div>
         <!-- マイページへボタン -->
         <form th:action="@{/mypage}" method="post">
             <input type="hidden" name="userId" th:value="${muser.userId}"/>

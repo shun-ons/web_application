@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>出品内容確認ページ</title>
-	</head>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<!--CSS読み込み-->
+			<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+			<link rel="stylesheet" th:href="@{/css/sales/salesConfirmation.css}">
+			<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+			<!--JS読み込み-->
+			<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+			<title>出品内容確認ページ</title>
+		</head>
 	<body>
 		<div layout:fragment="content">
-		<h1>出品内容確認</h1>
+			<header>
+			    <h1 class="h1">出品内容確認</h1>
+			</header>
 		<form th:action="@{/sales/confirm-input}" method="post" th:object="${itemInput}">
 			<table>
 				<tr>

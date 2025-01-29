@@ -8,14 +8,17 @@
 	<!--CSS読み込み-->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/payment/paymentSuccess.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 	<!--JS読み込み-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 	<title>決済成功</title>
 </head>
 <body>
-	<div layout:fragment="content" class="content-container">
-	    <h1>決済完了</h1>
+	<div layout:fragment="content">
+		<header>
+		    <h1 class="h1">決済完了</h1>
+		</header>
 	    <p th:text="${message}"></p>
 		<p>ご利用可能残高: <span th:text="${point}"></span> ポイント</p>
 		<form th:action="@{/mypage}" method="post">

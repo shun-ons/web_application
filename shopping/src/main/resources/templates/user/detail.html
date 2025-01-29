@@ -9,6 +9,7 @@
 		<!-- CSS読み込み -->
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/user/detail.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 		<!--JS読み込み-->
 		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -16,9 +17,9 @@
 	</head>
 	<body>
 		<div layout:fragment="content">
-		    <div class="header border-bottom">
-		        <h1 class="h2">ユーザ詳細</h1>
-		    </div>
+			<header>
+			    <h1 class="h1">ユーザ詳細</h1>
+			</header>
 		    <form th:action="@{/detail}" method="post" th:object="${muser}">
 		        <input type="hidden" th:field="*{mailAddress}"/>
 		        
@@ -43,22 +44,15 @@
 		                </tr>
 		            </tbody>
 		        </table>        
-		        <!-- ボタンをテーブルの下に配置 -->
-		       <div class="text-center mt-3">
 		            <!-- 削除ボタン（管理者のみ表示） -->
 		            <th:block th:if="${#authentication.principal.authorities.?[authority == 'ROLE_ADMIN'].size() > 0}">
 		                <button class="btn btn-danger" type="submit" name="delete">削除</button>
 		            </th:block>
 		            <!-- 更新ボタン -->
 		            <button class="btn btn-primary" type="submit" name="update">更新</button>
-		        </div>
 		    </form>
-
-			 
-		
-						 
 			 <!-- 販売中の商品 -->
-			 <h1> 出品中の商品</h1>
+			 <h2> 出品中の商品</h2>
 			 <table class="table table-striped table-bordered tale-hover">
 			 	<tr>
 			 		<th class="w-25">商品名</th>
@@ -85,7 +79,7 @@
 						<td>
 							<input type="hidden" name="userId" th:value="${muser.userId}"/>
 							<input type="hidden" name="itemId" th:value="${item.itemId}"/>
-							<button class="btn btn-primary" type="submit" name="update">
+							<button type="submit" name="update">
 								更新
 							</button> 
 						</td>

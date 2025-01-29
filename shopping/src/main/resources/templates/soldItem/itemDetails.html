@@ -8,6 +8,7 @@
 		<!--CSS読み込み-->
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/item/detail.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 		<!--JS読み込み-->
 		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -15,7 +16,9 @@
 	</head>
 	<body>
 		<div layout:fragment="content">
-			<h1>商品詳細</h1>
+			<header>
+			    <h1 class="h1">商品詳細</h1>
+			</header>
 			<table th:object="${item}">
 				<tr>
 					<th>商品名</th>
