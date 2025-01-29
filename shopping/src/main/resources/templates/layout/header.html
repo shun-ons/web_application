@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{layout/layout}">
+layout:decorate="~{layout/layout}"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 </head>
 <body>
@@ -15,12 +16,22 @@ layout:decorate="~{layout/layout}">
 			</form>
 			<!--<a class="navbar-brand" href="#">フリマアプリ</a>-->
 		</div>
-		<form method="post" th:action="@{/logout}">
+		
+		
+		<form method="post" th:action="@{/logout}"sec:authorize="isAuthenticated()">
 			<button class="btn btn-link pull-right navbar-brand" type="submit">
 				ログアウト
 			</button>
 		</form>
-
+		
+		<!--
+		<form method="get" th:action="@{/login}"sec:authorize="isAnonymous()">
+			<button class="btn btn-link pull-right navbar-brand" type="submit">
+				ログイン
+			</button>
+		</form>-->
+				
+		
 	</div>
 	</nav>
 </body>
