@@ -8,6 +8,7 @@
     <!-- CSS読み込み -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/deposit/completion.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
     <!-- JS読み込み -->
     <script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -15,8 +16,12 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<h1>入金完了</h1>
-	    <p class="text-center">入金が正常に完了しました。</p>
+		<header>
+		    <h1 class="h1">入金完了</h1>
+		</header>
+		<div class="message">
+			入金が正常に完了しました。
+		</div>
 	    <table class="table table-bordered w-50 mx-auto">
 	        <tr>
 	            <th class="text-center">追加ポイント</th>

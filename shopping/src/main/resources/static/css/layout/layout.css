@@ -6,38 +6,63 @@
 	left: 0;
 }
 
+/* ヘッダー全体のスタイル（すべての .header に適用） */
+/* ヘッダーを固定配置で最大幅に */
+header, .header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px;
+    margin: 0 0 20px 0;
+    background-color: #eaeaea;
+    color: #333;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+/* 見出しのデザイン（すべての .header 内の h1 に適用） */
+.header h1 {
+  font-size: 1.75rem; /* h2のサイズを統一 */
+  font-weight: bold; /* 太字 */
+}
+
+/* メッセージ */
+.message {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center; /* メッセージを中央に配置 */
+}
+
 .main{
 	position: fixed;
 	display:block;
-	top: 58px;
+	top: 150px;
 	bottom: 0;
 	padding-left: 20px;
 	overflow-y:auto;
-	height:calc(100vh - 58px);
+	height:calc(100vh - 150px);
 }
 
 /* フッターのスタイル */
-footer {
-  background-color: #333; /* ダークグレー */
-  color: #fff; /* テキストカラーは白 */
-  padding: 20px; /* 上下左右の余白を調整 */
+.footer {
+  background-color: #eaeaea !important; /* 背景色を強制適用 */
+  color: #fff !important; /* 文字色を強制適用 */
+  padding: 20px !important;
   text-align: center;
-  font-size: 18px; /* テキストサイズを大きく */
-  position: fixed; /* フッターの位置を固定 */
-  bottom: 20px; /* ページ下からの位置を少し上げる */
+  font-size: 18px;
+  position: fixed !important;
+  bottom: 0 !important;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* ボタン間の余白 */
 }
 
-footer .btn {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 15px 30px; /* ボタンの内側余白を調整 */
-  font-size: 16px; /* ボタンテキストサイズを調整 */
+/* フッター内のフォーム（ボタンを含む要素） */
+.footer form {
+  display: inline-block;
+  margin: 0 10px; /* ボタンの左右に余白を追加 */
 }
-
-footer .btn:hover {
-  background-color: #45a049;
-}
-

@@ -2,40 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!--CSS読み込み-->
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/deposit/deposit.css}">
-	<!--JS読み込み-->
-	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-    <title>入金フォーム</title>
-</head>
-<body>
-<div layout:fragment="content">
-    <h1>入金フォーム</h1>
-    <!-- 入金フォーム -->
-	<form th:action="@{/deposit/confirm-input}" method="post" th:object="${depositInput}" enctype="multipart/form-data">
-	    <table>
-	        <tr>
-	            <th>追加したいポイント</th>
-	            <td>
-	                <input type="text" th:field="*{amount}" required min="1" placeholder="ポイント数" />
-	            </td>
-	        </tr>
-	    </table>
-	    <input type="hidden" name="userId" th:value="${muser.userId}" />
-	    <input type="submit" value="入金確認へ" />
-	</form>
-
-
-    <!-- マイページへのリンク -->
-	<form th:action="@{/mypage}" method="post">
-		<input type="hidden" th:field="${muser.userId}"/>
-		<input type="submit" value="マイページに戻る"/>
-	</form>
-</div>
-</body>
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/deposit/deposit.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	    <title>入金フォーム</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<header>
+			    <h1 class="h1">入金フォーム</h1>
+			</header>
+		    <!-- 入金フォーム -->
+			<form th:action="@{/deposit/confirm-input}" method="post" th:object="${depositInput}" enctype="multipart/form-data">
+			    <table>
+			        <tr>
+			            <th>追加したいポイント</th>
+			            <td>
+			                <input type="text" th:field="*{amount}" required min="1" placeholder="ポイント数" />
+			            </td>
+			        </tr>
+			    </table>
+			    <input type="hidden" name="userId" th:value="${muser.userId}" />
+			    <input type="submit" value="入金確認へ" />
+			</form>
+		
+		
+		    <!-- マイページへのリンク -->
+			<form th:action="@{/mypage}" method="post">
+				<input type="hidden" th:field="${muser.userId}"/>
+				<input type="submit" value="マイページに戻る"/>
+			</form>
+		</div>
+	</body>
 </html>

@@ -7,29 +7,6 @@ body {
     padding: 0;
 }
 
-/* 見出しのスタイリング */
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-    padding: 20px;
-    margin: 0;
-    background-color: #eaeaea;
-    color: #333;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px; /* 見出しとテーブルの間に隙間を追加 */
-}
-
-/* メッセージのスタイル */
-p {
-    font-size: 1.5rem; /* フォントサイズを大きく */
-    font-weight: bold; /* 太字 */
-    text-align: center;
-    color: #333; /* 文字色 */
-    margin-top: 40px; /* 上にスペースを追加 */
-    margin-bottom: 40px; /* 下にもスペースを追加 */
-}
-
 /* コンテンツ中央寄せ */
 .content-container {
     display: flex;

@@ -7,27 +7,6 @@ body {
     padding: 0;
 }
 
-/* ヘッダーのスタイリング */
-.header {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-    padding: 20px;
-    background-color: #eaeaea;
-    color: #333;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px;
-}
-
-/* カート追加完了メッセージ */
-.cart-message {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center; /* メッセージを中央に配置 */
-}
-
 /* ボタンのスタイル */
 .cart-button {
     font-size: 1.1rem;

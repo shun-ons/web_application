@@ -8,18 +8,20 @@
 	<!--CSS読み込み-->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/cart/addConfirmation.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 	<!--JS読み込み-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-	 <title>商品がカートに追加されました</title>
+	 <title>カートに商品が追加されました。</title>
 </head>
 <body>
-    <div layout:fragment="content" class="content-container">
-        <!-- メッセージ表示 -->
-        <div class="cart-message">
+    <div layout:fragment="content">
+		<header>
+		    <h1 class="h1">カート</h1>
+		</header>
+        <div class="message">
             カートに商品が追加されました。
         </div>
-
         <!-- カート確認ボタン -->
         <form th:action="@{/cart/view}" method="post" class="mt-3">
             <input type="hidden" name="userId" th:value="${muser.userId}" />

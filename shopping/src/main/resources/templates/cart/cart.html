@@ -8,6 +8,7 @@
 	<!--CSS読み込み-->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/css/cart/cart.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 	<!--JS読み込み-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -15,9 +16,9 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div class="header border-bottom mb-4">
-            <h1 class="h2">カートの内容</h1>
-        </div>
+		<header>
+		    <h1 class="h1">カートの内容</h1>
+		</header>
 
         <!-- メッセージ表示 -->
         <div th:if="${message}" class="alert alert-success">
@@ -29,7 +30,9 @@
 
         <!-- カート内の商品リスト -->
         <div th:if="${#lists.isEmpty(cartItems)}">
-            <p>カートに商品がありません。</p>
+			<div class="message">
+				カートに商品がありません。
+			</div>
             <!-- マイページへ戻るボタン -->
             <form th:action="@{/mypage}" method="post">
                 <input type="hidden" name="userId" th:value="${muser.userId}" />

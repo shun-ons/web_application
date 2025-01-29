@@ -1,31 +1,26 @@
-/* 全体の背景色とフォント設定 */
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* ボタンのスタイル */
-.button {
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    margin-top: 20px;
-    width: 100%; /* 横幅を最大サイズに */
-    max-width: 100%; /* 画面幅いっぱいに */
+/* ボタン全体のデザイン */
+input[type="submit"] {
+    font-size: 1.2rem;
+    padding: 12px;
+    width: 100%; /* 親要素いっぱいに広げる */
     border: none;
     border-radius: 5px;
-    background-color: #4caf50;
-    color: white; /* 文字色を白に設定 */
+    cursor: pointer;
     display: block;
+    margin: 20px auto;
     text-align: center;
+    font-weight: bold;
 }
 
-.button:hover {
-    background-color: #45a049; /* ホバー時の色を少し暗く */
+/* 続けて出品ボタンのデザイン */
+input[type="submit"][value="続けて出品"] {
+    background-color: #4caf50;
+    color: white;
 }
 
+input[type="submit"][value="続けて出品"]:hover {
+    background-color: #45a049;
+}
 
 /* モバイル対応 */
 @media (max-width: 768px) {
