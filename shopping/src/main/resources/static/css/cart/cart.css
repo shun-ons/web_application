@@ -70,8 +70,8 @@ form input[type="submit"]:not([value="削除"]):hover {
 
 /* マイページへのボタン */
 form input[type="submit"][value="マイページへ戻る"] {
-    background-color: #d3d3d3; /* 薄い灰色 */
-    color: #333;
+    background-color: #555; /* 灰色 */
+    color: #ffffff;
 }
 
 form input[type="submit"][value="マイページへ戻る"]:hover {

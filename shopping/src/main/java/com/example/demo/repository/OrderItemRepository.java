@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.demo.entity.Item;
+import com.example.demo.entity.OrderItem;
 
 @Mapper
 public interface OrderItemRepository {
@@ -31,7 +31,7 @@ public interface OrderItemRepository {
         INNER JOIN item i ON o.itemId = i.itemId
         WHERE o.purchaserId = #{purchaserId}
         """)
-    List<Item> findAllItemsByPurchaserId(@Param("purchaserId") String purchaserId);
+    List<OrderItem> findAllItemsByPurchaserId(@Param("purchaserId") String purchaserId);
 
     @Select("""
         SELECT SUM(priceAtOrder)
