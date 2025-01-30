@@ -1,8 +1,44 @@
+/* テーブルのスタイリング */
+.table-container {
+    background-color: #ffffff;
+}
+
+th {
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+/* テーブルのデザインを統一 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    font-family: 'Arial', sans-serif;
+
+}
+
+th {
+    background-color: #f5f5f5;
+    color: #555;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    text-align: left;
+}
+
 
 /* 戻るボタンのスタイル */
 form input[type="submit"][value="戻る"] {
     background-color: #d3d3d3; /* 薄い灰色 */
-    color: 333;
+    color: #333;
     width: 100%; /* 横幅最大化 */
     font-size: 1rem;
     padding: 12px; /* 固定の高さを設定 */
@@ -24,8 +60,34 @@ form {
     margin-top: 20px;
 }
 
-/* 更新ボタンのスタイル */
-.btn-update {
+/* ユーザ詳細の更新ボタンのスタイル */
+.user-detail-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-update-user {
+    background-color: #4caf50; /* 通常時の背景色 */
+    color: white; /* テキスト色 */
+    width: 100%; /* 横幅最大化 */
+    border: none; /* ボーダーなし */
+    border-radius: 5px; /* 角丸 */
+    padding: 10px 20px; /* ボタンの余白 */
+    font-size: 1.1rem; /* フォントサイズ */
+    cursor: pointer; /* カーソルをポインタに */
+    transition: all 0.3s ease; /* スムーズなホバーエフェクト */
+    margin-bottom: 20px; /* 下に10pxの余白を追加 */
+
+}
+
+.btn-update-user:hover {
+    background-color: #45a049; /* ホバー時の背景色 */
+}
+
+/* 出品中商品の更新ボタンのスタイル */
+.btn-update-item {
     background-color: #4caf50; /* 通常時の背景色 */
     color: white; /* テキスト色 */
     border: none; /* ボーダーなし */
@@ -36,6 +98,23 @@ form {
     transition: all 0.3s ease; /* スムーズなホバーエフェクト */
 }
 
-.btn-update:hover {
+.btn-update-item:hover {
     background-color: #45a049; /* ホバー時の背景色 */
 }
+
+/* 出品中商品の削除ボタンのスタイル */
+.btn-danger {
+    background-color: #d9534f; /* 赤色（Bootstrapのデフォルト削除ボタン色） */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 5px; /* 角丸 */
+    padding: 10px 20px; /* ボタンの余白 */
+    font-size: 1.1rem; /* フォントサイズ */
+    cursor: pointer; /* カーソルをポインタに */
+    transition: all 0.3s ease; /* スムーズなホバーエフェクト */
+}
+
+.btn-danger:hover {
+    background-color: #c9302c; /* ホバー時の濃い赤色 */
+}
+
