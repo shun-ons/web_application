@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Item;
 import com.example.demo.repository.UserMapper;
 
+/**
+ * 決済処理を管理するサービスクラス。
+ * @author 石井叶輝
+ */
 @Service
 public class PaymentService {
 
@@ -16,6 +20,14 @@ public class PaymentService {
     private final OrdersService ordersService;
     private final ItemService itemService;
 
+    /**
+     * コンストラクタ
+     * 
+     * @param cartService カートサービス
+     * @param userMapper ユーザーマッパー
+     * @param ordersService 注文サービス
+     * @param itemService 商品サービス
+     */
     public PaymentService(CartService cartService, UserMapper userMapper, OrdersService ordersService, ItemService itemService) {
         this.cartService = cartService;
         this.userMapper = userMapper;
@@ -24,9 +36,11 @@ public class PaymentService {
     }
 
     /**
-     * 決済処理を実行。
+     * 決済処理を実行する。
+     * 
      * @param userId ユーザーID
-     * @return 
+     * @return 注文IDのリスト
+     * @throws IllegalArgumentException ポイントが不足している場合にスローされる
      */
     public List<String> processPayment(String userId) {
         // カートの合計金額を取得
@@ -47,7 +61,7 @@ public class PaymentService {
         List<Item> items = cartService.getCartItems(userId);
         List<String> ordersIds = new ArrayList<>();
         
-        for (Item item: items) {
+        for (Item item : items) {
             String itemId = item.getItemId();
             String sellerId = item.getOrnerId(); // 販売者のID
             int itemPrice = item.getItemPrice();
