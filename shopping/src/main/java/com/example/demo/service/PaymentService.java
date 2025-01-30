@@ -40,23 +40,35 @@ public class PaymentService {
             throw new IllegalArgumentException("ポイントが不足しています");
         }
 
-        // ポイントを減算
+        // ポイントを減算（購入者の残高から引く）
         int updatedPoint = userPoint - totalPrice;
         userMapper.updateUserPoint(userId, updatedPoint);
         
-        
         List<Item> items = cartService.getCartItems(userId);
         List<String> ordersIds = new ArrayList<>();
+        
         for (Item item: items) {
-        	String itemId = item.getItemId();
-        	// 購入履歴を作成.
-        	String ordersId = ordersService.addOrders(itemId, item.getOrnerId(), userId);
-        	ordersIds.add(ordersId);
-        	// 商品の販売状況を変更.
-        	itemService.updateIsSold(itemId, false);
+            String itemId = item.getItemId();
+            String sellerId = item.getOrnerId(); // 販売者のID
+            int itemPrice = item.getItemPrice();
+
+            // 購入履歴を作成
+            String ordersId = ordersService.addOrders(itemId, sellerId, userId);
+            ordersIds.add(ordersId);
+
+            // 商品の販売状況を変更
+            itemService.updateIsSold(itemId, false);
+
+            // 販売者の残高を更新（商品価格の97%を加算）
+            int sellerCurrentBalance = userMapper.findPointByUserId(sellerId);
+            int sellerUpdatedBalance = sellerCurrentBalance + (int) (itemPrice * 0.97);
+            userMapper.updateUserPoint(sellerId, sellerUpdatedBalance);
         }
+
         // 決済完了後の処理（例: カートのクリア）
         cartService.clearCart(userId);
+
         return ordersIds;
     }
+
 }
