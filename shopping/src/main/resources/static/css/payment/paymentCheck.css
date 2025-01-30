@@ -15,16 +15,11 @@ body {
     padding: 20px;
 }
 
-/* 決済確認ページのスタイリング */
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 p {
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* 文字を大きく */
     margin-bottom: 10px;
+    text-align: center; /* 中央揃え */
+    width: 100%; /* 横幅を確保 */
 }
 
 /* 残高や金額表示のスタイル */

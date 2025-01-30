@@ -16,11 +16,11 @@ body {
     text-align: center;
 }
 
-/* 決済成功ページのスタイリング */
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+p {
+    font-size: 1.5rem; /* 文字を大きく */
+    margin-bottom: 10px;
+    text-align: center; /* 中央揃え */
+    width: 100%; /* 横幅を確保 */
 }
 
 /* 残高表示のスタイル */
