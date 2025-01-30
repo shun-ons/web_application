@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,18 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Item;
-import com.example.demo.repository.ItemMapper;
+import com.example.demo.entity.OrderItem;
 import com.example.demo.repository.OrderItemRepository;
 
 @Service
 public class CartService {
 
     private final OrderItemRepository orderItemRepository;
-    private final ItemMapper itemMapper;
+    private final ItemService itemService;
 
-    public CartService(OrderItemRepository orderItemRepository, ItemMapper itemMapper) {
+    public CartService(OrderItemRepository orderItemRepository, ItemService itemService) {
         this.orderItemRepository = orderItemRepository;
-        this.itemMapper = itemMapper;
+        this.itemService = itemService;
     }
 
     /**
@@ -28,7 +29,7 @@ public class CartService {
     @Transactional
     public void addItemToCart(String purchaserId, String itemId) {
         // 商品を取得
-        Item item = itemMapper.selectById(itemId);
+        Item item = itemService.selectById(itemId);
         if (item == null || item.getInCart()) {
             throw new IllegalArgumentException("無効な商品IDまたは既に販売済みの商品です");
         }
@@ -38,7 +39,7 @@ public class CartService {
         orderItemRepository.addItemToOrder(orderId, itemId, purchaserId, item.getOrnerId(), item.getItemPrice());
 
         // inCart を true に設定（販売済みとしてマーク）
-        itemMapper.updateInCart(itemId, true);
+        itemService.updateInCart(itemId, true);
     }
     
     /**
@@ -51,14 +52,21 @@ public class CartService {
         orderItemRepository.removeItemFromOrder(purchaserId, itemId);
 
         // 商品の販売ステータスを元に戻す（未販売に設定）
-        itemMapper.updateInCart(itemId, false);
+        itemService.updateInCart(itemId, false);
     }
 
     /**
      * 購入者IDを基にカート内の商品を取得する。
      */
     public List<Item> getCartItems(String purchaserId) {
-        return orderItemRepository.findAllItemsByPurchaserId(purchaserId);
+        List<OrderItem> orderItems = orderItemRepository.findAllItemsByPurchaserId(purchaserId);
+        List<Item> items = new ArrayList<>();
+        for (OrderItem orderItem : orderItems) {
+        	String itemId = orderItem.getItemId();
+        	Item item = itemService.selectById(itemId);
+        	items.add(item);
+        }
+        return items;
     }
 
     /**

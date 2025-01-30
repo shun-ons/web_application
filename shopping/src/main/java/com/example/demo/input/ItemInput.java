@@ -3,7 +3,10 @@ package com.example.demo.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+/**
+ * 出品する際に商品情報を保持するためのクラス.
+ * @author 大西竣介.
+ */
 public class ItemInput {
 	@NotBlank
 	private String itemName;

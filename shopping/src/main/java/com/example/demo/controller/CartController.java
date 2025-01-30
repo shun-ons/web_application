@@ -1,12 +1,23 @@
 package com.example.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.model.MUser;
 import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.Item;
+import com.example.demo.input.ReservingApptInput;
 import com.example.demo.service.CartService;
+import com.example.demo.service.ReservingApptService;
 
 @Controller
 public class CartController {
@@ -14,10 +25,13 @@ public class CartController {
 	private final UserService userService;
 
     private final CartService cartService;
+    
+    private final ReservingApptService reservingApptService;
 
-    public CartController(CartService cartService, UserService userService) {
+    public CartController(CartService cartService, UserService userService, ReservingApptService reservingApptService) {
         this.cartService = cartService;
         this.userService = userService;
+        this.reservingApptService = reservingApptService;
     }
     
 
@@ -71,5 +85,72 @@ public class CartController {
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
         return "cart/removeConfirmation"; // 確認画面を表示
+    }
+    
+    @PostMapping("/cart/appt")
+    public String reservingAppt(String userId, Model model) {
+    	List<Item> items = cartService.getCartItems(userId);
+    	Date date = new Date();
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	String strDate = dateFormat.format(date);
+    	MUser muser = userService.getUserOne(userId);
+    	model.addAttribute("muser", muser);
+    	model.addAttribute("items", items);
+    	model.addAttribute("today", strDate);
+    	return "cart/reservingAppt";
+    }
+    
+    @PostMapping("/cart/appt/confirm")
+    public String reservingApptConfirmation(@RequestParam Map<String, String> allParams, Model model) {
+    	String userId = allParams.get("userId");
+    	List<Item>cartItems = cartService.getCartItems(userId);
+    	List<ReservingApptInput> reservingApptInputs = new ArrayList<ReservingApptInput>();
+    	Map<String, String> itemNameMap = new HashMap<String, String>();
+    	int count = 0;
+    	for (Item cartItem : cartItems) {
+    		String itemId = cartItem.getItemId();
+    		ReservingApptInput reservingApptInput = new ReservingApptInput();
+    		reservingApptInput.setItemId(itemId);
+    		reservingApptInput.setPlace1(allParams.get(itemId+".place1"));
+    		reservingApptInput.setDate1(allParams.get(itemId+".date1"));
+    		reservingApptInput.setTime1(allParams.get(itemId+".time1"));
+    		reservingApptInput.setPlace2(allParams.get(itemId+".place2"));
+    		reservingApptInput.setDate2(allParams.get(itemId+".date2"));
+    		reservingApptInput.setTime2(allParams.get(itemId+".time2"));
+    		reservingApptInput.setPlace3(allParams.get(itemId+".place3"));
+    		reservingApptInput.setDate3(allParams.get(itemId+".date3"));
+    		reservingApptInput.setTime3(allParams.get(itemId+".time3"));
+    		reservingApptInputs.add(reservingApptInput);
+    		
+    		if (reservingApptService.findByItemId(itemId) == null) {
+    			reservingApptService.add(reservingApptInput);
+    		} else {
+    			reservingApptService.update(reservingApptInput);
+    		}
+    		itemNameMap.put("name"+count, cartItem.getItemName());
+    	}
+    	
+        MUser muser = userService.getUserOne(userId);
+        model.addAttribute("muser", muser);
+        model.addAttribute("reservingApptInputs", reservingApptInputs);
+        model.addAttribute("itemNameMap", itemNameMap);
+    	return "cart/reservingApptConfirmation";
+    }
+    
+    @PostMapping(value = "/payment/check", params = "delete")
+    public String returnInput(@RequestParam String userId, Model model) {
+    	List<Item> cartItems = cartService.getCartItems(userId);
+    	for (Item cartItem : cartItems) {
+    		String itemId = cartItem.getItemId();
+    		reservingApptService.delete(itemId);
+    	}
+    	Date date = new Date();
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	String strDate = dateFormat.format(date);
+    	MUser muser = userService.getUserOne(userId);
+    	model.addAttribute("muser", muser);
+    	model.addAttribute("items", cartItems);
+    	model.addAttribute("today", strDate);
+    	return "cart/reservingAppt";
     }
 }

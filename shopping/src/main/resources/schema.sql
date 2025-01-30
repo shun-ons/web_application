@@ -50,3 +50,18 @@ CREATE TABLE IF NOT EXISTS notification(
 	content VARCHAR(50),
 	dateTime TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS reservingAppt(
+	reservingApptId VARCHAR(50) PRIMARY KEY,
+	itemId VARCHAR(50),
+	place1 VARCHAR(50),
+	date1 VARCHAR(50),
+	time1 VARCHAR(50),
+	place2 VARCHAR(50),
+	date2 VARCHAR(50),
+	time2 VARCHAR(50),
+	place3 VARCHAR(50),
+	date3 VARCHAR(50),
+	time3 VARCHAR(50),
+	reservingApptDateTime TIMESTAMP
+);

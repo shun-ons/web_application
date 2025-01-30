@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/cart/reservingAppt.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>受け取り日時予約確認</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="content-container">
+			<h2 class="table-title">受け取り日時予約確認</h2>
+			<form th:action="@{/payment/check}" method="post">
+				<div th:each="reservingApptInput, stat : ${reservingApptInputs}" class="product-container">
+					<h3 class="product-title" th:text="${itemNameMap['name'+stat.index]}"></h3>
+					<table class="styled-table">
+						<thead>
+							<tr>
+								<th>希望</th>
+								<th>場所</th>
+								<th>日付</th>
+								<th>時間</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>第一希望</td>
+								<td>
+									<span th:text="${reservingApptInput.place1}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.place1|" th:value="${reservingApptInput.place1}">
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.date1}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.date1|" th:value="${reservingApptInput.date1}"/>
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.time1}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.time1|" value="reservingApptInput.time1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>第二希望</td>
+								<td>
+									<span th:text="${reservingApptInput.place2}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.place2|" th:value="${reservingApptInput.place2}">
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.date2}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.date2|" th:value="${reservingApptInput.date2}"/>
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.time2}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.time2|" value="reservingApptInput.time2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>第三希望</td>
+								<td>
+									<span th:text="${reservingApptInput.place3}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.place3|" th:value="${reservingApptInput.place3}">
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.date3}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.date3|" th:value="${reservingApptInput.date3}"/>
+								</td>
+								<td>
+									<span th:text="${reservingApptInput.time3}"></span>
+									<input type="hidden" th:name="|${reservingApptInput.itemId}.time3|" value="reservingApptInput.time3"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<button type="submit" name="confirm" class="submit-btn">決済画面へ</button>
+				<button type="submit" name="delete" class="submit-btn2">戻る</button>
+			</form>
+		</div>
+	</body>
+</html>
+

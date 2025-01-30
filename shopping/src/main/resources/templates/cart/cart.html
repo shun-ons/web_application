@@ -71,7 +71,7 @@
             </div>
 
             <!-- 決済ボタン -->
-            <form th:action="@{/payment/check}" method="post" class="mt-4">
+            <form th:action="@{/cart/appt}" method="post" class="mt-4">
                 <input type="hidden" name="userId" th:value="${muser.userId}" />
                 <input type="submit" value="決済に進む" class="btn btn-primary btn-lg" />
             </form>

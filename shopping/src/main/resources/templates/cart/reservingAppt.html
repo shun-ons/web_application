@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/cart/reservingAppt.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>受け取り日時予約</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="content-container">
+			<h2 class="table-title">受け取り日時予約</h2>
+			<form th:action="@{/cart/appt/confirm}" method="post">
+				<div th:each="item, stat : ${items}" class="product-container">
+					<h3 class="product-title" th:text="${item.itemName}"></h3>
+					<table class="styled-table">
+						<thead>
+							<tr>
+								<th>希望</th>
+								<th>場所</th>
+								<th>日付</th>
+								<th>時間</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>第一希望</td>
+								<td>
+									<select th:name="|${item.itemId}.place1|">
+										<option value="システム工学部A棟前">システム工学部A棟前</option>
+										<option value="図書館前">図書館前</option>
+										<option value="第一食堂前">第一食堂前</option>
+									</select>
+								</td>
+								<td>
+									<input type="date" th:name="|${item.itemId}.date1|" th:value="${today}" th:min="${today}" max="2030-12-31"/>
+								</td>
+								<td>
+									<input type="time" th:name="|${item.itemId}.time1|" value="09:00" required/>
+								</td>
+							</tr>
+							<tr>
+								<td>第二希望</td>
+								<td>
+									<select th:name="|${item.itemId}.place2|">									
+										<option value="システム工学部A棟前">システム工学部A棟前</option>
+										<option value="図書館前">図書館前</option>
+										<option value="第一食堂前">第一食堂前</option>
+									</select>
+								</td>
+								<td>
+									<input type="date" th:name="|${item.itemId}.date2|" th:value="${today}" th:min="${today}" max="2030-12-31"/>
+								</td>
+								<td>
+									<input type="time" th:name="|${item.itemId}.time2|" value="09:00" required/>
+								</td>
+							</tr>
+							<tr>
+								<td>第三希望</td>
+								<td>
+									<select th:name="|${item.itemId}.place3|">
+										<option value="システム工学部A棟前">システム工学部A棟前</option>
+										<option value="図書館前">図書館前</option>
+										<option value="第一食堂前">第一食堂前</option>
+									</select>
+								</td>
+								<td>
+									<input type="date" th:name="|${item.itemId}.date3|" th:value="${today}" th:min="${today}" max="2030-12-31"/>
+								</td>
+								<td>
+									<input type="time" th:name="|${item.itemId}.time3|" value="09:00" required/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<button type="submit" class="submit-btn">確認画面へ</button>
+			</form>
+		</div>
+	</body>
+</html>
+
