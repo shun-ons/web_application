@@ -28,8 +28,8 @@ public class UserListController {
 	
 	@PostMapping("/list/details")
 	public String uesrDetails(@RequestParam String userId, Model model) {
-		MUser userDetailForm = userService.getUserOne(userId);
-		model.addAttribute("userDetailForm", userDetailForm);
+		MUser muser = userService.getUserOne(userId);
+		model.addAttribute("muser", muser);
 		return "user/detail";
 	}
 }
