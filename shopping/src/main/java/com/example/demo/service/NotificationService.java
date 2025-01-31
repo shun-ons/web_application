@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,28 +65,58 @@ public class NotificationService {
 	 * 新たに通知をテーブルに挿入するためのメソッド.
 	 * @param notification 新たに挿入したい通知のオブジェクト.
 	 */
-	public void addNotification(String orderId) {
+	public void addNotification(Map<String, String> allParams) {
 		Notification notification = new Notification();
 		// 通知IDを設定.
 		notification.setNotificationId(UUID.randomUUID().toString());
-		
-		Orders orders = ordersService.getOrdersByOrderId(orderId);
-		// 商品IDを設定.
-		String itemId = orders.getItemId();
-		notification.setItemId(itemId);
-		// 販売者IDを設定.
-		String ornerId = orders.getOrnerId();
-		notification.setOrnerId(ornerId);
-		// 購入者IDを設定.
-		String purchaserId = orders.getPurchaserId();
-		notification.setPurchaserId(purchaserId);
-		// 通知内容を設定.
-		Item item = itemService.selectById(itemId);
-		String itemName = item.getItemName();
-		MUser purchaser = userService.getUserOne(purchaserId);
-		String purchaserName = purchaser.getName();
-		String content = purchaserName + "さんが" + itemName + "を購入しました!";
+		String content;
+		String type = allParams.get("type");
+		if (type.equals("call")) {
+			String orderId = allParams.get("orderId");
+			Orders orders = ordersService.getOrdersByOrderId(orderId);
+			// 商品IDを設定.
+			String itemId = orders.getItemId();
+			notification.setItemId(itemId);
+			// 販売者IDを設定.
+			String ornerId = orders.getOrnerId();
+			notification.setOrnerId(ornerId);
+			// 購入者IDを設定.
+			String purchaserId = orders.getPurchaserId();
+			notification.setPurchaserId(purchaserId);
+			// 通知内容を設定.
+			Item item = itemService.selectById(itemId);
+			String itemName = item.getItemName();
+			MUser purchaser = userService.getUserOne(purchaserId);
+			String purchaserName = purchaser.getName();
+			content = purchaserName + "さんから「" + itemName + "」の購入依頼が届いています!確認していください!";
+			
+		} else {
+			Notification call = this.selectByNotificationId(allParams.get("notificationId"));
+			// 商品IDをセット.
+			String itemId = call.getItemId();
+			Item item = itemService.selectById(itemId);
+			String itemName = item.getItemName();
+			notification.setItemId(itemId);
+			// 通知の受け取り側をセット.
+			notification.setOrnerId(call.getPurchaserId());
+			// 通知の送信者側をセット.
+			String purchaserId = call.getOrnerId();
+			notification.setPurchaserId(purchaserId);
+			MUser purchaser = userService.getUserOne(purchaserId);
+			String purchaserName = purchaser.getName();
+			// 通知内容を設定.
+			if (type.equals("notFind")) {
+				content = purchaserName + "さんと「" + itemName + "」の受け取り日時の予定が合いませんでした。確認してください!";
+			} else {
+				content = purchaserName + "さんから「" + itemName + "」の受け取り日時の指定がされました!確認してください!";
+			}
+		}
 		notification.setContent(content);
+		// 通知のタイプを設定.
+		notification.setType(type);
+
+		// 通知を未読に設定.
+		notification.setRead(false);
 		// 編集時間を設定.
 		LocalDateTime now = LocalDateTime.now();
 		notification.setDateTime(now);

@@ -32,6 +32,13 @@
 					<td>
 						<span th:text="${notification.content}"></span>
 					</td>
+					<td>
+						<form th:action="@{/notification/details}" method="post">
+							<input type="hidden" name="userId" th:value="${muser.userId}"/>
+							<input type="hidden" name="notificationId" th:value="${notification.notificationId}"/>
+							<input type="submit" value="詳細を確認"/>
+						</form>
+					</td>
 				</tr>
 			</table>
 			<form th:action="@{/mypage}" method="post">

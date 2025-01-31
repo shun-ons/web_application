@@ -16,7 +16,7 @@
 	<body>
 		<div layout:fragment="content" class="content-container">
 			<h2 class="table-title">受け取り日時予約</h2>
-			<form th:action="@{/cart/appt/confirm}" method="post">
+			<form th:action="@{/notification/details/input}" method="post">
 				<div th:each="item, stat : ${items}" class="product-container">
 					<input type="hidden" name="itemId" th:value="${item.itemId}"/>
 					<h3 class="product-title" th:text="${item.itemName}"></h3>
@@ -82,6 +82,7 @@
 					</table>
 				</div>
 				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<input type="hidden" name="notificationId" th:value="${notificationId}"/>
 				<input type="hidden" name="recall" th:value="${recall}"/>
 				<button type="submit" class="submit-btn">確認画面へ</button>
 			</form>

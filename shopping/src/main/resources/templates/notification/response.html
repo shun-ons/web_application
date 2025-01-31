@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/payment/paymentSuccess.css}">
+	<link rel="stylesheet" th:href="@{	/css/cart/reservingAppt.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>	送信完了</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<header>
+		    <h1 class="h1">受け取り日時が確定しました！</h1>
+		</header>
+		<p>以下の日程で受け取りが確定しました!</p><br>
+		<p>忘れないようお気を付けください。</p>
+		<table class="styled-table" th:object="${reservingAppt}">
+			<thead>
+				<tr>
+					<th>場所</th>
+					<th>日付</th>
+					<th>時間</th>
+				</tr>
+			</thead>
+			<tbody>
+				<div th:switch="${select}">
+				    <div th:case="'1'">
+						<td>
+							<span th:text="*{place1}"></span>
+						</td>
+						<td>
+							<span th:text="*{date1}"></span>
+						</td>
+						<td>
+							<span th:text="*{time1}"></span>
+						</td>
+					</div>
+					<div th:case="'2'">
+						<td>
+							<span th:text="*{place2}"></span>
+						</td>
+						<td>
+							<span th:text="*{date2}"></span>
+						</td>
+						<td>
+							<span th:text="*{time2}"></span>
+						</td>
+					</div>
+					<div th:case="'1'">
+						<td>
+							<span th:text="*{place3}"></span>
+						</td>
+						<td>
+							<span th:text="*{date3}"></span>
+						</td>
+						<td>
+							<span th:text="*{time3}"></span>
+						</td>
+					</div>
+				</div>
+			</tbody>
+		</table>
+		<form th:action="@{/notification}" method="post">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" value="通知一覧へ" class="button"/>
+		</form>
+	</div>
+</body>
+</html>

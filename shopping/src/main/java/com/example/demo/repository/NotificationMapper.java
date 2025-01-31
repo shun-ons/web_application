@@ -45,8 +45,8 @@ public interface NotificationMapper {
 	 * @param notification 新たに挿入したい通知のオブジェクト.
 	 * @return 処理対応件数.
 	 */
-	@Insert({"INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, dateTime)",
-		"VALUES(#{notificationId}, #{itemId}, #{ornerId}, #{purchaserId}, #{content}, #{dateTime})"})
+	@Insert({"INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, type, read, dateTime)",
+		"VALUES(#{notificationId}, #{itemId}, #{ornerId}, #{purchaserId}, #{content}, #{type}, #{read}, #{dateTime})"})
 	public int insert(Notification notification);
 	
 	/**

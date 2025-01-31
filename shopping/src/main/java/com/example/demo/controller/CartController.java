@@ -97,18 +97,23 @@ public class CartController {
     	model.addAttribute("muser", muser);
     	model.addAttribute("items", items);
     	model.addAttribute("today", strDate);
+    	model.addAttribute("recall", false);
     	return "cart/reservingAppt";
     }
     
     @PostMapping("/cart/appt/confirm")
     public String reservingApptConfirmation(@RequestParam Map<String, String> allParams, Model model) {
     	String userId = allParams.get("userId");
+    	allParams.forEach((key, value) -> System.out.println(key + " = " + value));
     	List<Item>cartItems = cartService.getCartItems(userId);
     	List<ReservingApptInput> reservingApptInputs = new ArrayList<ReservingApptInput>();
     	Map<String, String> itemNameMap = new HashMap<String, String>();
     	int count = 0;
+    	if (allParams.get("recall").equals("true")) {
+    		cartItems.add(new Item());
+    	}
     	for (Item cartItem : cartItems) {
-    		String itemId = cartItem.getItemId();
+    		String itemId = allParams.get("itemId");
     		ReservingApptInput reservingApptInput = new ReservingApptInput();
     		reservingApptInput.setItemId(itemId);
     		reservingApptInput.setPlace1(allParams.get(itemId+".place1"));
@@ -129,16 +134,17 @@ public class CartController {
     		}
     		itemNameMap.put("name"+count, cartItem.getItemName());
     	}
-    	
+    	System.out.println(reservingApptInputs.size());
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
         model.addAttribute("reservingApptInputs", reservingApptInputs);
         model.addAttribute("itemNameMap", itemNameMap);
+        model.addAttribute("select",allParams.get("recall"));
     	return "cart/reservingApptConfirmation";
     }
     
     @PostMapping(value = "/payment/check", params = "delete")
-    public String returnInput(@RequestParam String userId, Model model) {
+    public String returnInput(@RequestParam String userId, @RequestParam String recall, Model model) {
     	List<Item> cartItems = cartService.getCartItems(userId);
     	for (Item cartItem : cartItems) {
     		String itemId = cartItem.getItemId();
@@ -151,6 +157,7 @@ public class CartController {
     	model.addAttribute("muser", muser);
     	model.addAttribute("items", cartItems);
     	model.addAttribute("today", strDate);
+    	model.addAttribute("recall", recall);
     	return "cart/reservingAppt";
     }
 }

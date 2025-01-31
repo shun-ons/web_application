@@ -12,8 +12,11 @@ VALUES('p01', 'スプリング入門', 1000, 'Jan','u02' , '買ってね', FALSE
 Insert INTO order_item(orderId, itemId, purchaserId, ornerId, priceAtOrder, orderDateTime)
 VALUES('oi01', 'p03', 'u01', 'u03', 3000, '2024-12-29 23:56:26');
 
-INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, dateTime)
-VALUES('n01', 'p04', 'u03', 'u02', 'Janさんが「微積分」を購入しました!!', '2025-01-18 23:40:13');
+INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, type, read, dateTime)
+VALUES('n01', 'p04', 'u03', 'u02', 'Janさんが「微積分」を購入しました!!', 'call', FALSE, '2025-01-18 23:40:13');
 
 INSERT INTO orders(orderId, itemId, purchaserId, ornerId, orderDateTime)
-VALUES('o01', 'p05', 'u02', 'u03', '2025-01-18 23:40:13');
+VALUES('o01', 'p04', 'u02', 'u03', '2025-01-18 23:40:13');
+
+INSERT INTO reservingAppt(reservingApptId, itemId, place1, date1, time1, place2, date2, time2, place3, date3, time3, reservingApptDateTime)
+VALUES('r01', 'p04', 'システム工学部A棟前', '2025-01-31', '09:00', 'システム工学部A棟前', '2025-01-31', '09:00', 'システム工学部A棟前', '2025-01-31', '09:00', '2025-01-31 20:14:50');

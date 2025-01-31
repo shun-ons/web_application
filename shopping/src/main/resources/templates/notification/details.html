@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/cart/reservingAppt.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>受け取り日時予約確認</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="content-container">
+			<h2 class="table-title">受け取り日時予約確認</h2>
+			<form th:action="@{/notification/details/confirmation}" method="post">
+				<h3 class="product-title" th:text="${itemName}"></h3>
+				<table class="styled-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>希望</th>
+							<th>場所</th>
+							<th>日付</th>
+							<th>時間</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="radio" name="answer" th:value="1" required/>
+							</td>
+							<td>第一希望</td>
+							<td>
+								<span th:text="${reservingAppt.place1}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.date1}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.time1}"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="radio" name="answer" th:value="2"/>
+							</td>
+							<td>第二希望</td>
+							<td>
+								<span th:text="${reservingAppt.place2}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.date2}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.time2}"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="radio" name="answer" th:value="3"/>
+							</td>
+							<td>第三希望</td>
+							<td>
+								<span th:text="${reservingAppt.place3}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.date3}"></span>
+							</td>
+							<td>
+								<span th:text="${reservingAppt.time3}"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="radio" name="answer" th:value="4"/>
+							</td>
+							<td>
+								<p>受け取れる日がありません</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<input type="hidden" name="notificationId" th:value="${notificationId}"/>
+				<button type="submit" class="submit-btn">確認画面へ</button>
+			</form>
+			<form th:action="@{/notification}" method="post">
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<button type="submit" class="submit-btn2">通知一覧へ戻る</button>
+			</form>
+		</div>
+	</body>
+</html>
+

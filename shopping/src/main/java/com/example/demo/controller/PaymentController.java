@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,10 @@ public class PaymentController {
             List<String> ordersIds = paymentService.processPayment(userId);
             // 通知を作成.
             for (String ordersId : ordersIds) {
-            	notificationService.addNotification(ordersId);
+            	Map<String, String> orderIdMap = new HashMap<String, String>();
+            	orderIdMap.put("orderId", ordersId);
+            	orderIdMap.put("type", "call");
+             	notificationService.addNotification(orderIdMap);
             }
             // 決済成功メッセージを設定
             model.addAttribute("message", "決済が完了しました。またのご利用をお待ちしております。");
@@ -82,6 +86,7 @@ public class PaymentController {
         // 更新後のユーザーのポイントを取得
         int updatedPoint = userMapper.findPointByUserId(userId);
         MUser muser = userService.getUserOne(userId);
+        System.out.println(muser.getUserId());
         model.addAttribute("muser", muser);
         model.addAttribute("point", updatedPoint);
 
