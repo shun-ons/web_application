@@ -58,12 +58,12 @@ public class NotificationController {
 	public String showNotification(@RequestParam String userId, Model model) {
 		List<Notification> notifications = notificationService.selectByOrnerId(userId);
 		List<Notification> reverseNotifications = new ArrayList<>();
-		for (int i = notifications.size() -1; i >= 0; i--) {
-			reverseNotifications.add(notifications.get(i));
-		}
+//		for (int i = notifications.size() -1; i >= 0; i--) {
+//			reverseNotifications.add(notifications.get(i));
+//		}
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
-        model.addAttribute("notifications", reverseNotifications);
+        model.addAttribute("notifications", notifications);
 		return "notification/notification";
 	}
 	
@@ -71,9 +71,10 @@ public class NotificationController {
 	public String showDetails(@RequestParam String userId, @RequestParam String notificationId, Model model) {
 		Notification notification = notificationService.selectByNotificationId(notificationId);
 		String itemId = notification.getItemId();
+		System.out.println(itemId);
 		ReservingAppt reservingAppt = reservingApptService.findByItemId(itemId);
 		MUser muser = userService.getUserOne(userId);
-		notification.setRead(true);
+		notification.setRead_(true);
 		model.addAttribute("reservingAppt", reservingAppt);
 		model.addAttribute("muser", muser);
 		model.addAttribute("notificationId", notificationId);

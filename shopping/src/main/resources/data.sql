@@ -6,13 +6,13 @@ VALUES('u01', 'system@co.jp','システム管理者','$2a$10$fA3FpACA13sFAyVRrku
 INSERT INTO item(itemId, itemName, itemPrice, ornerName, ornerId, message, inCart, isSold, salesDateTime)
 VALUES('p01', 'スプリング入門', 1000, 'Jan','u02' , '買ってね', FALSE, TRUE, '2024-12-20 23:50:06'),
 ('p02', 'TCP/IP', 1000, 'Onishi', 'u03', '状態良好です.', FALSE, TRUE, '2024-12-23 22:44:14'),
-('p03', '信号とシステム', 3000, 'Onishi', 'u03', '難しいです.', TRUE, TRUE, '2024-12-29 23:47:09'),
+('p03', '信号とシステム', 3000, 'Onishi', 'u03', '難しいです.', FALSE, TRUE, '2024-12-29 23:47:09'),
 ('p04', '微積分', 500, 'Onishi', 'u03', '少し古いです,', TRUE, FALSE,'2025-01-18 23:38:41');
 
 Insert INTO order_item(orderId, itemId, purchaserId, ornerId, priceAtOrder, orderDateTime)
 VALUES('oi01', 'p03', 'u01', 'u03', 3000, '2024-12-29 23:56:26');
 
-INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, type, read, dateTime)
+INSERT INTO notification(notificationId, itemId, ornerId, purchaserId, content, type, read_, dateTime_)
 VALUES('n01', 'p04', 'u03', 'u02', 'Janさんが「微積分」を購入しました!!', 'call', FALSE, '2025-01-18 23:40:13');
 
 INSERT INTO orders(orderId, itemId, purchaserId, ornerId, orderDateTime)

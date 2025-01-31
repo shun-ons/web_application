@@ -19,6 +19,6 @@ public class Notification {
 	private String purchaserId;     // 購入者のID.
 	private String content;         // 通知の内容.
 	private String type;            // 送信通知か返信通知か.
-	private boolean read;           // falseならば未読, trueなら既読.
-	private LocalDateTime dateTime; // テーブルの編集日時.
+	private boolean read_;           // falseならば未読, trueなら既読.
+	private LocalDateTime dateTime_; // テーブルの編集日時.
 }

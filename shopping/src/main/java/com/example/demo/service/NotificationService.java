@@ -88,7 +88,7 @@ public class NotificationService {
 			String itemName = item.getItemName();
 			MUser purchaser = userService.getUserOne(purchaserId);
 			String purchaserName = purchaser.getName();
-			content = purchaserName + "さんから「" + itemName + "」の購入依頼が届いています!確認していください!";
+			content = purchaserName + "さんから「" + itemName + "」の購入依頼が届いています!確認してください!";
 			
 		} else {
 			Notification call = this.selectByNotificationId(allParams.get("notificationId"));
@@ -116,10 +116,10 @@ public class NotificationService {
 		notification.setType(type);
 
 		// 通知を未読に設定.
-		notification.setRead(false);
+		notification.setRead_(false);
 		// 編集時間を設定.
 		LocalDateTime now = LocalDateTime.now();
-		notification.setDateTime(now);
+		notification.setDateTime_(now);
 		
 		notificationMapper.insert(notification);
 	}

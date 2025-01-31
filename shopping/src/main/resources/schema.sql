@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS m_user(
 CREATE TABLE IF NOT EXISTS m_faculty(
 	faculty_id INT PRIMARY KEY,
 	faculty_name VARCHAR(50)
-	
 );
 
 CREATE TABLE IF NOT EXISTS item(
@@ -49,8 +48,8 @@ CREATE TABLE IF NOT EXISTS notification(
 	purchaserId VARCHAR(50),
 	content VARCHAR(50),
 	type VARCHAR(50),
-	read BOOLEAN,
-	dateTime TIMESTAMP
+	read_ BOOLEAN,
+	dateTime_ TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS reservingAppt(
