@@ -16,7 +16,7 @@
 	<body>
 		<div layout:fragment="content" class="content-container">
 			<h2 class="table-title">受け取り日時予約確認</h2>
-			<form th:action="@{/payment/check}" method="post">
+			<form th:action="@{/notification/reselect}" method="post">
 				<div th:each="reservingApptInput, stat : ${reservingApptInputs}" class="product-container">
 					<h3 class="product-title" th:text="${itemNameMap['name'+stat.index]}"></h3>
 					<input type="hidden" name="itemId" th:value="${reservingApptInput.itemId}"/>

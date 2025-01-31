@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/payment/paymentSuccess.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>	送信完了</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<header>
+		    <h1 class="h1">受け取り日時を再送信しました</h1>
+		</header>
+	    <p>返信をお待ちください。</p><br>
+		<p>返信がなければ、取引は不成立となります。</p>
+		<form th:action="@{/mypage}" method="post">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+		    <input type="submit" value="マイページへ戻る" class="button"/>
+		</form>
+		<form th:action="@{/notification}" method="post">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+			<input type="submit" value="通知一覧へ" class="button"/>
+		</form>
+	</div>
+</body>
+</html>

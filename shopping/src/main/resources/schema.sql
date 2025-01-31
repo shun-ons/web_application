@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS notification(
 	ornerId VARCHAR(50),
 	purchaserId VARCHAR(50),
 	content VARCHAR(50),
+	type VARCHAR(50),
+	read BOOLEAN,
 	dateTime TIMESTAMP
 );
 

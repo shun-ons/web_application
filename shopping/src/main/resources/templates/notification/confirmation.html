@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/cart/reservingAppt.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>受け取り日時予約確認</title>
+	</head>
+	<body>
+		<div layout:fragment="content" class="content-container">
+			<h2 class="table-title">受け取り日時予約確認</h2>
+			<form th:action="@{/notification/details/correct}" method="post">
+				<h3 class="product-title" th:text="${answerMap[itemName]}"></h3>
+				<table class="styled-table">
+					<thead>
+						<tr>
+							<th>場所</th>
+							<th>日付</th>
+							<th>時間</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span th:text="${answerMap[place]}"></span>
+							</td>
+							<td>
+								<span th:text="${answerMap[date]}"></span>
+							</td>
+							<td>
+								<span th:text="${answerMap[time]}"></span>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<input type="hidden" name="notificationId" th:value="${answerMap[notificationId]}"/>
+				<input type="hidden" name="reservingApptId" th:value="${reservingApptId}"/>
+				<input type="hidden" name="type" th:value="|response${answerMap[answer]}|"/>
+				<button type="submit" class="submit-btn">送信</button>
+			</form>
+			<form th:action="@{/notification/details}" method="post">
+				<input type="hidden" name="userId" th:value="muser.serId"/>
+				<input type="hidden" name="notificationId" th:value="${notificationId}"/>
+				<button type="submit" class="submit-btn2">戻る</button>
+			</form>
+		</div>
+	</body>
+</html>
+
