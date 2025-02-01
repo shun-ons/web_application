@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,19 +41,51 @@ public class SoldItemController {
 	 * @return itemList.htmlを表示する.
 	 */
 	@PostMapping("/item-list")
-	public String itemList(Model model, @RequestParam String userId) {
-		List<Item> items = itemService.selectAll();
-		List<Item> reverseItems = new ArrayList<Item>(items.size());
-		for (int i = items.size() - 1; i >= 0; i--) {
-			if (!items.get(i).getInCart()) {
+	public String itemList(Model model, @RequestParam Map<String, String> allParams) {
+		String userId = allParams.get("userId");
+		List<Item> allItems = itemService.selectAll();
+		List<Item> items = new ArrayList<Item>();
+		for (int i = 0; i < allItems.size(); i++) {
+			if (!allItems.get(i).getInCart()) {
 				// 誰かがカートに入れている商品は表示しない.
-				reverseItems.add(items.get(i));
+				items.add(allItems.get(i));
 			}
 		}
+		int itemSize = items.size();
+		List<Item> itemList;
+		// 現在のページ数を取得.
+		Integer page = allParams.get("page") == null ? 1 : Integer.parseInt(allParams.get("page"));
+		Integer allPage = itemSize / 10 + 1;
+		// ページに表示する商品を取得.
+		if (itemSize <= 10) {
+			itemList = new ArrayList<Item>(items);
+		} else {
+			Integer tmp = (page - 1) * 10;
+			System.out.println(page);
+			if (allPage > page) {
+				itemList = items.subList(tmp, tmp+10);
+				System.out.println(itemList.size());
+				for (Item item : itemList) {
+					System.out.println(item.getItemName());
+				}
+			} else {
+				itemList = items.subList(tmp, itemSize);
+			}
+		}
+		// H2の時の処理.
+//		List<Item> reverseItems = new ArrayList<Item>(items.size());
+//		for (int i = items.size() - 1; i >= 0; i--) {
+//			if (!items.get(i).getInCart()) {
+//				// 誰かがカートに入れている商品は表示しない.
+//				reverseItems.add(items.get(i));
+//			}
+//		}
 		model.addAttribute("keyword", "");
-		model.addAttribute("items", reverseItems);
+		model.addAttribute("items", itemList);
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
+        model.addAttribute("page", page);
+        model.addAttribute("allPage", allPage);
         return "soldItem/itemList";
 	}
 	
@@ -64,20 +97,49 @@ public class SoldItemController {
 	 * @return itemList.htmlを表示する.
 	 */
 	@PostMapping("search-item")
-	public String searchItem(Model model, @RequestParam String userId, @RequestParam String keyword) {
-		List<Item> items = itemService.selectAll();
-		List<Item> reverseItems = new ArrayList<Item>();
+	public String searchItem(Model model, @RequestParam Map<String, String> allParams) {
+		String userId = allParams.get("userId");
+		String keyword = allParams.get("keyword");
 		String upperKeyword = keyword.toUpperCase();
-		for (int i = items.size() - 1; i >= 0; i--) {
+		List<Item> allItems = itemService.selectAll();
+		List<Item> items = new ArrayList<Item>();
+		for (int i = 0; i < allItems.size(); i++) {
 			String upperItemName = items.get(i).getItemName().toUpperCase();
-			if (upperItemName.contains(upperKeyword) && !items.get(i).getInCart()) {
-					reverseItems.add(items.get(i));
+			if (upperItemName.contains(upperKeyword) && !allItems.get(i).getInCart()) {
+					items.add(items.get(i));
 			}
 		}
+		
+		int itemSize = items.size();
+		List<Item> itemList;
+		// 現在のページ数を取得.
+		Integer page = allParams.get("page") == null ? 1 : Integer.parseInt(allParams.get("page"));
+		Integer allPage = itemSize / 10 + 1;
+		// ページに表示する商品を取得.
+		if (itemSize <= 10) {
+			itemList = new ArrayList<Item>(items);
+		} else {
+			Integer tmp = (page - 1) * 10;
+			System.out.println(page);
+			if (allPage > page) {
+				itemList = items.subList(tmp, tmp+10);
+				System.out.println(itemList.size());
+				for (Item item : itemList) {
+					System.out.println(item.getItemName());
+				}
+			} else {
+				itemList = items.subList(tmp, itemSize);
+			}
+		}
+		
+		List<Item> reverseItems = new ArrayList<Item>();
+		
+
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("items", reverseItems);
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
+        model.addAttribute("allPage", allPage);
         return "soldItem/itemList";
 	}
 	

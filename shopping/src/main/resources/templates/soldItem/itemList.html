@@ -72,6 +72,12 @@
 					<input type="submit" value="戻る"/>
 				</form>
 			</div>
+			<form th:action="@{/item-list}" method="post">
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<div th:each="i : ${#numbers.sequence(1, allPage)}">
+					<input type="submit" name="page" th:value="${i}" />
+				</div>
+			</form>
 		</div>
 	</body>
 </html>

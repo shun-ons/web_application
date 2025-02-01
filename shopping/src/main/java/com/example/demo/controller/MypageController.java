@@ -74,7 +74,13 @@ public class MypageController {
 	public String updateItemDetail(@RequestParam String userId, Model model) {
     	MUser muser = userService.getUserOne(userId);
 		List <Item> items = itemService.selectByOrnerId(userId);  // ユーザが出品中のitemを格納中.
-		List <ItemInput> itemList = itemService.turnItemIntoItemInput(items);  // 変更可能なように,ItemInputへ変更.
+		List <Item> soldItems = new ArrayList<Item>();
+		for (Item item : items) {
+			if (!item.getInCart()) {
+				soldItems.add(item);
+			}
+		}
+		List <ItemInput> itemList = itemService.turnItemIntoItemInput(soldItems);  // 変更可能なように,ItemInputへ変更.
 		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", itemList);
 		

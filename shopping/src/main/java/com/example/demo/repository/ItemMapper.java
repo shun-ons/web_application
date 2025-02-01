@@ -22,7 +22,7 @@ public interface ItemMapper {
 	 * データベースから全件取得するためのメソッド.
 	 * @return Item型のリストが返される.全ての商品が格納されている.
 	 */
-	@Select("SELECT * FROM item")
+	@Select("SELECT * FROM item ORDER BY salesDateTime DESC")
 	public List<Item> selectAll();
 	
 	/**

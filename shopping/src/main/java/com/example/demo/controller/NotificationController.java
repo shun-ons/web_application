@@ -67,6 +67,13 @@ public class NotificationController {
 		return "notification/notification";
 	}
 	
+	/**
+	 * 通知欄の詳細ページへアクセスするためのメソッド.
+	 * @param userId
+	 * @param notificationId
+	 * @param model
+	 * @return notification/release.htmlへ遷移する.
+	 */
 	@PostMapping("/notification/details")
 	public String showDetails(@RequestParam String userId, @RequestParam String notificationId, Model model) {
 		Notification notification = notificationService.selectByNotificationId(notificationId);
@@ -103,6 +110,12 @@ public class NotificationController {
 		}
 	}
 	
+	/**
+	 * 通知から受け取り日時の指定へ遷移するためのメソッド.
+	 * @param allParams
+	 * @param model
+	 * @return notification/reselectConfirmation.htmlへ遷移する.
+	 */
 	@PostMapping("/notification/details/input")
 	public String reselectConfirm(@RequestParam Map<String, String> allParams, Model model) {
     	String userId = allParams.get("userId");
@@ -136,7 +149,7 @@ public class NotificationController {
         model.addAttribute("muser", muser);
         model.addAttribute("reservingApptInputs", reservingApptInputs);
         model.addAttribute("itemNameMap", itemNameMap);
-        model.addAttribute("select",allParams.get("recall"));
+        model.addAttribute("recall",allParams.get("recall"));
     	return "notification/reselectConfirmation";
     }
 	
@@ -194,6 +207,12 @@ public class NotificationController {
 		return "notification/success";
 	}
 	
+	/**
+	 * 出品者との予定が合わなかった場合に日程の再選択をおこなうメソッド.
+	 * @param userId
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/notification/reselect")
 	public String reselect(String userId, Model model) {
 		MUser muser = userService.getUserOne(userId);
@@ -216,11 +235,15 @@ public class NotificationController {
 	@PostMapping(value = "/notification/reselect", params = "delete")
 	public String reselectDelete(@RequestParam String userId, @RequestParam String itemId, @RequestParam String recall, Model model) {
     	reservingApptService.delete(itemId);
+    	Item item = itemService.selectById(itemId);
+    	List<Item> items = new ArrayList<Item>();
+    	items.add(item);
     	Date date = new Date();
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     	String strDate = dateFormat.format(date);
     	MUser muser = userService.getUserOne(userId);
     	model.addAttribute("muser", muser);
+    	model.addAttribute("items", items);
     	model.addAttribute("today", strDate);
     	model.addAttribute("recall", recall);
     	return "cart/reservingAppt";
