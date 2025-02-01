@@ -34,16 +34,16 @@
         
      <!-- ユーザーIDのマックス値を取得 -->
     <select id="getMaxUserId" resultType="String">
-    SELECT userId FROM M_USER ORDER BY userId DESC LIMIT 1
+    SELECT userId FROM m_user ORDER BY userId DESC LIMIT 1
 	</select>
     
     <!-- ユーザー複数権取得 -->
     <select id="findMany" resultType="MUser">
-    SELECT * FROM M_USER 
+    SELECT * FROM m_user 
     </select>
     
     <select id="findOne" resultMap="user">
-    SELECT * FROM M_USER WHERE USERID = #{userId}
+    SELECT * FROM m_user WHERE USERID = #{userId}
     </select>
     
     <!-- ユーザ1件更新 -->
@@ -55,16 +55,16 @@
 
     
     <delete id="deleteOne">
-    DELETE FROM M_USER WHERE MAILADDRESS = #{mailAddress}
+    DELETE FROM m_user WHERE MAILADDRESS = #{mailAddress}
     </delete>
 
     <!-- ユーザを1件取得 -->
     <select id="findByMailAddress" resultType="MUser">
-        SELECT * FROM M_USER WHERE mailAddress = #{mailAddress}
+        SELECT * FROM m_user WHERE mailAddress = #{mailAddress}
     </select>
     
     <update id="addPoint">
-    	UPDATE M_USER
+    	UPDATE m_user
     	SET point = point + #{point}
     	WHERE userId = #{userId}
 	</update>
