@@ -34,6 +34,11 @@
 				    <input type="hidden" name="userId" th:value="${muser.userId}" />
 				    <input type="image" src="/uploaded-images/bottan_appDetails.png" alt="画像が表示できません." style="width: 80px;"/>
 				</form>
+				<form th:action="@{/transaction/list}" method="post" style="display:inline;">
+				    <input type="hidden" name="userId" th:value="${muser.userId}" />
+				    <input type="image" src="/uploaded-images/bottan_transaction.png" alt="画像が表示できません." style="width: 80px;"/>
+				</form>
+
 			</footer>
 		</div>
 	</body>

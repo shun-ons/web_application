@@ -2,15 +2,18 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Item;
+import com.example.demo.entity.Item; // （追加）Itemエンティティをインポート
+import com.example.demo.entity.Orders; // （追加）Ordersエンティティをインポート
+import com.example.demo.repository.ItemMapper; // （追加）ItemMapperをインポート
+import com.example.demo.repository.OrdersMapper; // （追加）OrdersMapperをインポート
 import com.example.demo.repository.UserMapper;
 
 /**
- * 決済処理を管理するサービスクラス。
- * @author 石井叶輝
+ * 決済処理と受け取り確認処理を管理するサービスクラス。
  */
 @Service
 public class PaymentService {
@@ -19,42 +22,33 @@ public class PaymentService {
     private final UserMapper userMapper;
     private final OrdersService ordersService;
     private final ItemService itemService;
+    private final ItemMapper itemMapper;  // （追加）ItemMapper を追加
+    private final OrdersMapper ordersMapper;  // （追加）OrdersMapper を追加
 
     /**
      * コンストラクタ
-     * 
-     * @param cartService カートサービス
-     * @param userMapper ユーザーマッパー
-     * @param ordersService 注文サービス
-     * @param itemService 商品サービス
      */
-    public PaymentService(CartService cartService, UserMapper userMapper, OrdersService ordersService, ItemService itemService) {
+    public PaymentService(CartService cartService, UserMapper userMapper, OrdersService ordersService, 
+                          ItemService itemService, ItemMapper itemMapper, OrdersMapper ordersMapper) { // （変更）ItemMapper, OrdersMapper を追加
         this.cartService = cartService;
         this.userMapper = userMapper;
         this.ordersService = ordersService;
         this.itemService = itemService;
+        this.itemMapper = itemMapper; // （追加）
+        this.ordersMapper = ordersMapper; // （追加）
     }
 
     /**
      * 決済処理を実行する。
-     * 
-     * @param userId ユーザーID
-     * @return 注文IDのリスト
-     * @throws IllegalArgumentException ポイントが不足している場合にスローされる
      */
     public List<String> processPayment(String userId) {
-        // カートの合計金額を取得
         int totalPrice = cartService.getTotalPrice(userId);
-
-        // ユーザーの現在のポイントを取得
         int userPoint = userMapper.findPointByUserId(userId);
 
-        // 残高不足の場合は例外をスロー
         if (userPoint < totalPrice) {
             throw new IllegalArgumentException("ポイントが不足しています");
         }
 
-        // ポイントを減算（購入者の残高から引く）
         int updatedPoint = userPoint - totalPrice;
         userMapper.updateUserPoint(userId, updatedPoint);
         
@@ -63,26 +57,58 @@ public class PaymentService {
         
         for (Item item : items) {
             String itemId = item.getItemId();
-            String sellerId = item.getOrnerId(); // 販売者のID
-            int itemPrice = item.getItemPrice();
+            String sellerId = item.getOrnerId(); 
 
-            // 購入履歴を作成
             String ordersId = ordersService.addOrders(itemId, sellerId, userId);
             ordersIds.add(ordersId);
 
-            // 商品の販売状況を変更
-            itemService.updateIsSold(itemId, false);
-
-            // 販売者の残高を更新（商品価格の97%を加算）
-            int sellerCurrentBalance = userMapper.findPointByUserId(sellerId);
-            int sellerUpdatedBalance = sellerCurrentBalance + (int) (itemPrice * 0.97);
-            userMapper.updateUserPoint(sellerId, sellerUpdatedBalance);
+            itemService.updateIsSold(itemId, false); // （変更）決済時に販売者のポイント加算を削除
         }
 
-        // 決済完了後の処理（例: カートのクリア）
         cartService.clearCart(userId);
-
         return ordersIds;
+    }
+
+    //新規追加
+    /**
+     * 受け取り確認処理。
+     */
+    public void processReceiptConfirmation(String userId, String itemId) {
+        Item item = itemService.selectById(itemId);
+
+        if (item == null || !item.getOrnerId().equals(userId)) {
+            throw new IllegalArgumentException("商品が見つからないか、権限がありません。");
+        }
+
+        if (item.getIsCompletion()) {
+            throw new IllegalArgumentException("すでに受け取り確認済みです。");
+        }
+
+        // 商品の受け取り確認状態を更新
+        itemMapper.updateIsCompletion(itemId, true);
+
+        // 販売者に売上を加算
+        String sellerId = item.getOrnerId();
+        int sellerCurrentBalance = userMapper.findPointByUserId(sellerId);
+        int sellerUpdatedBalance = sellerCurrentBalance + (int) (item.getItemPrice() * 0.97);
+        userMapper.updateUserPoint(sellerId, sellerUpdatedBalance);
+    }
+
+    //新規追加
+    public List<Item> getUncompletedPurchasedItems(String userId) {
+        // ユーザーの購入履歴を取得
+        List<Orders> orders = ordersMapper.selectByPurchaserId(userId);
+
+        // 受け取り未完了の購入した商品の ID を取得
+        List<String> uncompletedItemIds = orders.stream()
+                .map(Orders::getItemId)
+                .collect(Collectors.toList());
+
+        // 条件を満たす商品のみを取得して返す
+        return itemService.selectAll().stream()
+                .filter(item -> uncompletedItemIds.contains(item.getItemId())) // ユーザーが購入した商品
+                .filter(item -> !item.getIsCompletion())  // 受け取り未完了
+                .collect(Collectors.toList());
     }
 
 }

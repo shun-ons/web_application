@@ -22,7 +22,7 @@ public interface ItemMapper {
 	 * データベースから全件取得するためのメソッド.
 	 * @return Item型のリストが返される.全ての商品が格納されている.
 	 */
-	@Select("SELECT * FROM item")
+	@Select("SELECT * FROM item ORDER BY salesDateTime DESC")
 	public List<Item> selectAll();
 	
 	/**
@@ -92,5 +92,18 @@ public interface ItemMapper {
 	})
 	public int updateIsSold(String itemId, boolean isSold);
 	
+	//新規追加
 	
+	/**
+	 * 商品の受け取り確認状態を更新するメソッド。Trueなら受け取り完了。
+	 * @param itemId 変更したい商品のID。
+	 * @param isCompletion 変更後の状態。
+	 * @return 処理対応件数。
+	 */
+	@Update({
+	    "UPDATE item",
+	    "SET isCompletion = #{isCompletion} WHERE itemId = #{itemId}"
+	})
+	public int updateIsCompletion(String itemId, boolean isCompletion);
+
 }

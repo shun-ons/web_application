@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS item(
 	message VARCHAR(50),
 	inCart BOOLEAN,
 	isSold BOOLEAN,
+	isCompletion BOOLEAN,
 	salesDateTime TIMESTAMP
 );
 

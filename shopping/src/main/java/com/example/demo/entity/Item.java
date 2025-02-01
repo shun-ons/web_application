@@ -14,6 +14,7 @@ public class Item implements Serializable {
     private LocalDateTime salesDateTime;
     private boolean isSold = true;
     private boolean inCart = false;
+    private boolean isCompletion = false; // 受け取り確認フラグを追加
 
     public String getItemId() {
         return this.itemId;
@@ -89,6 +90,24 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Item{id=" + itemId + ", name='" + itemName + "', price=" + itemPrice + "', ornerName='" + ornerName + "', ornerId='" + ornerId + "', comment='" + message + "', date='" + salesDateTime + "', isSold='" + "'}";
+        return "Item{id=" + itemId + 
+                ", name='" + itemName + 
+                "', price=" + itemPrice + 
+                "', ornerName='" + ornerName + 
+                "', ornerId='" + ornerId + 
+                "', comment='" + message + 
+                "', date='" + salesDateTime + 
+                "', isSold=" + isSold + 
+                ", inCart=" + inCart + 
+                ", isCompletion=" + isCompletion + "}";
+    }
+    
+    // 新規追加: 受け取り確認フラグ (isCompletion)
+    public boolean getIsCompletion() {
+        return isCompletion;
+    }
+
+    public void setIsCompletion(boolean isCompletion) {
+        this.isCompletion = isCompletion;
     }
 }
