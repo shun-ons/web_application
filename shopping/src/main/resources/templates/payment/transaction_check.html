@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>受け取り確認結果</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>受け取り確認</h1>
+
+    <div id="message">
+        <p th:if="${message}" th:text="${message}" class="success"></p>
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+    </div>
+
+	<form th:action="@{/mypage}" method="post">
+		<input type="hidden" name="userId" th:value="${muser.userId}" />
+	    <input type="submit" value="マイページへ戻る" class="btn btn-secondary"/>
+	</form>
+</body>
+</html>

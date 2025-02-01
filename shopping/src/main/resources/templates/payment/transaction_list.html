@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/payment/transaction_list.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>取引中の購入商品一覧</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<header>
+		    <h1 class="h1">取引中の購入商品一覧</h1>
+		</header>
+
+		<!-- メッセージの表示 -->
+	    <div id="message">
+	        <p th:if="${message}" th:text="${message}" class="success"></p>
+	        <p th:if="${error}" th:text="${error}" class="error"></p>
+	    </div>
+
+	    <table class="table table-bordered">
+	        <thead class="thead-light">
+	            <tr>
+	                <th>商品名</th>
+	                <th>価格</th>
+	                <th>受け取り確認</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- 取引中の商品リストを表示 -->
+	            <tr th:each="item : ${items}">
+	                <td th:text="${item.itemName}"></td>
+	                <td th:text="${item.itemPrice} + '円'"></td>
+	                <td>
+	                    <form th:action="@{/transaction/confirm}" method="post">
+	                        <input type="hidden" name="userId" th:value="${muser.userId}">
+	                        <input type="hidden" name="itemId" th:value="${item.itemId}">
+	                        <input type="submit" value="受け取り確認へ" class="btn btn-primary"/>
+	                    </form>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+
+	    <form th:action="@{/mypage}" method="post">
+			<input type="hidden" name="userId" th:value="${muser.userId}" />
+		    <input type="submit" value="マイページへ戻る" class="btn btn-secondary"/>
+		</form>
+	</div>
+</body>
+</html>
