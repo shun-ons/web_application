@@ -134,7 +134,7 @@ public class PaymentController {
             paymentService.processReceiptConfirmation(userId, itemId);
             model.addAttribute("message", "受け取りが確認されました。");
         } catch (Exception e) {
-            model.addAttribute("error", "受け取り確認に失敗しました: " + e.getMessage());
+            model.addAttribute("error", e.getMessage());
         }
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);

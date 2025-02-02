@@ -1,43 +1,59 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>受け取り確認</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <h1>受け取り確認</h1>
-
-    <div id="message">
-        <p th:text="${message}" class="success"></p>
-        <p th:text="${error}" class="error"></p>
-    </div>
-
-    <p>以下の商品を受け取ったことを確認しましたか？</p>
-
-    <table border="1">
-        <tr>
-            <th>商品名</th>
-            <td th:text="${item.itemName}"></td>
-        </tr>
-        <tr>
-            <th>価格</th>
-            <td th:text="|${item.itemPrice}円|"></td>
-        </tr>
-    </table>
-
-    <form th:action="@{/payment/confirmReceipt}" method="post">
-        <input type="hidden" name="userId" th:value="${muser.userId}">
-        <input type="hidden" name="itemId" th:value="${item.itemId}">
-        <button type="submit">受け取りを確定する</button>
-    </form>
-
-    <!-- POST メソッドで取引一覧に戻る -->
-    <form th:action="@{/transaction/list}" method="post">
-        <input type="hidden" name="userId" th:value="${muser.userId}">
-        <button type="submit">取引一覧に戻る</button>
-    </form>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/transaction/transaction_confirm.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	    <title>受け取り確認</title>
+	    <link rel="stylesheet" href="/css/style.css">
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<header>
+			    <h1 class="h1">受け取り確認</h1>
+			</header>
+		    <div id="message">
+		        <p th:text="${message}" class="success"></p>
+		        <p th:text="${error}" class="error"></p>
+		    </div>
+		
+		    <p class="message">以下の商品を受け取ったことを確認しましたか？</p>
+		
+			<div class="table-container">
+			    <table>
+			        <thead>
+			            <tr>
+			                <th>商品名</th>
+			                <th>価格</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr>
+			                <td th:text="${item.itemName}"></td>
+			                <td th:text="|${item.itemPrice}円|"></td>
+			            </tr>
+			        </tbody>
+			    </table>
+			</div>
+			
+		    <form th:action="@{/payment/confirmReceipt}" method="post">
+		        <input type="hidden" name="userId" th:value="${muser.userId}">
+		        <input type="hidden" name="itemId" th:value="${item.itemId}">
+				<input type="submit" value="受け取りを確定する" class="button"/>
+		    </form>
+		
+		    <!-- POST メソッドで取引一覧に戻る -->
+		    <form th:action="@{/transaction/list}" method="post">
+		        <input type="hidden" name="userId" th:value="${muser.userId}">
+				<input type="submit" value="取引一覧に戻る" class="button"/>
+		    </form>
+	</body>
 </html>

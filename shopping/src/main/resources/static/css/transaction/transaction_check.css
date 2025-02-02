@@ -1,0 +1,23 @@
+/* ボタンのスタイリング（共通） */
+form input[type="submit"] {
+    display: block;
+    width: 100%; /* 最大幅 */
+    margin: 10px 0;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* マイページへのボタン */
+form input[type="submit"][value="マイページへ戻る"] {
+    background-color: #4caf50; /* 灰色 */
+    color: white;
+}
+
+form input[type="submit"][value="マイページへ戻る"]:hover {
+    background-color: #45a049;
+}

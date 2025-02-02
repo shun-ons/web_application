@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!--CSS読み込み-->
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/payment/transaction_list.css}">
+	<link rel="stylesheet" th:href="@{/css/transaction/transaction_list.css}">
 	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 	<!--JS読み込み-->
 	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
@@ -26,33 +26,39 @@
 	        <p th:if="${error}" th:text="${error}" class="error"></p>
 	    </div>
 
-	    <table class="table table-bordered">
-	        <thead class="thead-light">
-	            <tr>
-	                <th>商品名</th>
-	                <th>価格</th>
-	                <th>受け取り確認</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	            <!-- 取引中の商品リストを表示 -->
-	            <tr th:each="item : ${items}">
-	                <td th:text="${item.itemName}"></td>
-	                <td th:text="${item.itemPrice} + '円'"></td>
-	                <td>
-	                    <form th:action="@{/transaction/confirm}" method="post">
-	                        <input type="hidden" name="userId" th:value="${muser.userId}">
-	                        <input type="hidden" name="itemId" th:value="${item.itemId}">
-	                        <input type="submit" value="受け取り確認へ" class="btn btn-primary"/>
-	                    </form>
-	                </td>
-	            </tr>
-	        </tbody>
-	    </table>
+	    <!-- 商品リストがある場合のみテーブルを表示 -->
+	    <div th:if="${not #lists.isEmpty(items)}" class="table-container">
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>商品名</th>
+		                <th>価格</th>
+		                <th>受け取り確認</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <!-- 取引中の商品リストを表示 -->
+		            <tr th:each="item : ${items}">
+		                <td th:text="${item.itemName}"></td>
+		                <td th:text="|${item.itemPrice}円|"></td>
+		                <td>
+		                    <form th:action="@{/transaction/confirm}" method="post">
+		                        <input type="hidden" name="userId" th:value="${muser.userId}">
+		                        <input type="hidden" name="itemId" th:value="${item.itemId}">
+		                        <input type="submit" value="受け取り確認へ" class="button"/>
+		                    </form>
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+	    </div>
 
-	    <form th:action="@{/mypage}" method="post">
+	    <!-- 取引中の商品がない場合のメッセージ -->
+		<p th:if="${#lists.isEmpty(items)}" class="message">現在、取引中の商品はありません。</p>
+
+		<form th:action="@{/mypage}" method="post">
 			<input type="hidden" name="userId" th:value="${muser.userId}" />
-		    <input type="submit" value="マイページへ戻る" class="btn btn-secondary"/>
+		    <input type="submit" value="マイページへ戻る" class="button"/>
 		</form>
 	</div>
 </body>
