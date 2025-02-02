@@ -48,7 +48,13 @@
 				    商品がありません。
 				</div>
 			</div>
-
+			<form method="get" th:action="@{/login}">
+				<button class="btn btn-link pull-right navbar-brand" type="submit">
+					ログイン
+				</button>
+			</form>			
+		</div>
+	</nav>
 			<!-- 商品がある場合に表示するテーブル -->
 			<table th:unless="${#lists.isEmpty(items)}">
 				<tr>
@@ -86,5 +92,12 @@
 				</div>
 			</form>
 		</div>
+		<!-- フッターを直接埋め込む -->
+		<footer class="footer fixed-bottom bg-light text-center p-2 border-top">
+			<form th:action="@{/appDetails}" method="get" style="display:inline;">
+				<input type="image" src="/uploaded-images/bottan_appDetails.png" alt="アプリ詳細" style="width: 80px;"/>
+			</form>
+		</footer>
 	</body>
+
 </html>
