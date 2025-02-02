@@ -2,37 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/layout}">
+	<head>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			var userId = /*[[${muser?.userId}]]*/ null;
+			if (!userId) {
+				window.location.href = "/login?logout"; // ログインページのURLに変更
+			}
+			/*]]>*/
+		</script>
+	</head>
 	<body>
 		<div layout:fragment="footer">
 			<footer class="footer fixed-bottom bg-light text-center p-2 border-top">
 				<form th:action="@{/mypage}" method="post" style="display:inline;">
-					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<input type="hidden" name="userId" th:value="${muser?.userId}" />
 					<input type="image" src="/uploaded-images/bottan_mypage.png" alt="画像が表示できません." style="width: 80px;"/>
-					<!--button type="submit" class="btn btn-primary mx-2">マイページ</button-->
 				</form>
 				<form th:action="@{/item-list}" method="post" style="display:inline;">
-					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<input type="hidden" name="userId" th:value="${muser?.userId}" />
 					<input type="image" src="/uploaded-images/bottan_items.png" alt="画像が表示できません." style="width: 80px;"/>
-					<!--button type="submit" class="btn btn-primary mx-2">商品一覧</button-->
 				</form>
 				<form th:action="@{/cart/view}" method="post" style="display:inline;">
-					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<input type="hidden" name="userId" th:value="${muser?.userId}" />
 					<input type="image" src="/uploaded-images/bottan_cart.png" alt="画像が表示できません." style="width: 80px;"/>
-					<!--button type="submit" class="btn btn-primary mx-2">カート</button-->
 				</form>
 				<form th:action="@{/notification}" method="post" style="display:inline;">
-					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<input type="hidden" name="userId" th:value="${muser?.userId}" />
 					<input type="image" src="/uploaded-images/bottan_notification.png" alt="画像が表示できません." style="width: 80px;"/>
-					<!--button type="submit" class="btn btn-primary mx-2">通知</button-->
 				</form>
 				<form th:action="@{/sales/sales-form}" method="post" style="display:inline;">
-					<input type="hidden" name="userId" th:value="${muser.userId}" />
+					<input type="hidden" name="userId" th:value="${muser?.userId}" />
 					<input type="image" src="/uploaded-images/bottan_sails.png" alt="画像が表示できません." style="width: 80px;"/>
-					<!--button type="submit" class="btn btn-primary mx-2">出品</button-->
 				</form>
 				<form th:action="@{/appDetails}" method="post" style="display:inline;">
-				    <input type="hidden" name="userId" th:value="${muser.userId}" />
+				    <input type="hidden" name="userId" th:value="${muser?.userId}" />
 				    <input type="image" src="/uploaded-images/bottan_appDetails.png" alt="画像が表示できません." style="width: 80px;"/>
+				</form>
+				<form th:action="@{/transaction/list}" method="post" style="display:inline;">
+				    <input type="hidden" name="userId" th:value="${muser?.userId}" />
+				    <input type="image" src="/uploaded-images/bottan_transaction.png" alt="画像が表示できません." style="width: 80px;"/>
 				</form>
 			</footer>
 		</div>

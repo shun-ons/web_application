@@ -172,4 +172,16 @@ public class ItemService {
 			return false;
 		}
 	}
+	
+	//新規追加
+	
+	/**
+	 *  商品の受け取り確認状態を変更するためのメソッド.
+	 * @param itemId 変更したい商品のID.
+	 * @param isCompletion 変更後の商品の状態（受け取り確認済みなら true）
+	 */
+	public void updateIsCompletion(String itemId, boolean isCompletion) {
+	    itemMapper.updateIsCompletion(itemId, isCompletion);
+	}
+
 }

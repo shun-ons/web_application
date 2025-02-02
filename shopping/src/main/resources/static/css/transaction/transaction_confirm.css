@@ -1,0 +1,74 @@
+/* テーブルを中央配置する */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+/* テーブル全体のスタイル */
+table {
+    width: 80%; /* 必要に応じて調整可能 */
+    max-width: 600px; /* テーブルの最大幅を設定 */
+    border-collapse: collapse;
+    border: 1px solid #ddd; /* テーブル全体の枠線 */
+    background: #ffffff; /* セルの背景色 */
+}
+
+/* ヘッダーのスタイル */
+th {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* ヘッダー背景色 */
+    border: 1px solid #ddd; /* ヘッダーの罫線 */
+}
+
+/* セルのスタイル */
+td {
+    font-size: 1.1rem;
+    color: #333;
+    padding: 10px 20px;
+    border: 1px solid #ddd; /* セルの枠線（縦線も表示） */
+}
+
+/* 最後の行のボーダー */
+tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* ボタンのスタイリング（共通） */
+form input[type="submit"] {
+    display: block;
+    width: 100%; /* 最大幅 */
+    margin: 10px 0;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* 受け取りを確定するボタン */
+form input[type="submit"][value="受け取りを確定する"] {
+    background-color: #4caf50; /* 灰色 */
+    color: white;
+}
+
+form input[type="submit"][value="受け取りを確定する"]:hover {
+    background-color: #45a049;
+}
+
+/* 取引一覧に戻るボタン */
+form input[type="submit"][value="取引一覧に戻る"] {
+    background-color: #d3d3d3; /* 灰色 */
+    color: #333;
+}
+
+form input[type="submit"][value="取引一覧に戻る"]:hover {
+    background-color: #bfbfbf;
+}
