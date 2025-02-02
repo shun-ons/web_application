@@ -1,84 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!--CSS読み込み-->
-		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-		<link rel="stylesheet" th:href="@{/css/item/itemList.css}">
-		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
-		<!--JS読み込み-->
-		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
-		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
-		<title>商品一覧</title>
-	</head>
-	<body>
-		
-		<nav layout:fragment="header"
-			class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<form th:action="@{/login}" method="get" style="display:inline;">
-						<input type="image" src="/uploaded-images/icon.png" alt="画像が表示できません." style="width: 80px;"/>
-					</form>
-					
-				</div>
-				<form method="get" th:action="@{/login}">
-					<button class="btn btn-link pull-right navbar-brand" type="submit">
-						ログイン
-					</button>
-				</form>
-						
-				
-			</div>
-		</nav>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/item/itemList.css}">
+	<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+	<!--JS読み込み-->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title>商品一覧</title>
+</head>
+<body>
 	
-			<header>
-			    <h1 class="h1">商品一覧</h1>
-			</header>
-			<!-- 検索窓 -->
-			<form th:action="@{indexsearch-item}" class="search-form-1" method="post">
-			    <label>
-					<!--<input type="hidden" name="userId" th:value="${muser.userId}"/>-->
-			        <input type="text" name="keyword" th:placeholder="${#strings.isEmpty(keyword) ? 'キーワードを入力してください' : keyword}" th:value="${keyword}">
-			    </label>
-			    <button type="submit" aria-label="検索"></button>
-			</form>
-			<!-- 商品がない場合に表示するメッセージ -->
-			<div th:if="${#lists.isEmpty(items)}">
-				<div class="message">
-				    商品がありません。
-				</div>
+	<nav layout:fragment="header"
+		class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<form th:action="@{/login}" method="get" style="display:inline;">
+					<input type="image" src="/uploaded-images/icon.png" alt="画像が表示できません." style="width: 80px;"/>
+				</form>
 			</div>
+			<form method="get" th:action="@{/login}">
+				<button class="btn btn-link pull-right navbar-brand" type="submit">
+					ログイン
+				</button>
+			</form>			
+		</div>
+	</nav>
 
-			<!-- 商品がある場合に表示するテーブル -->
-			<table th:unless="${#lists.isEmpty(items)}">
-				<tr>
-				<th></th>
-				<th>商品名</th>
-				<th>価格</th>
-				<th>操作</th>
-				</tr>
-					<tr th:each="item:${items}">
-						<td>
-							<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
-						</td>
-						<td>
-							<span th:text="${item.itemName}"></span>
-						</td>
-						<td>
-							<span th:text="${item.itemPrice}"></span>
-								<span>ポイント</span>
-						</td>
-						<td>
-							<form th:action="@{/login}" method="get">
-								<input type="submit" value="詳細を確認"/>
-							</form>
-						</td>
-				</tr>
-			</table>
-			
-			</div>
-	</body>
+	<header>
+	    <h1 class="h1">商品一覧</h1>
+	</header>
+
+	<!-- 検索窓 -->
+	<form th:action="@{indexsearch-item}" class="search-form-1" method="post">
+	    <label>
+	        <input type="text" name="keyword" th:placeholder="${#strings.isEmpty(keyword) ? 'キーワードを入力してください' : keyword}" th:value="${keyword}">
+	    </label>
+	    <button type="submit" aria-label="検索"></button>
+	</form>
+
+	<!-- 商品がない場合に表示するメッセージ -->
+	<div th:if="${#lists.isEmpty(items)}">
+		<div class="message">
+		    商品がありません。
+		</div>
+	</div>
+
+	<!-- 商品がある場合に表示するテーブル -->
+	<table th:unless="${#lists.isEmpty(items)}">
+		<tr>
+			<th></th>
+			<th>商品名</th>
+			<th>価格</th>
+			<th>操作</th>
+		</tr>
+		<tr th:each="item:${items}">
+			<td>
+				<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
+			</td>
+			<td>
+				<span th:text="${item.itemName}"></span>
+			</td>
+			<td>
+				<span th:text="${item.itemPrice}"></span>
+				<span>ポイント</span>
+			</td>
+			<td>
+				<form th:action="@{/login}" method="get">
+					<input type="submit" value="詳細を確認"/>
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<!-- フッターを直接埋め込む -->
+	<footer class="footer fixed-bottom bg-light text-center p-2 border-top">
+		<form th:action="@{/appDetails}" method="post" style="display:inline;">
+			<input type="image" src="/uploaded-images/bottan_appDetails.png" alt="アプリ詳細" style="width: 80px;"/>
+		</form>
+	</footer>
+
+</body>
 </html>
