@@ -12,25 +12,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 画像の取得を行うコントローラークラス.
+ */
 @RestController
 public class ImageController {
 
     // 保存先ディレクトリの絶対パスを指定
     private final String IMAGE_DIR = "src/main/resources/static/image/";
 
+    /**
+     * 指定された画像を取得する.
+     *
+     * @param imageName 取得する画像の名前
+     * @return 画像のレスポンスエンティティ
+     */
     @GetMapping("/uploaded-images/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
         try {
-        	if (imageName.equals("icon.png")) {
-        		imageName = "icon/icon.png";
-        	}
-        	else if(imageName.startsWith("bottan")) {
-        		imageName = "bottan/" + imageName;
-        	}
-        	// ファイルパスを組み立てる
-            Path imagePath = Paths.get(IMAGE_DIR + imageName).normalize();
+            if (imageName.equals("icon.png")) {
+                imageName = "icon/icon.png";
+            } else if (imageName.startsWith("bottan")) {
+                imageName = "bottan/" + imageName;
+            }
 
-            // ファイルをリソースとして読み込む
+            // ファイルパスを組み立てる
+            Path imagePath = Paths.get(IMAGE_DIR + imageName).normalize();
             Resource resource = new UrlResource(imagePath.toUri());
 
             if (resource.exists() && resource.isReadable()) {
@@ -54,4 +61,3 @@ public class ImageController {
         }
     }
 }
-

@@ -15,38 +15,43 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.model.MUser;
 import com.example.demo.domain.service.UserService;
 
+/**
+ * Spring Securityのユーザー認証を行うサービスクラス
+ */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
-	
-	private UserService service;
-	
-    public UserDetailsServiceImpl(@Lazy UserService service){
+public class UserDetailsServiceImpl implements UserDetailsService {
+    
+    private UserService service;
+
+    /**
+     * コンストラクタ
+     * 
+     * @param service ユーザーサービス
+     */
+    public UserDetailsServiceImpl(@Lazy UserService service) {
         this.service = service;
     }
-	
-	@Override
-	public UserDetails loadUserByUsername(String mailAddress) throws UsernameNotFoundException{
-		
-		//ユーザ情報取得
-		MUser loginUser = service.getUserByMailAddress(mailAddress);
-		
-		//ユーザが存在しない場合
-		if(loginUser == null) {
-			throw new UsernameNotFoundException("user not found");
-		}
-		
-	   //権限リスト
-		GrantedAuthority authority = new SimpleGrantedAuthority(loginUser.getRole());
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(authority);
-		
-		
-		//UserDetails作成
-		UserDetails userDetails = (UserDetails)new User(loginUser.getMailAddress(),loginUser.getPassword(),authorities);
-		
-		return userDetails;
-		
-		
-	}
 
+    /**
+     * 指定されたメールアドレスのユーザー情報をロードする.
+     * 
+     * @param mailAddress メールアドレス
+     * @return ユーザー情報
+     * @throws UsernameNotFoundException ユーザーが存在しない場合
+     */
+    @Override
+    public UserDetails loadUserByUsername(String mailAddress) throws UsernameNotFoundException {
+        
+        MUser loginUser = service.getUserByMailAddress(mailAddress);
+
+        if (loginUser == null) {
+            throw new UsernameNotFoundException("user not found");
+        }
+
+        GrantedAuthority authority = new SimpleGrantedAuthority(loginUser.getRole());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(authority);
+
+        return new User(loginUser.getMailAddress(), loginUser.getPassword(), authorities);
+    }
 }

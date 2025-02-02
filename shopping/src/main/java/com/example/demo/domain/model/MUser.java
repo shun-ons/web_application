@@ -2,12 +2,27 @@ package com.example.demo.domain.model;
 
 import lombok.Data;
 
+/**
+ * ユーザー情報を管理するモデルクラス
+ */
 @Data
 public class MUser {
-	private String userId;
-	private String mailAddress;
-	private String password;
-	private String name;
-	private String role;  
-	private int point;
+
+    /** ユーザーID */
+    private String userId;
+
+    /** メールアドレス */
+    private String mailAddress;
+
+    /** パスワード */
+    private String password;
+
+    /** ユーザー名 */
+    private String name;
+
+    /** ユーザーの権限 */
+    private String role;
+
+    /** ユーザーのポイント */
+    private int point;
 }

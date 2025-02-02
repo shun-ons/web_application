@@ -16,36 +16,49 @@ import com.example.demo.form.SignupForm;
 import ch.qos.logback.core.model.Model;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * ユーザー登録処理を担当するコントローラークラス
+ */
 @Controller
 @Slf4j
 public class SignupController {
 
-	//@Autowired
-	//rivate UserApplicationService userApplicationService;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ModelMapper modelMapper;
-	
-	@GetMapping("/signup")
-	public String getSignup(@ModelAttribute SignupForm form){
-		return "signup/signup";
-	}
-	
-	@PostMapping("/signup")
-	public String postSignup(Model model,@ModelAttribute @Validated SignupForm form,BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors()) {
-			return getSignup(form);
-		}
-		log.info(form.toString());
-		
-		MUser user = modelMapper.map(form, MUser.class);
-		userService.signup(user);
-		
-		return "redirect:/login";
-	}
-	
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    /**
+     * サインアップページを表示する.
+     * 
+     * @param form サインアップフォーム
+     * @return サインアップページのビュー名
+     */
+    @GetMapping("/signup")
+    public String getSignup(@ModelAttribute SignupForm form) {
+        return "signup/signup";
+    }
+
+    /**
+     * サインアップ処理を実行する.
+     * 
+     * @param model モデルオブジェクト
+     * @param form サインアップフォーム
+     * @param bindingResult バリデーション結果
+     * @return ログインページへのリダイレクト
+     */
+    @PostMapping("/signup")
+    public String postSignup(Model model, @ModelAttribute @Validated SignupForm form, BindingResult bindingResult) {
+        
+        if (bindingResult.hasErrors()) {
+            return getSignup(form);
+        }
+        log.info(form.toString());
+
+        MUser user = modelMapper.map(form, MUser.class);
+        userService.signup(user);
+
+        return "redirect:/login";
+    }
 }
