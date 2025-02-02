@@ -12,51 +12,71 @@ import com.example.demo.domain.model.MUser;
 import com.example.demo.domain.service.UserService;
 import com.example.demo.form.UserDetailForm;
 
+/**
+ * ユーザー詳細ページの処理を担当するコントローラークラス
+ */
 @Controller
 public class UserDetailController {
 
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ModelMapper modelMapper;
-	
-	//正規表現のURLに遷移
-	@GetMapping("/detail/{mailAddress:.+}")
-	public String getUser(UserDetailForm form,Model model,@PathVariable("mailAddress")String mailAdress) {
-		
-		//ユーザを一軒取得
-		MUser user = userService.getUserOne(mailAdress);
-		user.setPassword(null);
-		
-		//MUserをformに変換
-		form = modelMapper.map(user,  UserDetailForm.class);
-		
-		//Modelに登録
-		model.addAttribute("userDetailForm",form);
-		
-		return "user/detail";
-	}
-	
-	@PostMapping(value = "/detail",params = "update")
-	public String updateUser(UserDetailForm form,Model model, String userId) {
-		
-		userService.updateUserOne(form.getMailAddress(),form.getName());
-    	MUser muser = userService.getUserOne(userId);
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    /**
+     * 指定されたメールアドレスのユーザー詳細を取得する.
+     * 
+     * @param form ユーザー詳細フォーム
+     * @param model モデルオブジェクト
+     * @param mailAddress メールアドレス
+     * @return ユーザー詳細ページのビュー名
+     */
+    @GetMapping("/detail/{mailAddress:.+}")
+    public String getUser(UserDetailForm form, Model model, @PathVariable("mailAddress") String mailAddress) {
+        
+        MUser user = userService.getUserOne(mailAddress);
+        user.setPassword(null);
+
+        form = modelMapper.map(user, UserDetailForm.class);
+        model.addAttribute("userDetailForm", form);
+
+        return "user/detail";
+    }
+
+    /**
+     * ユーザー情報を更新する.
+     * 
+     * @param form ユーザー詳細フォーム
+     * @param model モデルオブジェクト
+     * @param userId ユーザーID
+     * @return マイページへのリダイレクト
+     */
+    @PostMapping(value = "/detail", params = "update")
+    public String updateUser(UserDetailForm form, Model model, String userId) {
+
+        userService.updateUserOne(form.getMailAddress(), form.getName());
+        MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
 
-		
-		return "redirect:/mypage";
-	}
-	
-	
-	@PostMapping(value = "/detail",params = "delete")
-	public String deleteUser(UserDetailForm form,Model model, String userId) {
-		
-		userService.deleteUserOne(form.getMailAddress());
-    	MUser muser = userService.getUserOne(userId);
+        return "redirect:/mypage";
+    }
+
+    /**
+     * ユーザー情報を削除する.
+     * 
+     * @param form ユーザー詳細フォーム
+     * @param model モデルオブジェクト
+     * @param userId ユーザーID
+     * @return マイページへのリダイレクト
+     */
+    @PostMapping(value = "/detail", params = "delete")
+    public String deleteUser(UserDetailForm form, Model model, String userId) {
+
+        userService.deleteUserOne(form.getMailAddress());
+        MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
-		
-		return "redirect:/mypage";
-	}
+
+        return "redirect:/mypage";
+    }
 }

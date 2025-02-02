@@ -6,14 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.domain.service.UserService;
 
+/**
+ * ログイン処理を管理するコントローラークラス.
+ */
 @Controller
 public class LoginController {
-	@Autowired
-	 UserService userService;
+    
+    @Autowired
+    UserService userService;
 
-	@GetMapping("/login")
-	public String getLogin(){
-		return "login/login";
-	}
-	
+    /**
+     * ログインページを表示する.
+     * 
+     * @return ログインページのビュー名
+     */
+    @GetMapping("/login")
+    public String getLogin() {
+        return "login/login";
+    }
 }

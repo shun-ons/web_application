@@ -4,23 +4,61 @@ import java.util.List;
 
 import com.example.demo.domain.model.MUser;
 
+/**
+ * ユーザーサービスのインターフェース
+ */
 public interface UserService {
 
-	/**ユーザ登録*/
-	public void signup(MUser user);
-	
-	//ユーザ情報取得
-	public List<MUser>getUsers();
-	
-	//ユーザ1件取得
-	public MUser getUserOne(String userId);
-	
-	//ユーザ1件更新
-	public void updateUserOne(String mailAddress,String name);
-	
-	public void deleteUserOne(String mailAddress);
-	//メールアドレスでユーザ情報を取得
-	public MUser getUserByMailAddress(String mailAddress);
-	
-	public void addPoint(String mailAddress, int point);
+    /**
+     * ユーザー登録を行う
+     * 
+     * @param user 登録するユーザー情報
+     */
+    public void signup(MUser user);
+
+    /**
+     * すべてのユーザー情報を取得する
+     * 
+     * @return ユーザーリスト
+     */
+    public List<MUser> getUsers();
+
+    /**
+     * 指定したユーザーの情報を取得する
+     * 
+     * @param userId 取得対象のユーザーID
+     * @return 該当ユーザー情報
+     */
+    public MUser getUserOne(String userId);
+
+    /**
+     * ユーザー情報を更新する
+     * 
+     * @param mailAddress 更新対象のメールアドレス
+     * @param name        更新するユーザー名
+     */
+    public void updateUserOne(String mailAddress, String name);
+
+    /**
+     * 指定したメールアドレスのユーザーを削除する
+     * 
+     * @param mailAddress 削除対象のメールアドレス
+     */
+    public void deleteUserOne(String mailAddress);
+
+    /**
+     * メールアドレスでユーザー情報を取得する
+     * 
+     * @param mailAddress 取得対象のメールアドレス
+     * @return 該当ユーザー情報
+     */
+    public MUser getUserByMailAddress(String mailAddress);
+
+    /**
+     * 指定したユーザーのポイントを追加する
+     * 
+     * @param userId ユーザーID
+     * @param point  追加するポイント
+     */
+    public void addPoint(String userId, int point);
 }
