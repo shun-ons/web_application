@@ -8,14 +8,17 @@
 		<!--CSS読み込み-->
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/cart/reservingAppt.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
 		<!--JS読み込み-->
 		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 		<title>受け取り日時予約確認</title>
 	</head>
 	<body>
-		<div layout:fragment="content" class="content-container">
-			<h2 class="table-title">受け取り日時予約確認</h2>
+		<div layout:fragment="content">
+			<header>
+			    <h1 class="h1">受け取り日時予約確認</h1>
+			</header>
 			<form th:action="@{/notification/details/correct}" method="post">
 				<h3 class="product-title" th:text="${answerMap[itemName]}"></h3>
 				<table class="styled-table">
