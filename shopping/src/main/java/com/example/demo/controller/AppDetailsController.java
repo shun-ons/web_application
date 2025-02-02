@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,6 +40,18 @@ public class AppDetailsController {
             MUser muser = userService.getUserOne(userId);
             model.addAttribute("muser", muser);
         }
+        return "appDetails/appDetails";
+    }
+    
+    /**
+     * アプリケーション詳細画面を表示する。
+     * 
+     * @param userId ユーザーID（オプション）
+     * @param model モデル
+     * @return アプリケーション詳細画面のビュー名
+     */
+    @GetMapping("/appDetails")
+    public String showAppDetails(Model model) {
         return "appDetails/appDetails";
     }
 }
