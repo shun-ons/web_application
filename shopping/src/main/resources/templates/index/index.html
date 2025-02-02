@@ -13,8 +13,7 @@
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
 		<title>商品一覧</title>
 	</head>
-	<body>
-		
+	<body>	
 		<nav layout:fragment="header"
 			class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -29,8 +28,6 @@
 						ログイン
 					</button>
 				</form>
-						
-				
 			</div>
 		</nav>
 	
@@ -38,7 +35,7 @@
 			    <h1 class="h1">商品一覧</h1>
 			</header>
 			<!-- 検索窓 -->
-			<form th:action="@{indexsearch-item}" class="search-form-1" method="post">
+			<form th:action="@{/indexsearch-item}" class="search-form-1" method="post">
 			    <label>
 					<!--<input type="hidden" name="userId" th:value="${muser.userId}"/>-->
 			        <input type="text" name="keyword" th:placeholder="${#strings.isEmpty(keyword) ? 'キーワードを入力してください' : keyword}" th:value="${keyword}">
@@ -60,25 +57,34 @@
 				<th>価格</th>
 				<th>操作</th>
 				</tr>
-					<tr th:each="item:${items}">
-						<td>
-							<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
-						</td>
-						<td>
-							<span th:text="${item.itemName}"></span>
-						</td>
-						<td>
-							<span th:text="${item.itemPrice}"></span>
-								<span>ポイント</span>
-						</td>
-						<td>
-							<form th:action="@{/login}" method="get">
-								<input type="submit" value="詳細を確認"/>
-							</form>
-						</td>
+				<tr th:each="item:${items}">
+					<td>
+						<image alt="画像が表示できません." th:src="'/uploaded-images/' + ${item.itemId} + '.png'" style="width: 100px;"></image>
+					</td>
+					<td>
+						<span th:text="${item.itemName}"></span>
+					</td>
+					<td>
+						<span th:text="${item.itemPrice}"></span>
+							<span>ポイント</span>
+					</td>
+					<td>
+						<form th:action="@{/login}" method="get">
+							<input type="submit" value="詳細を確認"/>
+						</form>
+					</td>
 				</tr>
 			</table>
-			
+			<div th:unless="${#strings.isEmpty(keyword)}">
+				<form th:action="@{/index}" method="get">
+					<input type="submit" value="戻る"/>
+				</form>
 			</div>
+			<form th:action="@{/index}" method="get">
+				<div th:each="i : ${#numbers.sequence(1, allPage)}">
+					<input type="submit" name="page" th:value="${i}" />
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

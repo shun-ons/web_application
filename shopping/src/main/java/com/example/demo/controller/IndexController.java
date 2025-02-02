@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,52 +20,97 @@ import com.example.demo.service.ItemService;
  */
 @Controller
 public class IndexController {
-    
-    @Autowired
-    ItemService itemService;
-    @Autowired
-    UserService userService;
-
-    /**
-     * 商品一覧を表示する.
-     * 
-     * @param model モデルオブジェクト
-     * @return インデックスページのビュー名
-     */
-    @GetMapping("/index")
-    public String indexItemList(Model model) {
-        List<Item> items = itemService.selectAll();
-        List<Item> reverseItems = new ArrayList<Item>(items.size());
-        for (int i = items.size() - 1; i >= 0; i--) {
-            if (!items.get(i).getInCart()) {
-                reverseItems.add(items.get(i));
-            }
-        }
-        model.addAttribute("keyword", "");
-        model.addAttribute("items", reverseItems);
+	
+	@Autowired
+	ItemService itemService;
+	@Autowired
+	UserService userService;
+	
+	/**
+	 * postメソッドで"/item-list"にアクセスされた場合の処理を行うメソッド.
+	 * 販売中の商品を表示.
+	 * @param model Model型の変数.
+	 * @param userId マイページなどに遷移するためのユーザID.
+	 * @return itemList.htmlを表示する.
+	 */
+	@GetMapping("/index")
+	public String indexItemList(Model model, @RequestParam Map<String, String> allParams) {
+		List<Item> allItems = itemService.selectAll();
+		List<Item> items = new ArrayList<Item>();
+		for (int i = 0; i < allItems.size(); i++) {
+			if (!allItems.get(i).getInCart()) {
+				// 誰かがカートに入れている商品は表示しない.
+				items.add(allItems.get(i));
+			}
+		}
+		int itemSize = items.size();
+		List<Item> itemList;
+		// 現在のページ数を取得.
+		Integer page = allParams.get("page") == null ? 1 : Integer.parseInt(allParams.get("page"));
+		Integer allPage = itemSize / 10 + 1;
+		// ページに表示する商品を取得.
+		if (itemSize <= 10) {
+			itemList = new ArrayList<Item>(items);
+		} else {
+			Integer tmp = (page - 1) * 10;
+			System.out.println(page);
+			if (allPage > page) {
+				itemList = items.subList(tmp, tmp+10);
+				System.out.println(itemList.size());
+				for (Item item : itemList) {
+					System.out.println(item.getItemName());
+				}
+			} else {
+				itemList = items.subList(tmp, itemSize);
+			}
+		}
+		model.addAttribute("keyword", "");
+		model.addAttribute("items", itemList);
+        model.addAttribute("page", page);
+        model.addAttribute("allPage", allPage);
         return "index/index";
-    }
-
-    /**
-     * 商品検索を実行する.
-     * 
-     * @param model モデルオブジェクト
-     * @param keyword 検索キーワード
-     * @return 検索結果のビュー名
-     */
-    @PostMapping("indexsearch-item")
-    public String searchItem(Model model, @RequestParam String keyword) {
-        List<Item> items = itemService.selectAll();
-        List<Item> reverseItems = new ArrayList<Item>();
-        String upperKeyword = keyword.toUpperCase();
-        for (int i = items.size() - 1; i >= 0; i--) {
-            String upperItemName = items.get(i).getItemName().toUpperCase();
-            if (upperItemName.contains(upperKeyword) && !items.get(i).getInCart()) {
-                reverseItems.add(items.get(i));
-            }
-        }
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("items", reverseItems);
+	}
+	
+	@PostMapping("/indexsearch-item")
+	public String searchItem(Model model,@RequestParam Map<String, String> allParams) {
+		String keyword = allParams.get("keyword");
+		String upperKeyword = keyword.toUpperCase();
+		List<Item> allItems = itemService.selectAll();
+		List<Item> items = new ArrayList<Item>();
+		for (int i = 0; i < allItems.size(); i++) {
+			String upperItemName = allItems.get(i).getItemName().toUpperCase();
+			if (upperItemName.contains(upperKeyword) && !allItems.get(i).getInCart()) {
+					items.add(allItems.get(i));
+			}
+		}
+		
+		int itemSize = items.size();
+		System.out.println(items.size());
+		List<Item> itemList;
+		// 現在のページ数を取得.
+		Integer page = allParams.get("page") == null ? 1 : Integer.parseInt(allParams.get("page"));
+		Integer allPage = itemSize / 10 + 1;
+		// ページに表示する商品を取得.
+		if (itemSize <= 10) {
+			itemList = new ArrayList<Item>(items);
+		} else {
+			Integer tmp = (page - 1) * 10;
+			System.out.println(page);
+			if (allPage > page) {
+				itemList = items.subList(tmp, tmp+10);
+				System.out.println(itemList.size());
+				for (Item item : itemList) {
+					System.out.println(item.getItemName());
+				}
+			} else {
+				itemList = items.subList(tmp, itemSize);
+			}
+		}
+		
+		System.out.println(itemList.size());
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("items", itemList);
+        model.addAttribute("allPage", allPage);
         return "index/index";
     }
 }

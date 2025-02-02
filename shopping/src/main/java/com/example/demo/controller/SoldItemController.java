@@ -104,9 +104,9 @@ public class SoldItemController {
 		List<Item> allItems = itemService.selectAll();
 		List<Item> items = new ArrayList<Item>();
 		for (int i = 0; i < allItems.size(); i++) {
-			String upperItemName = items.get(i).getItemName().toUpperCase();
+			String upperItemName = allItems.get(i).getItemName().toUpperCase();
 			if (upperItemName.contains(upperKeyword) && !allItems.get(i).getInCart()) {
-					items.add(items.get(i));
+					items.add(allItems.get(i));
 			}
 		}
 		
@@ -132,11 +132,10 @@ public class SoldItemController {
 			}
 		}
 		
-		List<Item> reverseItems = new ArrayList<Item>();
 		
 
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("items", reverseItems);
+		model.addAttribute("items", itemList);
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
         model.addAttribute("allPage", allPage);
