@@ -34,10 +34,18 @@
 	
 	    <p>ご不明な点がございましたら、お気軽にお問い合わせください。</p>
 		
-		<form th:action="@{/mypage}" method="post">
-		    <input type="hidden" name="userId" th:value="${muser.userId}"/>
-		    <input type="submit" value="戻る" class="back-button"/>
-		</form>
-		
+		<div th:unless="${#strings.isEmpty(muser.userId)}">
+			<form th:action="@{/mypage}" method="post">
+			    <input type="hidden" name="userId" th:value="${muser.userId}"/>
+			    <input type="submit" value="戻る" class="back-button"/>
+			</form>
+		</div>
+		<div th:if="${#strings.isEmpty(muser.userId)}">
+			<form th:action="@{/index}" method="get">
+			    <input type="hidden" name="userId" th:value="${muser.userId}"/>
+			    <input type="submit" value="戻る" class="back-button"/>
+			</form>
+		</div>
+
 	</body>
 </html>

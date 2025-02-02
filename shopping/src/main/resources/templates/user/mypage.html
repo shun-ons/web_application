@@ -70,6 +70,15 @@
 				<input type="hidden" name="userId" th:value="${muser.userId}" />
 				<input type="submit" class="btn btn-primary" value="編集" />
 			</form>
+			<form th:action="@{/transaction/list}" method="post" style="display:inline;">
+				<input type="hidden" name="userId" th:value="${muser?.userId}" />
+				<input type="submit" class="btn btn-primary" value="受取り確認" />
+			</form>
+			<form th:action="@{/appDetails}" method="post" style="display:inline;">
+				<input type="hidden" name="userId" th:if="${muser != null}" th:value="${muser.userId}" />
+				<input type="submit" class="btn btn-primary" value="アプリ詳細" />
+			</form>
+
 			
 			<!-- 入金ページへ遷移 
 			<form th:action="@{/deposit/deposit-form}" method="post" style="display: inline;">

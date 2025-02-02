@@ -52,6 +52,9 @@ public class AppDetailsController {
      */
     @GetMapping("/appDetails")
     public String showAppDetails(Model model) {
+        MUser muser = new MUser();
+        muser.setName(null);
+        model.addAttribute("muser", muser);
         return "appDetails/appDetails";
     }
 }
