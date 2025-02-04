@@ -49,7 +49,7 @@ header, .header {
 .footer {
   background-color: #eaeaea !important; /* 背景色を強制適用 */
   color: #fff !important; /* 文字色を強制適用 */
-  padding: 20px !important;
+  /*padding: 20px !important;*/
   margin-top: 5% !important;
   text-align: center;
   font-size: 18px;
@@ -67,7 +67,7 @@ header, .header {
 .img-bottan {
 	height: 100%;
 	width: 100%;
-	object-fit: cover
+	object-fit: fill;
 }
 
 /* フッター内のフォーム（ボタンを含む要素） */
