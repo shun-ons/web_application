@@ -9,23 +9,23 @@
 		<footer class="footer fixed-bottom bg-light text-center p-2 border-top">
 			<form th:action="@{/mypage}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser?.userId}" />
-				<input type="image" src="/uploaded-images/bottan_mypage.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/bottan_mypage.png" alt="画像が表示できません." class="img-bottan"/>
 			</form>
 			<form th:action="@{/item-list}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser?.userId}" />
-				<input type="image" src="/uploaded-images/bottan_items.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/bottan_items.png" alt="画像が表示できません." class="img-bottan"/>
 			</form>
 			<form th:action="@{/cart/view}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser?.userId}" />
-				<input type="image" src="/uploaded-images/bottan_cart.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/bottan_cart.png" alt="画像が表示できません." class="img-bottan" />
 			</form>
 			<form th:action="@{/notification}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser?.userId}" />
-				<input type="image" src="/uploaded-images/bottan_notification.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/bottan_notification.png" alt="画像が表示できません." class="img-bottan" />
 			</form>
 			<form th:action="@{/sales/sales-form}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser?.userId}" />
-				<input type="image" src="/uploaded-images/bottan_sails.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/bottan_sails.png" alt="画像が表示できません." class="img-bottan" />
 			</form>
 		</footer>
 	</div>

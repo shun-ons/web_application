@@ -4,25 +4,55 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layout/layout}"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+	<style>
+		.container-fluid {
+			width: 100%;
+			height: 10%;
+		}
+		.btn.btn-link.pull-right.navbar-brand {
+			position: fixed;
+			right: 0%;
+		}
+		.navbar-header {
+			display: inline-block !important; 
+			max-width: 10% !important;
+			height: 10% !important;
+		}
+		.offset-sm-2 {
+		    margin-left: 7.333334% !important;
+		}
+	</style>
 </head>
 <body>
 	<nav layout:fragment="header"
-	class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
+	class="navbar navbar-inverse navbar-fixed-top navbar-dark" 	style="
+	    background-color: chocolate !important;
+	">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div class="navbar-header" style="height: 100%; width: 30%;">
 			<form th:action="@{/mypage}" method="post" style="display:inline;">
 				<input type="hidden" name="userId" th:value="${muser.userId}" />
-				<input type="image" src="/uploaded-images/icon.png" alt="画像が表示できません." style="width: 80px;"/>
+				<input type="image" src="/uploaded-images/icon.png" alt="フリマアプリ" 
+					style="width: 50%;
+					    max-height: 133px;
+					    max-width: 133px;
+					    min-width: 85px;
+					    min-height: 85px;"
+				/>
 			</form>
 			<!--<a class="navbar-brand" href="#">フリマアプリ</a>-->
 		</div>
 		
 		
-		<form method="post" th:action="@{/logout}"sec:authorize="isAuthenticated()">
+		<fform method="post" th:action="@{/logout}"sec:authorize="isAuthenticated()" style="
+		    height: 30%;
+		    width: 30%;
+		    text-align: right;
+		">
 			<button class="btn btn-link pull-right navbar-brand" type="submit">
 				ログアウト
 			</button>
-		</form>
+		</fform>
 		
 		<!--
 		<form method="get" th:action="@{/login}"sec:authorize="isAnonymous()">

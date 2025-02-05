@@ -19,41 +19,42 @@
 			<header>
 			    <h1 class="h1">出品内容確認</h1>
 			</header>
-		<form th:action="@{/sales/confirm-input}" method="post" th:object="${itemInput}">
-			<table>
-				<tr>
-					<th>商品名</th>
-					<td>
-						<span type="text" th:text="*{itemName}"></span>
-					</td>
-				</tr>
-				<tr>
-					<th>販売価格</th>
-					<td>
-						<span type="text" th:text="*{itemPrice}"></span>
-					</td>
-				</tr>
-				<tr>
-					<th>一言コメント</th>
-					<td>
-						<span type="text" name="message" th:text="*{comment}"></span>
-					</td>
-				</tr>
-				<tr>
-					<th>商品画像</th>
-					<td>
-						<image alt="画像が表示できません." th:src="${imageUrl}" style="width: 300px;"></image>
-					</td>
-				</tr>
-				
-			</table>
-			<input type="hidden" th:field="*{itemId}"/>
-			<input type="hidden" th:field="*{itemName}"/>
-			<input type="hidden" th:field="*{itemPrice}"/>
-			<input type="hidden" name="userId" th:value="${muser.userId}"/>
-			<input type="hidden" th:field="*{comment}"/>
-			<input name="confirm" type="submit" value="出品"/>
-			<input name="back" type="submit" value="戻る"/>
-		</form>
+			<form th:action="@{/sales/confirm-input}" method="post" th:object="${itemInput}">
+				<table>
+					<tr>
+						<th>商品名</th>
+						<td>
+							<span th:text="*{itemName}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>販売価格</th>
+						<td>
+							<span th:text="*{itemPrice}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>一言コメント</th>
+						<td>
+							<span th:text="*{comment}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>商品画像</th>
+						<td>
+							<img alt="画像が表示できません." th:src="${imageUrl}" style="width: 300px;"></img>
+						</td>
+					</tr>
+					
+				</table>
+				<input type="hidden" th:field="*{itemId}"/>
+				<input type="hidden" th:field="*{itemName}"/>
+				<input type="hidden" th:field="*{itemPrice}"/>
+				<input type="hidden" name="userId" th:value="${muser.userId}"/>
+				<input type="hidden" th:field="*{comment}"/>
+				<input name="confirm" type="submit" value="出品"/>
+				<input name="back" type="submit" value="戻る"/>
+			</form>
+		</div>
 	</body>
 </html>

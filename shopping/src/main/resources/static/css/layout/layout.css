@@ -18,7 +18,6 @@ header, .header {
     color: #333;
     align-items: center;
     font-weight: bold;
-
 }
 
 /* 見出しのデザイン（すべての .header 内の h1 に適用） */
@@ -50,7 +49,8 @@ header, .header {
 .footer {
   background-color: #eaeaea !important; /* 背景色を強制適用 */
   color: #fff !important; /* 文字色を強制適用 */
-  padding: 20px !important;
+  /*padding: 20px !important;*/
+  margin-top: 5% !important;
   text-align: center;
   font-size: 18px;
   position: fixed !important;
@@ -59,7 +59,15 @@ header, .header {
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 15px; /* ボタン間の余白 */
+  /*gap: 15px; /* ボタン間の余白 */
+  height: 10%;
+  width: 100%;
+}
+
+.img-bottan {
+	height: 100%;
+	width: 100%;
+	object-fit: fill;
 }
 
 /* フッター内のフォーム（ボタンを含む要素） */

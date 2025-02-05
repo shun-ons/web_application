@@ -195,7 +195,7 @@ public class NotificationController {
 			return "notification/notFind";
 		}
 		model.addAttribute("answerMap", answerMap);
-		return "/notification/confirmation";
+		return "notification/confirmation";
 	}
 	
 	@PostMapping("/notification/details/correct")
