@@ -137,7 +137,6 @@
 		<scope>runtime</scope>
 		</dependency>
 
-		
 		<!--SpringSecurity-->
 		
 		<dependency>

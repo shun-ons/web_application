@@ -8,6 +8,8 @@
 		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/css/item/itemList.css}">
 		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+		<link rel="stylesheet" th:href="@{/css/index/index.css}">
+
 		<!--JS読み込み-->
 		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
 		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
@@ -15,7 +17,8 @@
 	</head>
 	<body>	
 		<nav layout:fragment="header"
-			class="navbar navbar-inverse navbar-fixed-top navbar-dark bg-dark">
+		class="navbar navbar-inverse navbar-fixed-top navbar-dark" 	style="
+		    background-color: chocolate !important;">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<form th:action="@{/login}" method="get" style="display:inline;">
@@ -30,7 +33,8 @@
 				</form>
 			</div>
 		</nav>
-	
+
+		<div class="main">
 			<header>
 			    <h1 class="h1">商品一覧</h1>
 			</header>
@@ -48,8 +52,6 @@
 				    商品がありません。
 				</div>
 			</div>		
-		</div>
-	</nav>
 			<!-- 商品がある場合に表示するテーブル -->
 			<table th:unless="${#lists.isEmpty(items)}">
 				<tr>
@@ -88,10 +90,10 @@
 			</form>
 		</div>
 		<!-- フッターを直接埋め込む -->
-		<footer class="footer fixed-bottom bg-light text-center p-2 border-top">
-			<form th:action="@{/appDetails}" method="get" style="display:inline;">
-				<input type="image" src="/uploaded-images/bottan_appDetails.png" alt="アプリ詳細" style="width: 80px;"/>
-			</form>
+		<footer class="footer">
+		    <a th:href="@{/appDetails_index}">
+		        <img src="/uploaded-images/bottan_appDetails.png" alt="アプリ詳細" style="width: 80px;">
+		    </a>
 		</footer>
 	</body>
 

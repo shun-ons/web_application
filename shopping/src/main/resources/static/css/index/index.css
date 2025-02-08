@@ -1,0 +1,12 @@
+.main {
+    position: absolute;
+    top: 150px;
+    bottom: 150px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 300px);
+    max-width: calc(100vw - 20px); /* 画面幅より少し小さくする */
+    margin-left: 300px; /* 左側に余白 */
+}

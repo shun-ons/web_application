@@ -57,4 +57,16 @@ public class AppDetailsController {
         model.addAttribute("muser", muser);
         return "appDetails/appDetails";
     }
+    
+    /**
+     * appDetails_index.html を表示する。
+     * 
+     * @return アプリケーション詳細画面のビュー名
+     */
+    @GetMapping("/appDetails_index")
+    public String showAppDetailsIndex() {
+        return "appDetails/appDetails_index"; // 修正
+    }
+
+    
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--CSS読み込み-->
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/css/appDetails/appDetails.css}">
+		<link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+		<link rel="stylesheet" th:href="@{/css/index/index.css}">
+		<!--JS読み込み-->
+		<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+		<title>アプリ詳細</title>
+	</head>
+	<body>
+		<nav layout:fragment="header"
+		class="navbar navbar-inverse navbar-fixed-top navbar-dark" 	style="
+		    background-color: chocolate !important;
+		">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<form th:action="@{/login}" method="get" style="display:inline;">
+						<input type="image" src="/uploaded-images/icon.png" alt="画像が表示できません." style="width: 80px;"/>
+					</form>
+					
+				</div>
+				<form method="get" th:action="@{/login}">
+					<button class="btn btn-link pull-right navbar-brand" type="submit">
+						ログイン
+					</button>
+				</form>
+			</div>
+		</nav>
+		<div class="main">
+			<header>
+			    <h1 class="h1">アプリ詳細</h1>
+			</header>
+			<p>本アプリは、和歌山大学の学生向けの教科書販売サイトです。</p>
+
+			<h2>商品の受け渡しについて</h2>
+			<p>取引成立後、商品の受け渡しは手渡しで行います。取引相手と連絡を取り合い、運営が指定した大学内の場所の中から選んで受け渡しを行ってください。</p>
+			<p>受け取りが完了しましたら、マイページにある受け取り確認ボタンから受け取り確認を行ってください。入金処理が行われます。</p>
+
+			<h2>ポイント制について</h2>
+			<p>本アプリでは、ポイント制を採用しています。ポイントを使って教科書を購入することができ、ポイントの出金はできませんのでご注意ください。</p>
+
+			<h2>モラルを守ること</h2>
+			<p>すべての利用者が安心して取引できるよう、モラルを守った利用をお願いいたします。虚偽の情報を記載したり、不適切な取引を行ったりしないようにしてください。</p>
+
+			<p>ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+			<p>mail: gptyong301@gmail.com</p>
+
+			<form th:action="@{/index}" method="get">
+			    <input type="submit" value="戻る" class="back-button"/>
+			</form>
+		</div>
+
+		<footer class="footer">
+		    <a th:href="@{/appDetails_index}">
+		        <img src="/uploaded-images/bottan_appDetails.png" alt="アプリ詳細" style="width: 80px;">
+		    </a>
+		</footer>
+	</body>
+</html>
