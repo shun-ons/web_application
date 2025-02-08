@@ -44,7 +44,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		</div>
 		
 		
-		<fform method="post" th:action="@{/logout}"sec:authorize="isAuthenticated()" style="
+		<form method="post" th:action="@{/logout}"sec:authorize="isAuthenticated()" style="
 		    height: 30%;
 		    width: 30%;
 		    text-align: right;
@@ -52,7 +52,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<button class="btn btn-link pull-right navbar-brand" type="submit">
 				ログアウト
 			</button>
-		</fform>
+		</form>
 		
 		<!--
 		<form method="get" th:action="@{/login}"sec:authorize="isAnonymous()">

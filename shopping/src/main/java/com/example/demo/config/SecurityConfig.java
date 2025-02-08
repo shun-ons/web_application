@@ -24,9 +24,9 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/webjars/**", "/css/**", "/js/**", "/h2-console/**","/uploaded-images/**").permitAll()
-                .requestMatchers("/login", "/signup","/index","/indexsearch-item").permitAll()
+        	.authorizeHttpRequests(authz -> authz
+                .requestMatchers("/webjars/**", "/css/**", "/js/**", "/h2-console/**", "/uploaded-images/**").permitAll()
+                .requestMatchers("/login", "/signup", "/index", "/indexsearch-item", "/appDetails_index").permitAll() // ここを追加
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/list").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
