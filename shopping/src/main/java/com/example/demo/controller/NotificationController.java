@@ -58,9 +58,9 @@ public class NotificationController {
 	public String showNotification(@RequestParam String userId, Model model) {
 		List<Notification> notifications = notificationService.selectByOrnerId(userId);
 		List<Notification> reverseNotifications = new ArrayList<>();
-//		for (int i = notifications.size() -1; i >= 0; i--) {
-//			reverseNotifications.add(notifications.get(i));
-//		}
+		for (int i = notifications.size() -1; i >= 0; i--) {
+			reverseNotifications.add(notifications.get(i));
+		}
         MUser muser = userService.getUserOne(userId);
         model.addAttribute("muser", muser);
         model.addAttribute("notifications", notifications);
