@@ -29,22 +29,34 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void signup(MUser user) {
-        String maxUserId = mapper.getMaxUserId();
-        int newId = 1;
+        String maxUserId = mapper.getMaxUserId(); // 最大の userId を取得
+        int newId = 1; // デフォルトの userId (最初のユーザーの場合)
 
-	    // 新しいuserIdを生成
-	    String newUserId = String.format("u%02d", newId);
-	    user.setUserId(newUserId);
-	    
-		user.setRole("ROLE_GENERAL");
-		
-		//パスワード暗号化
-		String rawPassword = user.getPassword();
-		user.setPassword(encoder.encode(rawPassword));
-		user.setPoint(5000);
-		
-		mapper.insertOne(user);
-	}
+        if (maxUserId != null && maxUserId.startsWith("u")) {
+            try {
+                // "u" を除去して数値部分を取得
+                int lastId = Integer.parseInt(maxUserId.substring(1));
+                newId = lastId + 1; // 次の userId を計算
+            } catch (NumberFormatException e) {
+                throw new IllegalStateException("ユーザーIDのフォーマットが不正です: " + maxUserId);
+            }
+        }
+
+        // u01, u02, ... というフォーマットにする
+        String newUserId = String.format("u%02d", newId);
+        user.setUserId(newUserId);
+        
+        user.setRole("ROLE_GENERAL");
+
+        // パスワードを暗号化
+        String rawPassword = user.getPassword();
+        user.setPassword(encoder.encode(rawPassword));
+        user.setPoint(5000);
+
+        // ユーザーをデータベースに追加
+        mapper.insertOne(user);
+    }
+
 	
 	@Override
 	public List<MUser> getUsers() {

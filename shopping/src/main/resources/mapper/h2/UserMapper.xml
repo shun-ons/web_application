@@ -32,10 +32,10 @@
             #{point}
         )</insert>
         
-     <!-- ユーザーIDのマックス値を取得 -->
-    <select id="getMaxUserId" resultType="String">
+     <!--ユーザIDのマックス値を取得--><select id="getMaxUserId" resultType="String">
     SELECT userId FROM m_user ORDER BY userId DESC LIMIT 1
 	</select>
+    
     
     <!-- ユーザー複数権取得 -->
     <select id="findMany" resultType="MUser">
