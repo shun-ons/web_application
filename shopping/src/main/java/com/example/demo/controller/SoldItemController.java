@@ -179,7 +179,13 @@ public class SoldItemController {
 		}
 		MUser muser = userService.getUserOne(userId);
 		List<Item> items = itemService.selectByOrnerId(userId);
-		List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(items);
+        List<Item> soldItems = new ArrayList<>();
+        for (Item item : items) {
+            if (!item.getInCart()) {
+                soldItems.add(item);
+            }
+        }
+        List<ItemInput> newItemInput = itemService.turnItemIntoItemInput(soldItems);
 		model.addAttribute("muser", muser);
 		model.addAttribute("itemList", newItemInput);
 		return "user/detail";
