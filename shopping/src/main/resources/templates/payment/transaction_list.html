@@ -25,9 +25,9 @@
 	        <p th:if="${message}" th:text="${message}" class="success"></p>
 	        <p th:if="${error}" th:text="${error}" class="error"></p>
 	    </div>
-
-	    <!-- 商品リストがある場合のみテーブルを表示 -->
-	    <div th:if="${not #lists.isEmpty(items)}" class="table-container">
+		
+		<h2>購入した商品</h2>
+		<div th:if="${not #lists.isEmpty(purchasedItems)}" class="table-container">
 		    <table>
 		        <thead>
 		            <tr>
@@ -37,25 +37,45 @@
 		            </tr>
 		        </thead>
 		        <tbody>
-		            <!-- 取引中の商品リストを表示 -->
-		            <tr th:each="item : ${items}">
+		            <tr th:each="item : ${purchasedItems}">
 		                <td th:text="${item.itemName}"></td>
 		                <td th:text="|${item.itemPrice}円|"></td>
-		                <td>
-		                    <form th:action="@{/transaction/confirm}" method="post">
-		                        <input type="hidden" name="userId" th:value="${muser.userId}">
-		                        <input type="hidden" name="itemId" th:value="${item.itemId}">
-		                        <input type="submit" value="受け取り確認へ" class="button"/>
-		                    </form>
-		                </td>
+						<td>
+						    <form th:action="@{/transaction/confirm}" method="post">
+						        <input type="hidden" name="userId" th:value="${muser.userId}">
+						        <input type="hidden" name="itemId" th:value="${item.itemId}">
+						        <input type="submit" value="受け取り確認へ" class="button"/>
+						    </form>
+						</td>
 		            </tr>
 		        </tbody>
 		    </table>
-	    </div>
+		</div>
+		<p th:if="${#lists.isEmpty(purchasedItems)}">現在、購入した取引中の商品はありません。</p>
+		
+		<h2>販売した商品</h2>
+		<div th:if="${not #lists.isEmpty(soldItems)}" class="table-container">
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>商品名</th>
+		                <th>価格</th>
+		                <th>ステータス</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="item : ${soldItems}">
+		                <td th:text="${item.itemName}"></td>
+		                <td th:text="|${item.itemPrice}円|"></td>
+		                <td>受け取り待ち</td>
+		            </tr>
+		        </tbody>
+		    </table>
+		</div>
+		<p th:if="${#lists.isEmpty(soldItems)}">現在、販売した取引中の商品はありません。</p>
 
-	    <!-- 取引中の商品がない場合のメッセージ -->
-		<p th:if="${#lists.isEmpty(items)}" class="message">現在、取引中の商品はありません。</p>
-
+		
+		
 		<form th:action="@{/mypage}" method="post">
 			<input type="hidden" name="userId" th:value="${muser.userId}" />
 		    <input type="submit" value="マイページへ戻る" class="button"/>

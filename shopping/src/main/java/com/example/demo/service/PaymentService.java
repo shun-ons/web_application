@@ -76,7 +76,7 @@ public class PaymentService {
     public void processReceiptConfirmation(String userId, String itemId) {
         Item item = itemService.selectById(itemId);
 
-        if (item == null || !item.getOrnerId().equals(userId)) {
+        if (item == null) {
             throw new IllegalArgumentException("商品が見つからないか、権限がありません。");
         }
 
@@ -94,21 +94,42 @@ public class PaymentService {
         userMapper.updateUserPoint(sellerId, sellerUpdatedBalance);
     }
 
-    //新規追加
     public List<Item> getUncompletedPurchasedItems(String userId) {
-        // ユーザーの購入履歴を取得
+
+        // 購入者の注文履歴を取得
         List<Orders> orders = ordersMapper.selectByPurchaserId(userId);
 
-        // 受け取り未完了の購入した商品の ID を取得
+        List<String> uncompletedItemIds = new ArrayList<>();
+        for (Orders order : orders) {
+            if (order.getPurchaserId().equals(userId)) { // 明示的にチェック
+                uncompletedItemIds.add(order.getItemId());
+            }
+        }
+        List<Item> purchasedItems = new ArrayList<>();
+        for (String itemId : uncompletedItemIds) {
+            Item item = itemService.selectById(itemId);
+            if (item == null) {
+                continue;
+            }
+            if (!item.getIsCompletion()) {
+                purchasedItems.add(item);
+            }
+        }
+        return purchasedItems;
+    }
+
+    public List<Item> getUncompletedSoldItems(String userId) {
+        // 販売者の注文履歴を取得
+        List<Orders> orders = ordersMapper.selectByOrnerId(userId); // 販売者の取引履歴を取得
+
         List<String> uncompletedItemIds = orders.stream()
+                .filter(order -> order.getOrnerId().equals(userId)) // 販売者としての取引のみ取得
                 .map(Orders::getItemId)
                 .collect(Collectors.toList());
 
-        // 条件を満たす商品のみを取得して返す
         return itemService.selectAll().stream()
-                .filter(item -> uncompletedItemIds.contains(item.getItemId())) // ユーザーが購入した商品
+                .filter(item -> uncompletedItemIds.contains(item.getItemId())) // 自分が販売した商品
                 .filter(item -> !item.getIsCompletion())  // 受け取り未完了
                 .collect(Collectors.toList());
     }
-
 }

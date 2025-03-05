@@ -119,13 +119,19 @@ public class PaymentController {
      */
     @PostMapping("/transaction/list")
     public String showTransactionList(@RequestParam String userId, Model model) {
-        List<Item> items = paymentService.getUncompletedPurchasedItems(userId);
+        List<Item> purchasedItems = paymentService.getUncompletedPurchasedItems(userId);
+        List<Item> soldItems = paymentService.getUncompletedSoldItems(userId);
 
-        model.addAttribute("items", items);
         MUser muser = userService.getUserOne(userId);
+
+        model.addAttribute("purchasedItems", purchasedItems);
+        model.addAttribute("soldItems", soldItems);
         model.addAttribute("muser", muser);
+        model.addAttribute("userId", userId);
+
         return "payment/transaction_list";
     }
+
 
     /**
      * 受け取り確認画面を表示する処理。
@@ -139,7 +145,7 @@ public class PaymentController {
     public String showConfirmReceipt(@RequestParam String userId, @RequestParam String itemId, Model model) {
         Item item = itemService.selectById(itemId);
 
-        if (item == null || !item.getOrnerId().equals(userId)) {
+        if (item == null) {
             return "redirect:/transaction/list";
         }
         MUser muser = userService.getUserOne(userId);

@@ -53,8 +53,9 @@ public interface OrdersMapper {
 	 * @param ornerId 取得したい購入者のユーザID.
 	 * @return Orders型のリスト.
 	 */
-	@Select("SELECT * FROM orders WHERE ornerId = #{purchaserId}")
-	public List<Orders> selectByPurchaserId(String purchaser);
+	@Select("SELECT * FROM orders WHERE purchaserId = #{purchaserId}")
+	public List<Orders> selectByPurchaserId(String purchaserId);
+
 	
 	/**
 	 * ordersテーブルに新しい注文履歴を挿入するためのメソッド.
