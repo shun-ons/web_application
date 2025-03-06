@@ -30,7 +30,7 @@ public interface ItemMapper {
 	 * @param itemId 取得したい商品のID.
 	 * @return Item型のオブジェクト.取得したい商品のデータが含まれている.
 	 */
-	@Select({"SELECT * FROM item", "WHERE itemId = #{itemId} BY salesDateTime DESC"})
+	@Select({"SELECT * FROM item WHERE itemId = #{itemId} ORDER BY salesDateTime DESC"})
 	public Item selectById(String itemId);
 	
 	/**
@@ -38,7 +38,7 @@ public interface ItemMapper {
 	 * @param ornerId あるユーザのID.これを用いて商品を検索する.
 	 * @return Item型のリスト.引数で指定したユーザが出品した商品が含まれている.
 	 */
-	@Select({"SELECT * FROM item WHERE ornerId = #{ornerId} BY salesDateTime DESC"})
+	@Select({"SELECT * FROM item WHERE ornerId = #{ornerId} ORDER BY salesDateTime DESC"})
 	public List<Item> selectByOrnerId(String ornerId);
 	
 	/**
