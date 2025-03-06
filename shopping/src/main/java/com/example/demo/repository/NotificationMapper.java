@@ -21,7 +21,7 @@ public interface NotificationMapper {
 	 * データベースから全ての通知を取得するためのメソッド.
 	 * @return すべての通知.Notification型のオブジェクトのリスト.
 	 */
-	@Select("SELECT * FROM notification")
+	@Select("SELECT * FROM notification ORDER BY dateTime_ DESC")
 	public List<Notification> selectAll();
 	
 	/**
@@ -29,7 +29,7 @@ public interface NotificationMapper {
 	 * @param notificationId 取得したい通知のID.
 	 * @return Notification型のオブジェクト.
 	 */
-	@Select("SELECT * FROM notification WHERE notificationId = #{notificationId}")
+	@Select("SELECT * FROM notification WHERE notificationId = #{notificationId} ORDER BY dateTime_ DESC")
 	public Notification selectByNotificationId(String notificationId);
 	
 	/**
@@ -37,7 +37,7 @@ public interface NotificationMapper {
 	 * @param ornerId 取得したいユーザのuserId.
 	 * @return あるユーザ宛の通知.Notification型のオブジェクトのリスト.
 	 */
-	@Select("SELECT * FROM notification WHERE ornerId = #{ornerId}")
+	@Select("SELECT * FROM notification WHERE ornerId = #{ornerId} ORDER BY dateTime_ DESC")
 	public List<Notification> selectByOrnerId(String ornerId);
 	
 	/**
