@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.entity.MUser;
-
+/**
+ * muserテーブルを管理するクラス.
+ * @author 夏木翔吾
+ */
 @Mapper
 public interface UserMapper {
 
