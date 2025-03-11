@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * アプリケーションを実行するクラス.
+ */
 @SpringBootApplication
 @MapperScan("com.example.demo.repository")
 public class ShoppingApplication extends SpringBootServletInitializer{
