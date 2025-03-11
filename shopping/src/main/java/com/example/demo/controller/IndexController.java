@@ -17,6 +17,7 @@ import com.example.demo.service.ItemService;
 
 /**
  * インデックスページ（トップページ）のコントローラークラス.
+ * @author 夏木翔吾
  */
 @Controller
 public class IndexController {

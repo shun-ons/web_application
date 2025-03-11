@@ -14,6 +14,7 @@ import com.example.demo.domain.service.UserService;
 
 /**
  * ユーザー一覧を管理するコントローラークラス
+ * @author 夏木翔吾
  */
 @Controller
 public class UserListController {

@@ -19,6 +19,10 @@ import com.example.demo.entity.Item;
 import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
 
+/**
+ * 商品の出品を管理するコントローラ.
+ * @author 大西竣介
+ */
 @Controller
 public class ItemController {
 	@Autowired
@@ -84,8 +88,6 @@ public class ItemController {
 	// 入力を訂正.
 	@PostMapping(value = "sales/confirm-input", params = "back")
 	public String reenterInput(@Validated ItemInput itemInput, Model model, @RequestParam String userId) {
-		/*String imageName = "src/main/resources/static/image/" + itemInput.getItemId() + ".png";
-		Path filePath = Paths.get(imageName).normalize();  // 削除する画像のパスを組み立てる*/
 		boolean result = itemService.deleteImage(itemInput.getItemId());
 		
 		if (result) {
@@ -98,23 +100,6 @@ public class ItemController {
 			model.addAttribute("status", "");
             return "error";  // 削除中にエラーが発生
 		}
-/*        try {
-            // ファイルが存在するかチェック
-            if (Files.exists(filePath)) {
-                Files.delete(filePath);  // ファイルを削除
-                System.out.println(true);
-            } else {
-            	System.out.println(filePath);
-            }
-            model.addAttribute("userId", userId);
-            model.addAttribute("itemInput", itemInput);
-    		return "sales/salesForm";
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("error", e);
-			model.addAttribute("status", "");
-            return "error";  // 削除中にエラーが発生
-        } */
     }
 
 	

@@ -15,6 +15,7 @@ import com.example.demo.domain.service.UserService;
 
 /**
  * 入金処理を担当するコントローラークラス.
+ * @author 夏木翔吾
  */
 @Controller
 @RequestMapping("/deposit")

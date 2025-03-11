@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * 管理者用のコントローラークラス.
+ * @author 夏木翔吾
  */
 @Controller
 public class AdminController {

@@ -14,6 +14,7 @@ import com.example.demo.form.UserDetailForm;
 
 /**
  * ユーザー詳細ページの処理を担当するコントローラークラス
+ * @author 夏木翔吾
  */
 @Controller
 public class UserDetailController {

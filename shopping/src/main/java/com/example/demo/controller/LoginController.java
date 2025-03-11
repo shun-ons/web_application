@@ -8,6 +8,7 @@ import com.example.demo.domain.service.UserService;
 
 /**
  * ログイン処理を管理するコントローラークラス.
+ * @author 夏木翔吾
  */
 @Controller
 public class LoginController {

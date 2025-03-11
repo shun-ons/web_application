@@ -19,7 +19,8 @@ import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
 
 /**
- * マイページの処理を担当するコントローラークラス
+ * マイページの処理を担当するコントローラークラス.
+ * @author 夏木翔吾
  */
 @Controller
 public class MypageController {

@@ -72,14 +72,6 @@ public class SoldItemController {
 				itemList = items.subList(tmp, itemSize);
 			}
 		}
-		// H2の時の処理.
-//		List<Item> reverseItems = new ArrayList<Item>(items.size());
-//		for (int i = items.size() - 1; i >= 0; i--) {
-//			if (!items.get(i).getInCart()) {
-//				// 誰かがカートに入れている商品は表示しない.
-//				reverseItems.add(items.get(i));
-//			}
-//		}
 		model.addAttribute("keyword", "");
 		model.addAttribute("items", itemList);
         MUser muser = userService.getUserOne(userId);

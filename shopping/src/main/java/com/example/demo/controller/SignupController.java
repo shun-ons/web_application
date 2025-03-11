@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * ユーザー登録処理を担当するコントローラークラス
+ * @author 夏木翔吾
  */
 @Controller
 @Slf4j

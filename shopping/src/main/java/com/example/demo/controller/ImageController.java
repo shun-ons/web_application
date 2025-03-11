@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 画像の取得を行うコントローラークラス.
+ * @author 大西竣介
  */
 @RestController
 public class ImageController {
@@ -30,6 +31,7 @@ public class ImageController {
     @GetMapping("/uploaded-images/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
         try {
+        	// アイコン画像とメニューバーの画像の場合はパスを修正.
             if (imageName.equals("icon.png")) {
                 imageName = "icon/icon.png";
             } else if (imageName.startsWith("bottan")) {
@@ -40,6 +42,7 @@ public class ImageController {
             Path imagePath = Paths.get(IMAGE_DIR + imageName).normalize();
             Resource resource = new UrlResource(imagePath.toUri());
 
+            // 画像を取得.
             if (resource.exists() && resource.isReadable()) {
                 // コンテンツタイプを自動判定
                 String contentType = MediaType.IMAGE_PNG_VALUE; // デフォルト

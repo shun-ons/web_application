@@ -153,28 +153,36 @@ public class NotificationController {
     	return "notification/reselectConfirmation";
     }
 	
+	/**
+	 * 受け取り希望の日時が入力されたときの処理を行うメソッド.
+	 * @param allParams 受け取り日時やデータベースへの登録に必要な情報が格納されたマップ.
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/notification/details/confirmation")
-	public String confirmation(@RequestParam Map<String, String> allParams, Model model) {
-		// userIdを取得.
+	public String answer(@RequestParam Map<String, String> allParams, Model model) {
+		// userId, notificationId, itemIdから情報を取得.
 		String userId = allParams.get("userId");
-		// notificationIdから通知と商品Idを取得.
 		String notificationId = allParams.get("notificationId");
 		Notification notification = notificationService.selectByNotificationId(notificationId);
 		String itemId = notification.getItemId();
-		// itemIdから受け取り予約を取得.
 		ReservingAppt reservingAppt = reservingApptService.findByItemId(itemId);
+
 		// 回答を取得.
 		String answer = allParams.get("answer");
+		
 		// htmlに送信するMapを作成. 受け取り日時の内容が含まれる.
 		Map<String, String> answerMap = new HashMap<String, String>();
 		answerMap.put("itemName", itemService.selectById(itemId).getItemName());
 		answerMap.put("answer", answer);
 		answerMap.put("notificationId", notificationId);
 
+		// modelに取得した情報を格納.
 		model.addAttribute("muser", userService.getUserOne(userId));
 		model.addAttribute("itemId", itemId);
 		model.addAttribute("reservingApptId", reservingAppt.getReservingApptId());
 		
+		// 回答を取得してanswerMapに登録. 回答が見つからない場合はnotFind.htmlに遷移.
 		if (answer.equals("1")) {
 			answerMap.put("place", reservingAppt.getPlace1());
 			answerMap.put("date", reservingAppt.getDate1());
@@ -198,6 +206,12 @@ public class NotificationController {
 		return "notification/confirmation";
 	}
 	
+	/**
+	 * 受け取り日時の送信が成功した場合の処理.
+	 * @param allParams userIDや受け取り日時の回答が格納されたマップ.
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/notification/details/correct")
 	public String correct(@RequestParam Map<String, String> allParams, Model model) {
 		String userId = allParams.get("userId");
@@ -209,7 +223,7 @@ public class NotificationController {
 	
 	/**
 	 * 出品者との予定が合わなかった場合に日程の再選択をおこなうメソッド.
-	 * @param userId
+	 * @param userId userID.
 	 * @param model
 	 * @return
 	 */
@@ -220,6 +234,13 @@ public class NotificationController {
 		return "notification/notFind";
 	}
 	
+	/**
+	 * 受け取り日時候補を再選択を送信するメソッド.
+	 * @param userId
+	 * @param itemId
+	 * @param model
+	 * @return
+	 */
 	@PostMapping(value = "/notification/reselect", params = "confirm")
 	public String reselectCorect(String userId, @RequestParam String itemId, Model model) {
 		MUser muser = userService.getUserOne(userId);
@@ -232,6 +253,14 @@ public class NotificationController {
 		return "notification/notFind";
 	}
 	
+	/**
+	 * 再選択画面からひとつ前の画面に戻るためのメソッド.
+	 * @param userId
+	 * @param itemId
+	 * @param recall
+	 * @param model
+	 * @return
+	 */
 	@PostMapping(value = "/notification/reselect", params = "delete")
 	public String reselectDelete(@RequestParam String userId, @RequestParam String itemId, @RequestParam String recall, Model model) {
     	reservingApptService.delete(itemId);
