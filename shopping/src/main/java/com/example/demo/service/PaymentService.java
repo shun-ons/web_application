@@ -13,7 +13,8 @@ import com.example.demo.repository.OrdersMapper; // （追加）OrdersMapperを�
 import com.example.demo.repository.UserMapper;
 
 /**
- * 決済処理と受け取り確認処理を管理するサービスクラス。
+ * 決済処理と受け取り確認処理を管理するサービスクラス.
+ * @author 夏木翔吾
  */
 @Service
 public class PaymentService {

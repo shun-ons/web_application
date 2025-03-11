@@ -6,6 +6,7 @@ import com.example.demo.entity.MUser;
 
 /**
  * ユーザーサービスのインターフェース
+ * @author 夏木翔吾
  */
 public interface UserService {
 

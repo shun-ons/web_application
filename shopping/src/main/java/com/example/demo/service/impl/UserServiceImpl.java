@@ -12,6 +12,7 @@ import com.example.demo.service.UserService;
 
 /**
  * ユーザーサービスの実装クラス
+ * @author 夏木翔吾
  */
 @Service
 public class UserServiceImpl implements UserService {

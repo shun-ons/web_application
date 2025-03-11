@@ -17,6 +17,7 @@ import com.example.demo.service.UserService;
 
 /**
  * Spring Securityのユーザー認証を行うサービスクラス
+ * @author 夏木翔吾
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
