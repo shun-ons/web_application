@@ -3,7 +3,13 @@ package com.example.demo.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import lombok.Data;
 
+/**
+ * 注文を管理するクラス.
+ * @author 大西竣介
+ */
+@Data
 @SuppressWarnings("serial")
 public class OrderItem implements Serializable {
     private String orderId;
@@ -12,54 +18,6 @@ public class OrderItem implements Serializable {
     private String ornerId;
     private Integer priceAtOrder;
     private LocalDateTime orderDateTime;
-    
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-    
-    public String getPurchaserId() {
-    	return this.purchaserId;
-    }
-
-    public void setPurchaserId(String purchaserId) {
-    	this.purchaserId = purchaserId;
-    }
-
-    public String getOrnerId() {
-    	return this.ornerId;
-    }
-    
-    public void setOrnerId(String ornerId) {
-    	this.ornerId = ornerId;
-    }
-    
-    public Integer getPriceAtOrder() {
-        return priceAtOrder;
-    }
-
-    public void setPriceAtOrder(Integer priceAtOrder) {
-        this.priceAtOrder = priceAtOrder;
-    }
-    
-    public LocalDateTime getOrderDateTime() {
-    	return this.orderDateTime;
-    }
-    
-    public void setOrderDateTime(LocalDateTime orderDateTime) {
-    	this.orderDateTime = orderDateTime;
-    }
     
     public String toString() {
     	return "orderItem{orderId='" + this.orderId + "', itemId='" + this.itemId +

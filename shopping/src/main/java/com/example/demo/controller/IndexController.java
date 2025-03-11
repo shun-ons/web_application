@@ -39,7 +39,7 @@ public class IndexController {
 		List<Item> allItems = itemService.selectAll();
 		List<Item> items = new ArrayList<Item>();
 		for (int i = 0; i < allItems.size(); i++) {
-			if (!allItems.get(i).getInCart()) {
+			if (!allItems.get(i).isInCart()) {
 				// 誰かがカートに入れている商品は表示しない.
 				items.add(allItems.get(i));
 			}
@@ -80,7 +80,7 @@ public class IndexController {
 		List<Item> items = new ArrayList<Item>();
 		for (int i = 0; i < allItems.size(); i++) {
 			String upperItemName = allItems.get(i).getItemName().toUpperCase();
-			if (upperItemName.contains(upperKeyword) && !allItems.get(i).getInCart()) {
+			if (upperItemName.contains(upperKeyword) && !allItems.get(i).isInCart()) {
 					items.add(allItems.get(i));
 			}
 		}

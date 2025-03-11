@@ -46,7 +46,7 @@ public class SoldItemController {
 		List<Item> allItems = itemService.selectAll();
 		List<Item> items = new ArrayList<Item>();
 		for (int i = 0; i < allItems.size(); i++) {
-			if (!allItems.get(i).getInCart()) {
+			if (!allItems.get(i).isInCart()) {
 				// 誰かがカートに入れている商品は表示しない.
 				items.add(allItems.get(i));
 			}
@@ -97,7 +97,7 @@ public class SoldItemController {
 		List<Item> items = new ArrayList<Item>();
 		for (int i = 0; i < allItems.size(); i++) {
 			String upperItemName = allItems.get(i).getItemName().toUpperCase();
-			if (upperItemName.contains(upperKeyword) && !allItems.get(i).getInCart()) {
+			if (upperItemName.contains(upperKeyword) && !allItems.get(i).isInCart()) {
 					items.add(allItems.get(i));
 			}
 		}
@@ -173,7 +173,7 @@ public class SoldItemController {
 		List<Item> items = itemService.selectByOrnerId(userId);
         List<Item> soldItems = new ArrayList<>();
         for (Item item : items) {
-            if (!item.getInCart()) {
+            if (!item.isInCart()) {
                 soldItems.add(item);
             }
         }

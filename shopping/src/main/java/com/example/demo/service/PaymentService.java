@@ -80,7 +80,7 @@ public class PaymentService {
             throw new IllegalArgumentException("商品が見つからないか、権限がありません。");
         }
 
-        if (item.getIsCompletion()) {
+        if (item.isCompletion()) {
             throw new IllegalArgumentException("すでに受け取り確認済みです。");
         }
 
@@ -111,7 +111,7 @@ public class PaymentService {
             if (item == null) {
                 continue;
             }
-            if (!item.getIsCompletion()) {
+            if (!item.isCompletion()) {
                 purchasedItems.add(item);
             }
         }
@@ -129,7 +129,7 @@ public class PaymentService {
 
         return itemService.selectAll().stream()
                 .filter(item -> uncompletedItemIds.contains(item.getItemId())) // 自分が販売した商品
-                .filter(item -> !item.getIsCompletion())  // 受け取り未完了
+                .filter(item -> !item.isCompletion())  // 受け取り未完了
                 .collect(Collectors.toList());
     }
 }

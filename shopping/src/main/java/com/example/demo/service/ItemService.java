@@ -70,15 +70,15 @@ public class ItemService {
 	private Item edit(ItemInput itemInput, String userId) {
 		Item item = new Item();
 		if (itemInput.getItemId() == null) {
-			item.setId(UUID.randomUUID().toString());
+			item.setItemId(UUID.randomUUID().toString());
 		} else {
-			item.setId(itemInput.getItemId());
+			item.setItemId(itemInput.getItemId());
 		}
 		item.setItemName(itemInput.getItemName());
 		item.setItemPrice(itemInput.getItemPrice());
 		item.setOrnerName(userService.getUserName(userId));
 		item.setOrnerId(userId);
-		item.setComment(itemInput.getComment());
+		item.setMessage(itemInput.getComment());
 		LocalDateTime now = LocalDateTime.now();
 		item.setSalesDateTime(now);
 		
@@ -144,7 +144,7 @@ public class ItemService {
 		List<ItemInput> itemInputList = new ArrayList<ItemInput>();
 		for (int i = 0; i < items.size(); i++) {
 			Item itemTmp = items.get(i);
-			ItemInput itemInputTmp = new ItemInput(itemTmp.getItemName(), itemTmp.getItemPrice(), itemTmp.getComment());
+			ItemInput itemInputTmp = new ItemInput(itemTmp.getItemName(), itemTmp.getItemPrice(), itemTmp.getMessage());
 			itemInputTmp.setItemId(itemTmp.getItemId());
 			itemInputList.add(itemInputTmp);
 		}

@@ -55,7 +55,7 @@ public class MypageController {
         List<Item> items = itemService.selectByOrnerId(userId);  // ユーザーが出品中の商品を取得
         List<Item> isSoldItems = new ArrayList<>(); // 販売中の商品のみを格納
         for (Item item : items) {
-            if (item.getIsSold()) {
+            if (item.isSold()) {
                 isSoldItems.add(item);
             }
         }
@@ -78,7 +78,7 @@ public class MypageController {
         List<Item> items = itemService.selectByOrnerId(userId);
         List<Item> isSoldItems = new ArrayList<>();
         for (Item item : items) {
-            if (item.getIsSold()) {
+            if (item.isSold()) {
                 isSoldItems.add(item);
             }
         }
@@ -101,7 +101,7 @@ public class MypageController {
         List<Item> items = itemService.selectByOrnerId(userId);
         List<Item> soldItems = new ArrayList<>();
         for (Item item : items) {
-            if (!item.getInCart()) {
+            if (!item.isInCart()) {
                 soldItems.add(item);
             }
         }

@@ -43,7 +43,7 @@ public class CartService {
     public void addItemToCart(String purchaserId, String itemId) {
         // 商品を取得
         Item item = itemService.selectById(itemId);
-        if (item == null || item.getInCart()) {
+        if (item == null || item.isInCart()) {
             throw new IllegalArgumentException("無効な商品IDまたは既に販売済みの商品です");
         }
 
