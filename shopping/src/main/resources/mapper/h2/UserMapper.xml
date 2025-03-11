@@ -5,7 +5,7 @@
 <mapper namespace="com.example.demo.repository.UserMapper">
 
 	<!-- マッピング定義(ユーザ) -->
-	<resultMap type="com.example.demo.domain.model.MUser" id="user">
+	<resultMap type="com.example.demo.entity.MUser" id="user">
 		<id column="mailAddress" property="mailAddress" />
 		<result column="password" property="password"/>
 		<result column="name" property="name"/>
