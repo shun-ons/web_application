@@ -1,4 +1,4 @@
-package com.example.demo.domain.service.impl;
+package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.MUser;
+import com.example.demo.service.UserService;
 
 /**
  * Spring Securityのユーザー認証を行うサービスクラス

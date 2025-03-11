@@ -1,8 +1,8 @@
-package com.example.demo.domain.service;
+package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.domain.model.MUser;
+import com.example.demo.entity.MUser;
 
 /**
  * ユーザーサービスのインターフェース

@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.domain.service.impl.UserServiceImpl;
 import com.example.demo.entity.Item;
 import com.example.demo.input.ItemInput;
 import com.example.demo.repository.ItemMapper;
+import com.example.demo.service.impl.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 

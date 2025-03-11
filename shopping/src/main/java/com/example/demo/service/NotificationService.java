@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.MUser;
 import com.example.demo.entity.Notification;
 import com.example.demo.entity.Orders;
 import com.example.demo.repository.NotificationMapper;

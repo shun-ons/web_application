@@ -1,4 +1,4 @@
-package com.example.demo.domain.service.impl;
+package com.example.demo.service.impl;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.MUser;
 import com.example.demo.repository.UserMapper;
+import com.example.demo.service.UserService;
 
 /**
  * ユーザーサービスの実装クラス

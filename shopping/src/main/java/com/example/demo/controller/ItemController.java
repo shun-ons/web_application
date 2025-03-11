@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.MUser;
 import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
+import com.example.demo.service.UserService;
 
 /**
  * 商品の出品を管理するコントローラ.

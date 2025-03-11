@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.MUser;
 import com.example.demo.form.SignupForm;
+import com.example.demo.service.UserService;
 
 import ch.qos.logback.core.model.Model;
 import lombok.extern.slf4j.Slf4j;

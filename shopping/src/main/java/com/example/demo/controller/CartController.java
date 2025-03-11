@@ -12,12 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.MUser;
 import com.example.demo.input.ReservingApptInput;
 import com.example.demo.service.CartService;
 import com.example.demo.service.ReservingApptService;
+import com.example.demo.service.UserService;
 
 /**
  * カート機能を管理するコントローラークラス。

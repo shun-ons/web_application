@@ -1,9 +1,10 @@
-package com.example.demo.domain.model;
+package com.example.demo.input;
 
 import lombok.Data;
 
 /**
  * 入金情報を管理するモデルクラス
+ * @author 夏木翔吾
  */
 @Data
 public class DepositInput {

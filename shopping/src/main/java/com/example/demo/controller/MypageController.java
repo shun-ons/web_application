@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.MUser;
 import com.example.demo.input.ItemInput;
 import com.example.demo.service.ItemService;
+import com.example.demo.service.UserService;
 
 /**
  * マイページの処理を担当するコントローラークラス.

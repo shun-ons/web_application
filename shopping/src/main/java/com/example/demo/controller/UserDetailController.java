@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.MUser;
 import com.example.demo.form.UserDetailForm;
+import com.example.demo.service.UserService;
 
 /**
  * ユーザー詳細ページの処理を担当するコントローラークラス

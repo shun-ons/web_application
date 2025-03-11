@@ -12,9 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
 import com.example.demo.entity.Item;
+import com.example.demo.entity.MUser;
 import com.example.demo.entity.Notification;
 import com.example.demo.entity.ReservingAppt;
 import com.example.demo.input.ReservingApptInput;
@@ -22,6 +21,7 @@ import com.example.demo.service.ItemService;
 import com.example.demo.service.NotificationService;
 import com.example.demo.service.OrdersService;
 import com.example.demo.service.ReservingApptService;
+import com.example.demo.service.UserService;
 
 /**
  * 通知蘭へのアクセスを管理するクラス.

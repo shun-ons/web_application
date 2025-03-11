@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.domain.model.DepositInput;
-import com.example.demo.domain.model.MUser;
-import com.example.demo.domain.service.UserService;
+import com.example.demo.entity.MUser;
+import com.example.demo.input.DepositInput;
+import com.example.demo.service.UserService;
 
 /**
  * 入金処理を担当するコントローラークラス.
