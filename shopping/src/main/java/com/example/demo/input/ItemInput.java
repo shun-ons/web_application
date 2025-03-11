@@ -3,10 +3,14 @@ package com.example.demo.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 /**
  * 出品する際に商品情報を保持するためのクラス.
  * @author 大西竣介.
  */
+@Getter
+@Setter
 public class ItemInput {
 	@NotBlank
 	private String itemName;
@@ -20,37 +24,5 @@ public class ItemInput {
 		this.setItemName(itemName);
 		this.setItemPrice(itemPrice);
 		this.setComment(comment);
-	}
-	
-	public String getItemName() {
-		return this.itemName;
-	}
-	
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-	
-	public int getItemPrice() {
-		return this.itemPrice;
-	}
-	
-	public void setItemPrice(int itemPrice) {
-		this.itemPrice = itemPrice;
-	}
-	
-	public String getComment() {
-		return this.comment;
-	}
-	
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public String getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
 	}
 }

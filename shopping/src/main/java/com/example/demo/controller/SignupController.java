@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.MUser;
-import com.example.demo.form.SignupForm;
+import com.example.demo.input.SignupFormInput;
 import com.example.demo.service.UserService;
 
 import ch.qos.logback.core.model.Model;
@@ -37,7 +37,7 @@ public class SignupController {
      * @return サインアップページのビュー名
      */
     @GetMapping("/signup")
-    public String getSignup(@ModelAttribute SignupForm form) {
+    public String getSignup(@ModelAttribute SignupFormInput form) {
         return "signup/signup";
     }
 
@@ -50,7 +50,7 @@ public class SignupController {
      * @return ログインページへのリダイレクト
      */
     @PostMapping("/signup")
-    public String postSignup(Model model, @ModelAttribute @Validated SignupForm form, BindingResult bindingResult) {
+    public String postSignup(Model model, @ModelAttribute @Validated SignupFormInput form, BindingResult bindingResult) {
         
         if (bindingResult.hasErrors()) {
             return getSignup(form);
