@@ -1,7 +1,3 @@
 /.metadata/
 /Servers/
 /demo/
-/shopping/
-!/shopping/src
-!/shopping/doc
-!/README.md
