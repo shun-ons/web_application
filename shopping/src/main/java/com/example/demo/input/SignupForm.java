@@ -12,7 +12,7 @@ import lombok.Data;
  * @author 夏木翔吾
  */
 @Data
-public class SignupFormInput {
+public class SignupForm {
 
 	@NotBlank(message = "入力必須です")
 	@Email(message = "メールアドレス形式で入力してください")

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.MUser;
-import com.example.demo.input.UserDetailFormInput;
+import com.example.demo.input.UserDetailForm;
 import com.example.demo.service.UserService;
 
 /**
@@ -34,12 +34,12 @@ public class UserDetailController {
      * @return ユーザー詳細ページのビュー名
      */
     @GetMapping("/detail/{mailAddress:.+}")
-    public String getUser(UserDetailFormInput form, Model model, @PathVariable("mailAddress") String mailAddress) {
+    public String getUser(UserDetailForm form, Model model, @PathVariable("mailAddress") String mailAddress) {
         
         MUser user = userService.getUserOne(mailAddress);
         user.setPassword(null);
 
-        form = modelMapper.map(user, UserDetailFormInput.class);
+        form = modelMapper.map(user, UserDetailForm.class);
         model.addAttribute("userDetailForm", form);
 
         return "user/detail";
@@ -54,7 +54,7 @@ public class UserDetailController {
      * @return マイページへのリダイレクト
      */
     @PostMapping(value = "/detail", params = "update")
-    public String updateUser(UserDetailFormInput form, Model model, String userId) {
+    public String updateUser(UserDetailForm form, Model model, String userId) {
 
         userService.updateUserOne(form.getMailAddress(), form.getName());
         MUser muser = userService.getUserOne(userId);
@@ -72,7 +72,7 @@ public class UserDetailController {
      * @return マイページへのリダイレクト
      */
     @PostMapping(value = "/detail", params = "delete")
-    public String deleteUser(UserDetailFormInput form, Model model, String userId) {
+    public String deleteUser(UserDetailForm form, Model model, String userId) {
 
         userService.deleteUserOne(form.getMailAddress());
         MUser muser = userService.getUserOne(userId);

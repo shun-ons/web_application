@@ -7,7 +7,7 @@ import lombok.Data;
  * @author 夏木翔吾
  */
 @Data
-public class UserDetailFormInput {
+public class UserDetailForm {
 
 	private String mailAddress;
 	private String password;
