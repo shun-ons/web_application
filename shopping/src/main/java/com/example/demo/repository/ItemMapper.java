@@ -55,8 +55,8 @@ public interface ItemMapper {
 	 * @param item 変更後の商品のデータを含むオブジェクト.
 	 * @return 処理対応件数.
 	 */
-	@Update({"UPDATE ITEM",
-		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, message = #{comment}, salesDateTime = #{salesDateTime}",
+	@Update({"UPDATE item",
+		"SET itemName= #{itemName}, itemPrice = #{itemPrice}, message = #{message}, salesDateTime = #{salesDateTime}",
 		"WHERE itemId = #{itemId}"})
 	public int update(Item item);
 	
