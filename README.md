@@ -12,9 +12,9 @@
     <img src="https://img.shields.io/badge/-Javascript-F7DF1E.svg?logo=javascript&style=plastic">
     <!-- ミドルウェア一覧 -->
     <img src="https://img.shields.io/badge/-Mysql-4479A1.svg?logo=mysql&style=plastic">
-    <img src="https://img.shields.io/badge/-Apache-D22128.svg?logo=apache&style=plastic">
+    <img src="https://img.shields.io/badge/-Nginx-269539.svg?logo=nginx&style=plastic">
     <!-- インフラ一覧 -->
-    <img src="https://img.shields.io/badge/-AWS%20EC2-232F3E.svg?logo=amazon-aws&style=plastic">
+    <img src="https://img.shields.io/badge/-Oracle%20Cloud-F80000.svg?logo=Oracle&style=plastic">
 </p>
 
 ## 目次
