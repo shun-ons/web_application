@@ -42,12 +42,9 @@
 
 ## ディレクトリ構成
 ```
-src
+web_application.shopping.src
 └── main
-    ├── java
-    │   └── com
-    │       └── example
-    │           └── demo
+    ├── java.com.example.demo
     │               ├── ShoppingApplication.java
     │               ├── config
     │               │   ├── JavaConfig.java
